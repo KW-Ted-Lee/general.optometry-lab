@@ -359,23 +359,23 @@ table.mini td.hl { background: var(--accent-soft); font-weight: 700; }
 #phoroSvg .lobe { transition: transform .35s ease; }
 #phoroSvg #head { transition: transform .35s ease; }
 #phoroSvg .knurl { stroke: #6a7076; stroke-width: 1; }
-#phoroSvg .knurlDark { stroke: #5a5e63; stroke-width: 1.4; }
+#phoroSvg .knurlDisc { stroke: #8e8d86; stroke-width: 1.1; }
 #phoroSvg .knurlLight { stroke: #b9b9b2; stroke-width: .8; }
-#phoroSvg text { font-family: "JetBrains Mono", "Noto Sans TC", monospace; pointer-events: none; }
-#phoroSvg .auxTxt { font-size: 10.5px; font-weight: 700; text-anchor: middle; fill: #1d1d1d; }
-#phoroSvg .auxTxt.sm { font-size: 7.4px; letter-spacing: -.2px; }
-#phoroSvg .refTxt { font-size: 6.4px; text-anchor: middle; fill: #f0f0f0; }
-#phoroSvg .axTxt { font-size: 8.4px; text-anchor: middle; fill: #1a1a1a; font-weight: 500; }
-#phoroSvg .prTxt { font-size: 7.6px; text-anchor: middle; fill: #1a1a1a; }
-#phoroSvg .prBase { font-size: 8px; font-weight: 700; text-anchor: middle; fill: #c4161c; }
-#phoroSvg .winTxt { font-size: 15px; font-weight: 500; text-anchor: middle; fill: #ff7a1a; }
-#phoroSvg .drumTxt { font-size: 16px; font-weight: 500; text-anchor: middle; }
+#phoroSvg text { font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif; pointer-events: none; }
+#phoroSvg .auxTxt { font-size: 14px; font-weight: 700; text-anchor: middle; fill: #1d1d1d; }
+#phoroSvg .auxTxt.sm { font-size: 10px; letter-spacing: -.2px; }
+#phoroSvg .refTxt { font-size: 8px; text-anchor: middle; fill: #1a1a1a; }
+#phoroSvg .axTxt { font-size: 9.5px; text-anchor: middle; fill: #1a1a1a; }
+#phoroSvg .prTxt { font-size: 9px; text-anchor: middle; fill: #1a1a1a; }
+#phoroSvg .prBase { font-size: 10px; font-weight: 700; text-anchor: middle; fill: #c4161c; }
+#phoroSvg .winTxt { font-family: "JetBrains Mono", monospace; font-size: 12px; text-anchor: middle; fill: #ff7a1a; }
+#phoroSvg .drumTxt { font-family: "JetBrains Mono", monospace; font-size: 12.5px; font-weight: 500; text-anchor: middle; }
+#phoroSvg .drumTxt.sm { font-size: 10px; }
 #phoroSvg .drumTxt.neg { fill: #ff7a1a; } #phoroSvg .drumTxt.pos { fill: #f5f5f5; }
 #phoroSvg .pdTxt { font-size: 8px; text-anchor: middle; fill: #222; }
-#phoroSvg .jccTxt { font-size: 8px; font-weight: 700; text-anchor: middle; fill: #555; }
-#phoroSvg .jccTxt.on { fill: #111; font-size: 9.5px; }
-#phoroSvg .jccPow { font-size: 6.5px; text-anchor: middle; fill: #cfd7db; }
-#phoroSvg .eyeTag { font-size: 14px; font-weight: 700; text-anchor: middle; fill: #8f8a80; }
+#phoroSvg .jccTxt { font-size: 11px; font-weight: 700; text-anchor: middle; fill: #555; }
+#phoroSvg .jccTxt.on { fill: #111; font-size: 13px; }
+#phoroSvg .jccPow { font-size: 8px; text-anchor: middle; fill: #3d4246; }
 #phoroSvg .cardTxt { font-size: 16px; font-weight: 700; text-anchor: middle; fill: #333; }
 #phoroSvg .cardSub { font-size: 11px; text-anchor: middle; fill: #555; }
 #phoroSvg .knob:hover > circle:nth-child(2), #phoroSvg .hit:hover { filter: brightness(1.04); }
@@ -1017,259 +1017,266 @@ const OPT = (() => {
 
 /* =========================================================================
    擬真綜合驗光儀機頭（檢查者側視角；畫面左邊是病人右眼 OD）
-   部件編號沿用操作說明書的命名順序，方便對照教學。
+   繪圖座標直接取自實機正面照片的像素位置（寬 1074），比例與實機一致。
+   右眼（左側）以實際座標繪製；左眼以中線 X0 鏡射。
    ========================================================================= */
 const PHORO = (() => {
   const NS = "http://www.w3.org/2000/svg";
-  const POS_APT = [52, 0], POS_PIV = [-23, -34];
-  const PXMM = 300 / 64;            // 64 mm PD 時兩個檢查窗相距 300 px
-  const CX = 500, PIV = [500, 150]; // 水平調整的旋轉中心
-  const LOBE = { R: { X: 300, o: -1 }, L: { X: 700, o: 1 } }; // o：外側方向
-  const POS = { // OD 的局部座標（OS 會左右鏡射）
-    aux: [-118, -128], sphWin: [62, -80], apt: [52, 0], pivot: [-23, -34],
-    cyl: [-22, 158], cylWin: [52, 96], cornea: [-186, 44], lever: [92, -204],
+  const X0 = 517;                       // 機身中線
+  const HALF = 92;                      // PD 64 mm 時檢查窗到中線的距離
+  const PXMM = HALF / 32;
+  const PIV = [517, 300];               // 水平調整的旋轉中心
+  const POS = {
+    apt: [427, 643], aux: [180, 432], pivot: [333, 614], jcc: [377, 523], prism: [247, 627],
+    disc: [291, 650], discR: 201, cyl: [310, 800], cylWin: [409, 743], sphWin: [157, 623],
+    cornea: [73, 634], lever: [272, 375],
   };
+  const LOBE = { R: { o: -1 }, L: { o: 1 } };
   const f = (n) => Math.round(n * 100) / 100;
-  // 豌豆形轉盤：JCC 與旋轉稜鏡裝在同一片，繞中心小圓鈕旋轉，一次只能把一個轉到檢查窗前（OD 角度，OS 鏡射）
-  const TUR = (() => {
-    const dx = POS_APT[0] - POS_PIV[0], dy = POS_APT[1] - POS_PIV[1];
-    const R = Math.hypot(dx, dy), aApt = Math.atan2(dy, dx) * 180 / Math.PI;
-    const aJ = -82, aP = 162;
-    const norm = (a) => ((a + 540) % 360) - 180;
-    return { R, aJ, aP, thJ: norm(aApt - aJ), thP: norm(aApt - aP) };
-  })();
   const pol = (cx, cy, r, degFromTopCW) => { const t = (degFromTopCW - 90) * Math.PI / 180; return [cx + r * Math.cos(t), cy + r * Math.sin(t)]; };
-  const tabo = (cx, cy, r, a) => { const t = a * Math.PI / 180; return [cx + r * Math.cos(t), cy - r * Math.sin(t)]; }; // 檢查者視角 TABO
+  const tabo = (cx, cy, r, a) => { const t = a * Math.PI / 180; return [cx + r * Math.cos(t), cy - r * Math.sin(t)]; };
+  function mp(k, p) { return k === "R" ? [p[0], p[1]] : [2 * X0 - p[0], p[1]]; }
+  // 附件轉盤：JCC、旋轉稜鏡、檢查窗都落在以轉軸為圓心的同一個圓上
+  const TUR = (() => {
+    const [cx, cy] = POS.pivot;
+    const ang = (p) => Math.atan2(p[1] - cy, p[0] - cx) * 180 / Math.PI;
+    const R = (Math.hypot(POS.apt[0] - cx, POS.apt[1] - cy) + Math.hypot(POS.jcc[0] - cx, POS.jcc[1] - cy) + Math.hypot(POS.prism[0] - cx, POS.prism[1] - cy)) / 3;
+    const aA = ang(POS.apt), aJ = ang(POS.jcc), aP = ang(POS.prism);
+    const norm = (a) => ((a + 540) % 360) - 180;
+    return { R, aA, aJ, aP, thJ: norm(aA - aJ), thP: norm(aA - aP) };
+  })();
 
   /* ---------- 共用繪圖 ---------- */
-  function knurl(cx, cy, r1, r2, n, cls = "knurl", rot = 0) {
+  function knurl(cx, cy, r1, r2, n, cls = "knurl") {
     let d = "";
-    for (let i = 0; i < n; i++) { const a = rot + i * 360 / n; const p = pol(cx, cy, r1, a), q = pol(cx, cy, r2, a); d += `M${f(p[0])} ${f(p[1])}L${f(q[0])} ${f(q[1])}`; }
+    for (let i = 0; i < n; i++) { const a = i * 360 / n; const p = pol(cx, cy, r1, a), q = pol(cx, cy, r2, a); d += `M${f(p[0])} ${f(p[1])}L${f(q[0])} ${f(q[1])}`; }
     return `<path class="${cls}" d="${d}"/>`;
   }
   function metalKnob(cx, cy, r, { knurled = true, n = 48, id = "", part = "", tip = "" } = {}) {
+    const inner = r - (knurled ? Math.max(4, r * 0.14) : 1.5);
     return `<g class="knob" ${id ? `id="${id}"` : ""} ${part ? `data-part="${part}"` : ""} ${tip ? `data-tip="${tip}"` : ""}>
-      <circle cx="${cx}" cy="${cy + 2.5}" r="${r + 1}" fill="#000" opacity=".22" filter="url(#soft)"/>
+      <circle cx="${cx}" cy="${cy + 3}" r="${r + 1}" fill="#000" opacity=".22" filter="url(#soft)"/>
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#gKnobSide)"/>
-      ${knurled ? knurl(cx, cy, r - 0.5, r - 5, n) : ""}
-      <circle cx="${cx}" cy="${cy}" r="${r - (knurled ? 5 : 2)}" fill="url(#gKnobFace)"/>
-      <circle cx="${cx}" cy="${cy}" r="${r - (knurled ? 5 : 2)}" fill="url(#gBrushed)" opacity=".5"/>
+      ${knurled ? knurl(cx, cy, r - 0.5, inner, n) : ""}
+      <circle cx="${cx}" cy="${cy}" r="${inner}" fill="url(#gKnobFace)"/>
+      <circle cx="${cx}" cy="${cy}" r="${inner}" fill="url(#gBrushed)" opacity=".5"/>
       <ellipse cx="${cx - r * 0.25}" cy="${cy - r * 0.32}" rx="${r * 0.42}" ry="${r * 0.2}" fill="#fff" opacity=".45" transform="rotate(-25 ${cx - r * 0.25} ${cy - r * 0.32})"/>
     </g>`;
   }
-  // 側面看到的圓柱形旋鈕（頂部、兩端）
-  function cylKnob(x, y, w, h, { part = "", tip = "", id = "" } = {}) {
+  function cylKnob(x, y, w, h, { part = "", tip = "", id = "", knurled = true } = {}) {
     let lines = "";
-    for (let i = 1; i < w / 2.6; i++) lines += `M${f(x + i * 2.6)} ${y + 2}V${y + h - 2}`;
+    if (knurled) for (let i = 1; i < w / 2.8; i++) lines += `M${f(x + i * 2.8)} ${y + 2}V${y + h - 2}`;
     return `<g class="knob" ${id ? `id="${id}"` : ""} ${part ? `data-part="${part}"` : ""} ${tip ? `data-tip="${tip}"` : ""}>
-      <rect x="${x}" y="${y + 2}" width="${w}" height="${h}" rx="4" fill="#000" opacity=".2" filter="url(#soft)"/>
-      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="url(#gCylH)"/>
-      <path d="${lines}" stroke="#5b6066" stroke-width=".9" opacity=".7"/>
-      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="none" stroke="#6b7076" stroke-width=".8"/>
+      <rect x="${x}" y="${y + 3}" width="${w}" height="${h}" rx="5" fill="#000" opacity=".2" filter="url(#soft)"/>
+      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="url(#gCylH)"/>
+      ${lines ? `<path d="${lines}" stroke="#5b6066" stroke-width=".9" opacity=".65"/>` : ""}
+      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="none" stroke="#6b7076" stroke-width=".8"/>
     </g>`;
   }
-  function screw(x, y, r = 3.2) {
-    return `<g><circle cx="${x}" cy="${y}" r="${r}" fill="url(#gKnobFace)" stroke="#7d8287" stroke-width=".6"/><path d="M${x - r * 0.7} ${y}H${x + r * 0.7}" stroke="#55595e" stroke-width=".9"/></g>`;
+  function cylKnobV(x, y, w, h, opts = {}) {
+    let lines = "";
+    for (let i = 1; i < w / 2.8; i++) lines += `M${f(x + i * 2.8)} ${y + 2}V${y + h - 2}`;
+    return `<g class="knob" ${opts.tip ? `data-tip="${opts.tip}"` : ""}>
+      <rect x="${x}" y="${y + 3}" width="${w}" height="${h}" rx="7" fill="#000" opacity=".18" filter="url(#soft)"/>
+      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="7" fill="url(#gCylV)"/>
+      <path d="${lines}" stroke="#666b71" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="${x + w / 2}" cy="${y + 4}" rx="${w / 2 - 1}" ry="4" fill="#f4f5f6" opacity=".7"/>
+    </g>`;
   }
+  const screw = (x, y, r = 3.4) => `<g><circle cx="${x}" cy="${y}" r="${r}" fill="#5b5e62"/><circle cx="${x - 0.6}" cy="${y - 0.6}" r="${r * 0.55}" fill="#8a8e93"/></g>`;
 
   /* ---------- defs ---------- */
   const DEFS = `<defs>
-    <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1efe9"/><stop offset=".55" stop-color="#dedbd3"/><stop offset="1" stop-color="#c8c4bb"/></linearGradient>
-    <radialGradient id="gLobe" cx=".42" cy=".32" r=".8"><stop offset="0" stop-color="#f4f2ec"/><stop offset=".6" stop-color="#e0ddd5"/><stop offset="1" stop-color="#c3bfb5"/></radialGradient>
-    <linearGradient id="gBridge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f5f1"/><stop offset=".45" stop-color="#e2dfd8"/><stop offset="1" stop-color="#bdb9b0"/></linearGradient>
+    <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7e6e1"/><stop offset=".6" stop-color="#d6d5cf"/><stop offset="1" stop-color="#c3c2bb"/></linearGradient>
+    <linearGradient id="gFace" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#e9e8e3"/><stop offset=".55" stop-color="#dcdbd5"/><stop offset="1" stop-color="#c9c8c1"/></linearGradient>
+    <radialGradient id="gDisc" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#cfcec8"/><stop offset=".8" stop-color="#bebdb6"/><stop offset="1" stop-color="#a7a69f"/></radialGradient>
+    <linearGradient id="gBridge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6e5e0"/><stop offset=".5" stop-color="#d5d4ce"/><stop offset="1" stop-color="#bebdb6"/></linearGradient>
+    <linearGradient id="gHousing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0efeb"/><stop offset=".35" stop-color="#e0dfd9"/><stop offset=".8" stop-color="#bdbcb5"/><stop offset="1" stop-color="#a9a8a1"/></linearGradient>
     <linearGradient id="gRod" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fafbfc"/><stop offset=".4" stop-color="#c9cdd1"/><stop offset=".7" stop-color="#8f959b"/><stop offset="1" stop-color="#d8dbde"/></linearGradient>
     <linearGradient id="gRodV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa0a6"/><stop offset=".35" stop-color="#f4f5f6"/><stop offset=".7" stop-color="#b5babf"/><stop offset="1" stop-color="#7d8288"/></linearGradient>
-    <linearGradient id="gPlate" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef0f1"/><stop offset=".5" stop-color="#cfd3d6"/><stop offset="1" stop-color="#a9aeb3"/></linearGradient>
     <linearGradient id="gCylH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9ebed"/><stop offset=".3" stop-color="#ffffff"/><stop offset=".65" stop-color="#a9aeb3"/><stop offset="1" stop-color="#6f757b"/></linearGradient>
+    <linearGradient id="gCylV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8d9298"/><stop offset=".3" stop-color="#f5f6f7"/><stop offset=".6" stop-color="#c3c7cb"/><stop offset="1" stop-color="#7a7f85"/></linearGradient>
     <radialGradient id="gKnobFace" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#e4e7ea"/><stop offset=".8" stop-color="#a6acb2"/><stop offset="1" stop-color="#868c93"/></radialGradient>
     <radialGradient id="gKnobSide" cx=".5" cy=".5" r=".5"><stop offset=".7" stop-color="#c9cdd1"/><stop offset=".92" stop-color="#8b9197"/><stop offset="1" stop-color="#5f656b"/></radialGradient>
     <radialGradient id="gBrushed" cx=".5" cy=".5" r=".07" spreadMethod="repeat"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".5" stop-color="#7a8086" stop-opacity=".35"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
-    <radialGradient id="gGlass" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#5d7684" stop-opacity=".35"/><stop offset=".7" stop-color="#1d2a31" stop-opacity=".25"/><stop offset="1" stop-color="#0b1013" stop-opacity=".55"/></radialGradient>
+    <radialGradient id="gGlass" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#5d7684" stop-opacity=".3"/><stop offset=".7" stop-color="#1d2a31" stop-opacity=".22"/><stop offset="1" stop-color="#0b1013" stop-opacity=".5"/></radialGradient>
     <radialGradient id="gIris" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2b1a10"/><stop offset=".45" stop-color="#5a3a22"/><stop offset=".85" stop-color="#7b5634"/><stop offset="1" stop-color="#3a2614"/></radialGradient>
     <radialGradient id="gSkin" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#e9c4a6"/><stop offset="1" stop-color="#b98c6c"/></radialGradient>
     <linearGradient id="gBlackRing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e3135"/><stop offset="1" stop-color="#121315"/></linearGradient>
-    <linearGradient id="gWhiteRing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e2e2de"/></linearGradient>
-    <linearGradient id="gVial" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8f3d8"/><stop offset=".5" stop-color="#cfe3b4"/><stop offset="1" stop-color="#a9c48a"/></linearGradient>
+    <linearGradient id="gWhiteRing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e4e4e0"/></linearGradient>
+    <linearGradient id="gPlate" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eceeef"/><stop offset=".5" stop-color="#d2d5d8"/><stop offset="1" stop-color="#aeb3b7"/></linearGradient>
+    <linearGradient id="gVial" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef4e6"/><stop offset=".5" stop-color="#d9e4cb"/><stop offset="1" stop-color="#b8c8a5"/></linearGradient>
     <pattern id="pMaddoxH" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#b5261b" opacity=".55"/><rect y="0" width="6" height="2.6" fill="#ffb3a8" opacity=".8"/></pattern>
     <pattern id="pMaddoxV" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#b5261b" opacity=".55"/><rect x="0" width="2.6" height="6" fill="#ffb3a8" opacity=".8"/></pattern>
     <pattern id="pMaddoxHW" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#d9dde0" opacity=".55"/><rect y="0" width="6" height="2.6" fill="#ffffff" opacity=".9"/></pattern>
     <pattern id="pMaddoxVW" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#d9dde0" opacity=".55"/><rect x="0" width="2.6" height="6" fill="#ffffff" opacity=".9"/></pattern>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity=".28"/></filter>
-    <filter id="inset"><feOffset dy="1.5"/><feGaussianBlur stdDeviation="1.2" result="o"/><feComposite in="SourceGraphic" in2="o" operator="over"/></filter>
-    <clipPath id="clipAptR"><circle cx="${POS.apt[0]}" cy="${POS.apt[1]}" r="27"/></clipPath>
-    <clipPath id="clipAptL"><circle cx="${-POS.apt[0]}" cy="${POS.apt[1]}" r="27"/></clipPath>
-    <clipPath id="clipSphR"><rect x="${POS.sphWin[0] - 30}" y="${POS.sphWin[1] - 15}" width="60" height="30" rx="3"/></clipPath>
-    <clipPath id="clipSphL"><rect x="${-POS.sphWin[0] - 30}" y="${POS.sphWin[1] - 15}" width="60" height="30" rx="3"/></clipPath>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity=".25"/></filter>
+    ${["R", "L"].map((k) => { const [ax, ay] = mp(k, POS.apt), [wx, wy] = mp(k, POS.sphWin); return `<clipPath id="clipApt${k}"><circle cx="${ax}" cy="${ay}" r="29"/></clipPath><clipPath id="clipSph${k}"><rect x="${wx - 14}" y="${wy - 21}" width="28" height="42" rx="2"/></clipPath>`; }).join("")}
   </defs>`;
 
   /* ---------- 一側機身 ---------- */
   function lobe(k) {
-    const { o } = LOBE[k];
-    const m = (p) => [p[0] * -o, p[1]]; // OD 原樣；OS 鏡射
-    const sx = -o; // OD 為 1
-    const [ax, ay] = m(POS.aux), [sxw, syw] = m(POS.sphWin), [apx, apy] = m(POS.apt), [pvx, pvy] = m(POS.pivot);
-    const [cx, cy] = m(POS.cyl), [cwx, cwy] = m(POS.cylWin), [kx, ky] = m(POS.cornea), [lx, ly] = m(POS.lever);
-    const shapes = (fill, stroke, sw) => `
-      <circle cx="${-40 * sx}" cy="10" r="160" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>
-      <circle cx="${-15 * sx}" cy="145" r="88" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>
-      <rect x="${sx > 0 ? -10 : -120}" y="-215" width="130" height="255" rx="30" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>
-      <circle cx="${60 * sx}" cy="-30" r="100" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
-    // 球面弱鈕：大圓盤外緣的滾花
-    const rim = `<g id="rim${k}" data-part="rim-${k}" data-tip="弱球面轉盤（12）：每格 0.25 D" class="hit">
-        <circle cx="${-40 * sx}" cy="10" r="177" fill="#2b2d30"/>
-        <g id="rimKnurl${k}">${knurl(-40 * sx, 10, 177, 163, 140, "knurlDark")}</g>
-        <circle cx="${-40 * sx}" cy="10" r="177" fill="none" stroke="#111" stroke-width="1"/>
+    const sx = k === "R" ? 1 : -1;
+    const M = (x, y) => mp(k, [x, y]);
+    const mx = (x) => (k === "R" ? x : 2 * X0 - x);
+    const [ax, ay] = M(...POS.aux), [apx, apy] = M(...POS.apt), [pvx, pvy] = M(...POS.pivot);
+    const [cx, cy] = M(...POS.cyl), [cwx, cwy] = M(...POS.cylWin), [wx, wy] = M(...POS.sphWin), [kx, ky] = M(...POS.cornea);
+    const [dx, dy] = M(...POS.disc), dR = POS.discR, [lx, ly] = M(...POS.lever);
+    const P = (pts) => pts.map(([x, y]) => `${f(mx(x))} ${y}`).join(" ");
+    const swp = k === "R" ? 1 : 0;
+    // 面板外形（取自照片輪廓）
+    const face = `M${P([[218, 412]])} L${P([[488, 412]])} Q${P([[495, 412], [495, 420]])} L${P([[495, 702]])}
+      C${P([[495, 737], [440, 748], [393, 758]])}
+      A92 92 0 1 ${swp} ${P([[217, 758]])}
+      C${P([[190, 744], [149, 736], [144, 706]])}
+      L${P([[139, 562]])} C${P([[141, 526], [168, 506], [206, 496]])} Z`;
+    const disc = `<g data-part="rim-${k}" class="hit" data-tip="弱球面轉盤（12）：轉動大圓盤外緣，每格 0.25 D">
+        <circle cx="${dx}" cy="${dy + 4}" r="${dR + 2}" fill="#000" opacity=".22" filter="url(#soft)"/>
+        <circle cx="${dx}" cy="${dy}" r="${dR}" fill="url(#gDisc)" stroke="#8e8d86" stroke-width="1.2"/>
+        <g id="rimKnurl${k}">${knurl(dx, dy, dR - 1, dR - 9, 220, "knurlDisc")}</g>
+        <circle cx="${dx}" cy="${dy}" r="${dR - 10}" fill="none" stroke="#a9a8a1" stroke-width="1"/>
       </g>`;
-    // 輔助鏡盤 + 強球面鈕
     const auxLabels = OPT.AUX[k].map((t, i) => {
-      const [tx, ty] = pol(ax, ay, 35.5, i * 30);
+      const [tx, ty] = pol(ax, ay, 54, i * 30);
       const txt = t === "O2" ? "O" : t;
-      const bar = t === "O" ? `<path d="M${f(tx - 4)} ${f(ty + 6.5)}h8" stroke="#111" stroke-width="1.6"/>` : "";
-      return `<g transform="rotate(${i * 30} ${f(tx)} ${f(ty)})"><text x="${f(tx)}" y="${f(ty + 3)}" class="auxTxt${txt.length >= 3 ? " sm" : ""}">${txt.replace("Δ", "△")}</text>${bar}</g>`;
+      const bar = t === "O" ? `<path d="M${f(tx - 5)} ${f(ty - 13)}h10" stroke="#111" stroke-width="2.4"/>` : "";
+      return `<g transform="rotate(${i * 30} ${f(tx)} ${f(ty)})"><text x="${f(tx)}" y="${f(ty + 4.5)}" class="auxTxt${txt.length >= 3 ? " sm" : ""}">${txt.replace("Δ", "△")}</text>${bar}</g>`;
     }).join("");
     const aux = `<g data-part="aux-${k}" class="hit" data-tip="輔助鏡片鈕（10）：轉到 12 點鐘位置的鏡片會進入檢查窗">
-        <circle cx="${ax}" cy="${ay + 3}" r="49" fill="#000" opacity=".25" filter="url(#soft)"/>
+        <circle cx="${ax}" cy="${ay + 4}" r="69" fill="#000" opacity=".25" filter="url(#soft)"/>
         <g id="auxRing${k}">
-          <circle cx="${ax}" cy="${ay}" r="47" fill="url(#gWhiteRing)" stroke="#9a9a94" stroke-width="1"/>
-          ${knurl(ax, ay, 47, 44, 96, "knurlLight")}
+          <circle cx="${ax}" cy="${ay}" r="67" fill="url(#gWhiteRing)" stroke="#9a9a94" stroke-width="1"/>
+          ${knurl(ax, ay, 67, 64, 120, "knurlLight")}
           ${auxLabels}
         </g>
-        <path d="M${ax - 5} ${ay - 54}l5 7l5 -7z" fill="#111"/>
       </g>
-      ${metalKnob(ax, ay, 25, { part: "strong-" + k, tip: "強球面鈕（13）：每格 3.00 D", id: "strong" + k })}`;
-    // 球面讀窗（11）
-    const sphWin = `<g data-part="rim-${k}" class="hit" data-tip="球面讀窗（11）：白字為正、橘字為負，數字讀到小數兩位（100＝1.00 D）">
-        <rect x="${sxw - 33}" y="${syw - 18}" width="66" height="36" rx="5" fill="#bdb8ae" stroke="#9c978d"/>
-        <rect x="${sxw - 30}" y="${syw - 15}" width="60" height="30" rx="3" fill="#0f1012"/>
+      ${metalKnob(ax, ay, 41, { part: "strong-" + k, tip: "強球面鈕（13）：每格 3.00 D", id: "strong" + k, knurled: false })}`;
+    const sphWin = `<g data-part="rim-${k}" class="hit" data-tip="球面讀窗（11）：白字為正、橘字為負（100＝1.00 D，1150＝11.50 D）">
+        <rect x="${wx - 19}" y="${wy - 27}" width="38" height="54" rx="4" fill="#cfcec8" stroke="#9b9a93"/>
+        <rect x="${wx - 14}" y="${wy - 21}" width="28" height="42" rx="2" fill="#0f1012"/>
         <g clip-path="url(#clipSph${k})"><g id="sphDrum${k}"></g></g>
-        <path d="M${sxw - 30} ${syw}h4M${sxw + 26} ${syw}h4" stroke="#e8e8e8" stroke-width="1"/>
-        <rect x="${sxw - 30}" y="${syw - 15}" width="60" height="30" rx="3" fill="url(#gGlass)" opacity=".5"/>
+        <path d="M${wx - 14} ${wy}h3M${wx + 11} ${wy}h3" stroke="#e8e8e8" stroke-width="1"/>
+        <rect x="${wx - 14}" y="${wy - 21}" width="28" height="42" rx="2" fill="url(#gGlass)" opacity=".45"/>
       </g>`;
-    // 檢查窗（21）與柱鏡軸參考刻度（20）
     let refTicks = "", refNums = "";
-    for (let a = 0; a < 360; a += 5) {
-      const big = a % 15 === 0;
-      const p = tabo(apx, apy, 46, a), q = tabo(apx, apy, big ? 40 : 43, a);
-      refTicks += `M${f(p[0])} ${f(p[1])}L${f(q[0])} ${f(q[1])}`;
-    }
-    for (let a = 0; a < 180; a += 15) {
-      for (const aa of [a, a + 180]) { const p = tabo(apx, apy, 33.5, aa); refNums += `<text x="${f(p[0])}" y="${f(p[1] + 2.4)}" class="refTxt">${a || 180}</text>`; }
-    }
+    for (let a = 0; a < 360; a += 5) { const big = a % 15 === 0; const p = tabo(apx, apy, 67, a), q = tabo(apx, apy, big ? 61 : 64, a); refTicks += `M${f(p[0])} ${f(p[1])}L${f(q[0])} ${f(q[1])}`; }
+    for (let a = 0; a < 360; a += 15) { const v = a % 180; const p = tabo(apx, apy, 53.5, a); refNums += `<text x="${f(p[0])}" y="${f(p[1] + 3)}" class="refTxt">${v === 0 ? (a === 0 ? "0" : "180") : v}</text>`; }
     const apt = `<g data-tip="檢查窗（21）與柱鏡軸參考刻度（20）">
-        <circle cx="${apx}" cy="${apy + 2}" r="53" fill="#000" opacity=".25" filter="url(#soft)"/>
-        <circle cx="${apx}" cy="${apy}" r="51" fill="url(#gBlackRing)"/>
-        <path d="${refTicks}" stroke="#e9e9e9" stroke-width=".8"/>
+        <circle cx="${apx}" cy="${apy + 3}" r="69" fill="#000" opacity=".22" filter="url(#soft)"/>
+        <circle cx="${apx}" cy="${apy}" r="68" fill="url(#gWhiteRing)" stroke="#a3a39e"/>
+        <path d="${refTicks}" stroke="#1b1b1b" stroke-width=".8"/>
         ${refNums}
-        <circle cx="${apx}" cy="${apy}" r="28.5" fill="#202326" stroke="#5c6166" stroke-width="1.2"/>
+        <circle cx="${apx}" cy="${apy}" r="44" fill="url(#gBlackRing)"/>
+        <circle cx="${apx}" cy="${apy}" r="31" fill="#2b2e31" stroke="#5c6166" stroke-width="1"/>
         <g clip-path="url(#clipApt${k})">
-          <rect x="${apx - 30}" y="${apy - 30}" width="60" height="60" fill="url(#gSkin)"/>
+          <rect x="${apx - 32}" y="${apy - 32}" width="64" height="64" fill="url(#gSkin)"/>
           <g id="eye${k}"></g>
           <g id="auxOver${k}"></g>
-          <circle cx="${apx}" cy="${apy}" r="27" fill="url(#gGlass)"/>
-          <g id="axisMark${k}"><path d="M${apx - 27} ${apy}H${apx - 15}M${apx + 15} ${apy}H${apx + 27}" stroke="#ff8a3d" stroke-width="1.6" stroke-dasharray="3 2"/></g>
-          <path d="M${apx - 18} ${apy - 14}q10 -12 26 -10" stroke="#fff" stroke-width="2.5" fill="none" opacity=".35" stroke-linecap="round"/>
+          <circle cx="${apx}" cy="${apy}" r="29" fill="url(#gGlass)"/>
+          <g id="axisMark${k}"><path d="M${apx - 29} ${apy}H${apx - 16}M${apx + 16} ${apy}H${apx + 29}" stroke="#ff8a3d" stroke-width="1.6" stroke-dasharray="3 2"/></g>
+          <path d="M${apx - 19} ${apy - 15}q11 -13 28 -11" stroke="#fff" stroke-width="2.6" fill="none" opacity=".35" stroke-linecap="round"/>
         </g>
-        <circle cx="${apx}" cy="${apy}" r="27" fill="none" stroke="#000" stroke-width="1.5"/>
+        <circle cx="${apx}" cy="${apy}" r="29" fill="none" stroke="#000" stroke-width="1.5"/>
         <path id="axisTri${k}" d="" fill="#ff8a3d"/>
       </g>`;
-    // 柱鏡讀窗（14）
     const cylWin = `<g data-part="cylp-${k}" class="hit" data-tip="柱鏡讀窗（14）：一律為負柱鏡">
-        <rect x="${cwx - 27}" y="${cwy - 15}" width="54" height="30" rx="5" fill="#bdb8ae" stroke="#9c978d"/>
-        <rect x="${cwx - 24}" y="${cwy - 12}" width="48" height="24" rx="3" fill="#0f1012"/>
-        <text id="cylWin${k}" x="${cwx}" y="${cwy + 6}" class="winTxt">.00</text>
-        <rect x="${cwx - 24}" y="${cwy - 12}" width="48" height="24" rx="3" fill="url(#gGlass)" opacity=".5"/>
+        <rect x="${cwx - 19}" y="${cwy - 12}" width="38" height="24" rx="3" fill="#cfcec8" stroke="#9b9a93"/>
+        <rect x="${cwx - 15}" y="${cwy - 9}" width="30" height="18" rx="2" fill="#0f1012"/>
+        <text id="cylWin${k}" x="${cwx}" y="${cwy + 4.5}" class="winTxt">.00</text>
+        <rect x="${cwx - 15}" y="${cwy - 9}" width="30" height="18" rx="2" fill="url(#gGlass)" opacity=".45"/>
       </g>`;
-    // 柱鏡軸鈕（16）、軸刻度（17）、柱鏡度數鈕（15）
     let axTicks = "", axNums = "";
-    for (let i = 0; i < 72; i++) { const a = i * 5; const p = pol(cx, cy, 58, a), q = pol(cx, cy, i % 3 === 0 ? 52 : 54.5, a); axTicks += `M${f(p[0])} ${f(p[1])}L${f(q[0])} ${f(q[1])}`; }
-    for (let v = 0; v < 180; v += 15) { const [tx, ty] = pol(cx, cy, 46, v * 2); axNums += `<text x="${f(tx)}" y="${f(ty + 3)}" class="axTxt" transform="rotate(${v * 2} ${f(tx)} ${f(ty)})">${v || 180}</text>`; }
+    for (let a = 0; a < 360; a += 5) { const big = a % 15 === 0; const p = tabo(cx, cy, 70, a), q = tabo(cx, cy, big ? 64 : 67, a); axTicks += `M${f(p[0])} ${f(p[1])}L${f(q[0])} ${f(q[1])}`; }
+    for (let a = 0; a < 360; a += 15) { const v = a % 180; const p = tabo(cx, cy, 57, a); axNums += `<text x="${f(p[0])}" y="${f(p[1] + 3.2)}" class="axTxt">${v === 0 ? (a === 0 ? "0" : "180") : v}</text>`; }
     const cyl = `<g>
-        <circle cx="${cx}" cy="${cy + 3}" r="62" fill="#000" opacity=".25" filter="url(#soft)"/>
-        <g data-part="axis-${k}" class="hit" data-tip="柱鏡軸鈕（16）與軸刻度（17）：旋轉調整軸度，讀上方三角指標">
+        <circle cx="${cx}" cy="${cy + 4}" r="72" fill="#000" opacity=".22" filter="url(#soft)"/>
+        <g data-tip="柱鏡軸刻度（17）">
+          <circle cx="${cx}" cy="${cy}" r="71" fill="url(#gWhiteRing)" stroke="#a3a39e"/>
+          <path d="${axTicks}" stroke="#1b1b1b" stroke-width=".8"/>${axNums}
+        </g>
+        <g data-part="axis-${k}" class="hit" data-tip="柱鏡軸鈕（16）：轉動滾花環，黑點指著的就是軸度">
           <g id="axRing${k}">
-            <circle cx="${cx}" cy="${cy}" r="60" fill="url(#gWhiteRing)" stroke="#9a9a94"/>
-            <path d="${axTicks}" stroke="#222" stroke-width=".8"/>
-            ${axNums}
-            <circle cx="${cx}" cy="${cy}" r="39" fill="url(#gKnobSide)"/>
-            ${knurl(cx, cy, 39, 33, 64)}
+            <circle cx="${cx}" cy="${cy}" r="49" fill="url(#gKnobSide)"/>
+            ${knurl(cx, cy, 49, 41, 80)}
+            <circle cx="${cx + 45}" cy="${cy}" r="3.6" fill="#141414"/>
           </g>
         </g>
-        <path d="M${cx - 5} ${cy - 67}l5 7l5 -7z" fill="#111"/>
-        ${metalKnob(cx, cy, 29, { part: "cylp-" + k, tip: "柱鏡度數鈕（15）：每格 −0.25 D", id: "cylKnob" + k, knurled: false })}
+        ${metalKnob(cx, cy, 37, { part: "cylp-" + k, tip: "柱鏡度數鈕（15）：每格 −0.25 D", id: "cylKnob" + k, knurled: false })}
       </g>`;
-    // 旋轉稜鏡（8）＋稜鏡旋鈕（9）
     let prTicks = "", prNums = "";
     for (let v = -20; v <= 20; v++) {
-      const a = v * 7.5; const p = pol(0, 0, 44, a), q = pol(0, 0, v % 5 === 0 ? 38 : 41, a);
+      const a = v * 7.2; const p = pol(0, 0, 60, a), q = pol(0, 0, v % 5 === 0 ? 53 : 56.5, a);
       prTicks += `M${f(p[0])} ${f(p[1])}L${f(q[0])} ${f(q[1])}`;
-      if (v % 3 === 0) { const t = pol(0, 0, 32, a); prNums += `<text x="${f(t[0])}" y="${f(t[1] + 2.8)}" class="prTxt" transform="rotate(${a} ${f(t[0])} ${f(t[1])})">${Math.abs(v)}</text>`; }
+      if (v % 2 === 0) { const t = pol(0, 0, 47, a); prNums += `<text x="${f(t[0])}" y="${f(t[1] + 3.2)}" class="prTxt" transform="rotate(${a} ${f(t[0])} ${f(t[1])})">${Math.abs(v)}</text>`; }
     }
     const tp = (ang) => { const t = ang * Math.PI / 180; return [f(TUR.R * Math.cos(t)), f(TUR.R * Math.sin(t))]; };
     const angJ = sx > 0 ? TUR.aJ : 180 - TUR.aJ, angP = sx > 0 ? TUR.aP : 180 - TUR.aP;
     const [jx, jy] = tp(angJ), [px, py] = tp(angP);
     const plate = (fill, stroke, sw) => `
-        <path d="M${jx} ${jy} L0 0 L${px} ${py}" stroke="${stroke === "none" ? fill : stroke}" stroke-width="${62 + sw * 2}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <circle cx="${jx}" cy="${jy}" r="${42 + sw}" fill="${fill}" ${stroke !== "none" ? `stroke="${stroke}" stroke-width="${sw}"` : ""}/>
-        <circle cx="${px}" cy="${py}" r="${54 + sw}" fill="${fill}" ${stroke !== "none" ? `stroke="${stroke}" stroke-width="${sw}"` : ""}/>`;
+        <path d="M${jx} ${jy} L0 0 L${px} ${py}" stroke="${stroke === "none" ? fill : stroke}" stroke-width="${70 + sw * 2}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="${jx}" cy="${jy}" r="${64 + sw}" fill="${fill}" ${stroke !== "none" ? `stroke="${stroke}" stroke-width="${sw}"` : ""}/>
+        <circle cx="${px}" cy="${py}" r="${66 + sw}" fill="${fill}" ${stroke !== "none" ? `stroke="${stroke}" stroke-width="${sw}"` : ""}/>`;
     const prism = `<g transform="translate(${px} ${py})"><g id="prC${k}" class="swing">
         <g id="prism${k}" data-part="prism-${k}" data-tip="旋轉稜鏡（8）：點一下把轉盤轉到稜鏡；轉入後點刻度環切換水平／垂直">
-        <circle cx="0" cy="0" r="48" fill="url(#gKnobFace)" stroke="#8d9298"/>
-        <g id="prScale${k}" data-part="prismring-${k}">
-          <circle cx="0" cy="0" r="46" fill="url(#gWhiteRing)" stroke="#a5a8ab"/>
-          <path d="${prTicks}" stroke="#1a1a1a" stroke-width=".8"/>
-          ${prNums}
-        </g>
-        <text class="prBase" id="prB1${k}" x="0" y="0"></text><text class="prBase" id="prB2${k}" x="0" y="0"></text>
-        <circle cx="0" cy="0" r="25" fill="#1b1d20"/>
-        <circle cx="0" cy="0" r="22" fill="#6f8794" opacity=".5"/>
-        <circle cx="0" cy="0" r="22" fill="url(#gGlass)"/>
-        <g id="prPtr${k}"><path d="M0 -26 l-5 -8 h10z" fill="#c4161c"/></g>
-        <g data-part="prismknob-${k}" data-tip="稜鏡旋鈕（9）：每格 1Δ" class="hit">${metalKnob(0, 56, 11, { n: 28 })}</g>
-      </g></g></g>`;
+          <g id="prScale${k}" data-part="prismring-${k}">
+            <circle cx="0" cy="0" r="64" fill="url(#gWhiteRing)" stroke="#a5a8ab"/>
+            <path d="${prTicks}" stroke="#1a1a1a" stroke-width=".9"/>
+            ${prNums}
+          </g>
+          <text class="prBase" id="prB1${k}" x="0" y="0"></text><text class="prBase" id="prB2${k}" x="0" y="0"></text>
+          <circle cx="0" cy="0" r="40" fill="url(#gKnobFace)" stroke="#8d9298"/>
+          <circle cx="0" cy="0" r="33" fill="#1b1d20"/>
+          <circle cx="0" cy="0" r="31" fill="#6f8794" opacity=".5"/>
+          <circle cx="0" cy="0" r="31" fill="url(#gGlass)"/>
+          <g id="prPtr${k}"><path d="M0 -41 l-5 -8 h10z" fill="#c4161c"/></g>
+          <g data-part="prismknob-${k}" data-tip="稜鏡旋鈕（9）：每格 1Δ" class="hit">${metalKnob(sx * 26, 26, 9, { n: 22 })}</g>
+        </g></g></g>`;
     const jcc = `<g transform="translate(${jx} ${jy})"><g id="jccC${k}" class="swing">
         <g id="jcc${k}" data-part="jcc-${k}" data-tip="交叉圓柱鏡 JCC（18）：點一下把轉盤轉到 JCC；點外框文字切換 A（測軸）／P（測度數）">
-        <g id="jccFrame${k}" data-part="jccmode-${k}">
-          <circle cx="0" cy="0" r="35" fill="url(#gKnobFace)" stroke="#7d8389"/>
-          <circle cx="0" cy="0" r="35" fill="url(#gBrushed)" opacity=".4"/>
-          <g id="jccLetters${k}"></g>
-        </g>
-        <circle cx="0" cy="0" r="24.5" fill="#1a1c1f"/>
-        <circle cx="0" cy="0" r="22" fill="#7d95a1" opacity=".45"/>
-        <circle cx="0" cy="0" r="22" fill="url(#gGlass)"/>
-        <g id="jccDots${k}"></g>
-        <g data-part="jccflip-${k}" data-tip="翻轉鈕（19）：翻面比較" class="hit">${metalKnob(sx * 33, -27, 9.5, { n: 24 })}</g>
-      </g></g></g>`;
+          <g id="jccFrame${k}" data-part="jccmode-${k}">
+            <circle cx="0" cy="0" r="60" fill="url(#gKnobFace)" stroke="#7d8389"/>
+            <circle cx="0" cy="0" r="60" fill="url(#gBrushed)" opacity=".35"/>
+            <g id="jccLetters${k}"></g>
+          </g>
+          <circle cx="0" cy="0" r="46" fill="#1a1c1f"/>
+          <circle cx="0" cy="0" r="41" fill="#c8ccce" stroke="#6b7076"/>
+          <circle cx="0" cy="0" r="35" fill="#7d95a1" opacity=".45"/>
+          <circle cx="0" cy="0" r="35" fill="url(#gGlass)"/>
+          <g id="jccDots${k}"></g>
+          <g data-part="jccflip-${k}" data-tip="翻轉鈕（19）：翻面比較" class="hit">${metalKnob(-sx * 56, -42, 9.5, { n: 24 })}</g>
+        </g></g></g>`;
     const turret = `<g transform="translate(${pvx} ${pvy})">
         <g id="turret${k}" class="swing">
-          <g opacity=".3" filter="url(#soft)" transform="translate(0 4)">${plate("#000", "none", 0)}</g>
-          ${plate("#8e9398", "#8e9398", 1.6)}
+          <g opacity=".28" filter="url(#soft)" transform="translate(0 4)">${plate("#000", "none", 0)}</g>
+          ${plate("#8e9398", "#8e9398", 1.4)}
           ${plate("url(#gPlate)", "none", 0)}
-          <g data-part="turret-${k}" data-tip="附件轉盤：JCC 與旋轉稜鏡裝在同一片，繞中心鈕轉動，一次只能轉一個到檢查窗前">
-            ${metalKnob(0, 0, 13, { n: 30 })}
-          </g>
           ${prism}${jcc}
+          <g data-part="turret-${k}" data-tip="附件轉盤中心鈕：JCC 與旋轉稜鏡裝在同一片轉盤，繞這裡轉動，一次只能轉一個到檢查窗前">
+            ${metalKnob(0, 0, 16, { knurled: false })}
+          </g>
         </g>
       </g>`;
-    // 角膜對準窗（24）
     const cornea = `<g data-part="cornea-${k}" class="hit" data-tip="角膜對準窗（24）：從側面看角膜頂點對準刻度，確認頂點距離">
-        <rect x="${kx - 11}" y="${ky - 24}" width="22" height="48" rx="4" fill="#b7b2a8" stroke="#8f8a80"/>
-        <rect x="${kx - 7}" y="${ky - 20}" width="14" height="40" rx="2" fill="#16181a"/>
-        <path d="M${kx - 5} ${ky - 12}h10M${kx - 5} ${ky - 6}h6M${kx - 5} ${ky}h6M${kx - 5} ${ky + 6}h6" stroke="#ddd" stroke-width=".9"/>
-        <rect x="${kx - 7}" y="${ky - 20}" width="14" height="40" rx="2" fill="url(#gGlass)" opacity=".7"/>
+        <rect x="${kx - 18}" y="${ky - 30}" width="36" height="60" rx="3" fill="#000" opacity=".22" filter="url(#soft)" transform="translate(0 3)"/>
+        <rect x="${kx - 18}" y="${ky - 28}" width="36" height="56" rx="3" fill="#b9b8b1" stroke="#7e7d77"/>
+        <rect x="${kx - 13}" y="${ky - 22}" width="26" height="44" rx="2" fill="#1b1c1e"/>
+        <rect x="${kx - 6}" y="${ky - 22}" width="12" height="44" fill="#3a3c3f"/>
+        <path d="M${kx - 11} ${ky - 10}h22M${kx - 8} ${ky - 3}h16M${kx - 8} ${ky + 4}h16M${kx - 8} ${ky + 11}h16" stroke="#d9d9d9" stroke-width="1"/>
+        <rect x="${kx - 13}" y="${ky - 22}" width="26" height="44" rx="2" fill="url(#gGlass)" opacity=".6"/>
       </g>`;
-    // 集合槓桿（26）
     const lever = `<g id="lever${k}" data-part="lever" class="hit" data-tip="集合槓桿（26）：往內扳 → 兩側鏡片會聚，供 40 cm 近距檢查">
-        <rect x="${lx - 6}" y="${ly - 30}" width="12" height="34" rx="5" fill="url(#gRodV)" stroke="#7a7f85" stroke-width=".7"/>
-        <rect x="${lx - 9}" y="${ly - 42}" width="18" height="16" rx="6" fill="#2a2c2f"/>
+        <rect x="${lx - 4}" y="${ly - 22}" width="8" height="46" rx="3" fill="url(#gRodV)" stroke="#7a7f85" stroke-width=".6"/>
+        <ellipse cx="${lx}" cy="${ly - 22}" rx="5" ry="3" fill="#e8eaec" stroke="#7a7f85" stroke-width=".6"/>
       </g>`;
     return `<g id="lobe${k}" class="lobe">
-        <g filter="url(#shadow)">${rim}</g>
         ${lever}
-        <g>${shapes("#9d988e", "#9d988e", 3)}${shapes("url(#gLobe)", "none", 0)}</g>
-        <g opacity=".55">${screw(20 * sx, -195)}${screw(-170 * sx, 120)}${screw(40 * sx, 210)}</g>
-        ${cornea}${aux}${sphWin}${apt}${cylWin}${cyl}${turret}
-        <text x="${100 * sx}" y="196" class="eyeTag">${k === "R" ? "R" : "L"}</text>
+        ${disc}
+        <path d="${face}" fill="#9d9c95" stroke="#9d9c95" stroke-width="3"/>
+        <path d="${face}" fill="url(#gFace)"/>
+        <path d="M${P([[150, 560]])} C${P([[152, 528], [175, 514], [205, 506]])}" stroke="#fff" stroke-width="1.2" opacity=".5" fill="none"/>
+        ${screw(mx(186), 545)}${screw(mx(186), 716)}
+        ${cornea}${sphWin}${apt}${cylWin}${cyl}${turret}${aux}
       </g>`;
   }
 
@@ -1277,191 +1284,174 @@ const PHORO = (() => {
   function build() {
     const bridge = `
       <g id="rod" data-part="rod" class="hit" data-tip="近用桿（30）：點一下放下／收起">
-        <rect id="rodUp" x="495" y="-30" width="10" height="160" rx="3" fill="url(#gRodV)" stroke="#7a7f85" stroke-width=".6"/>
+        <rect id="rodUp" x="512" y="0" width="11" height="250" rx="3" fill="url(#gRodV)" stroke="#7a7f85" stroke-width=".6"/>
       </g>
       <g data-tip="安裝支架（1）">
-        <rect x="466" y="34" width="68" height="96" rx="7" fill="url(#gBody)" stroke="#9d988e"/>
-        <rect x="408" y="24" width="184" height="40" rx="9" fill="url(#gBridge)" stroke="#9d988e"/>
-        <path d="M416 44h168" stroke="#fff" opacity=".6"/>
+        <path d="M485 100 H735 a42 42 0 0 1 42 42 V158 a38 38 0 0 1 -38 38 H580 V262 H485Z" fill="url(#gBody)" stroke="#a09f98"/>
+        <rect x="723" y="108" width="52" height="86" rx="20" fill="url(#gCylV)" opacity=".5"/>
+        <path d="M492 108 H735" stroke="#fff" opacity=".6"/>
+        <rect x="628" y="183" width="16" height="6" rx="2" fill="#8c8b85"/>
       </g>
-      ${cylKnob(414, 6, 34, 22, { tip: "方向調整鈕（3）" })}${cylKnob(552, 6, 34, 22, { tip: "鎖緊鈕（2）" })}
-      <rect x="236" y="104" width="528" height="13" rx="6" fill="url(#gRod)" stroke="#80868c" stroke-width=".6"/>
-      <g filter="url(#shadow)"><rect x="252" y="114" width="496" height="84" rx="12" fill="url(#gBridge)" stroke="#a29d93"/></g>
-      <path d="M262 122h476" stroke="#fff" opacity=".7"/>
-      ${cylKnob(204, 96, 34, 26, { part: "level", tip: "水平調整鈕（4）：讓氣泡對準橘點", id: "levelKnob" })}
-      ${cylKnob(196, 140, 44, 32, { part: "pd", tip: "PD 鈕（7）：每格 1 mm", id: "pdKnobL" })}
-      ${cylKnob(762, 96, 34, 26, { part: "level", tip: "水平調整鈕（4）：讓氣泡對準橘點" })}
-      ${cylKnob(760, 140, 44, 32, { part: "pd", tip: "PD 鈕（7）：每格 1 mm", id: "pdKnobR" })}
+      ${cylKnobV(490, 58, 84, 44, { tip: "方向調整鈕（3）" })}${cylKnobV(710, 70, 80, 38, { tip: "鎖緊鈕（2）" })}
+      <rect x="322" y="246" width="410" height="12" rx="6" fill="url(#gRod)" stroke="#80868c" stroke-width=".6"/>
+      <rect x="330" y="236" width="128" height="40" rx="8" fill="url(#gHousing)" stroke="#9b9a93"/>
+      <rect x="606" y="236" width="128" height="40" rx="8" fill="url(#gHousing)" stroke="#9b9a93"/>
+      <rect x="732" y="240" width="34" height="32" rx="6" fill="url(#gCylH)" stroke="#80868c" stroke-width=".6"/>
+      ${cylKnob(267, 228, 60, 56, { part: "level", tip: "水平調整鈕（4）：讓氣泡對準橘點", id: "levelKnob" })}
+      <g filter="url(#shadow)"><rect x="288" y="288" width="478" height="126" rx="8" fill="url(#gBridge)" stroke="#a29f97"/></g>
+      <path d="M296 296h462" stroke="#fff" opacity=".6"/>
+      ${cylKnob(232, 286, 58, 62, { part: "pd", tip: "PD 鈕（7）：每格 1 mm", id: "pdKnobL" })}
+      ${cylKnob(764, 288, 58, 60, { part: "pd", tip: "PD 鈕（7）：每格 1 mm", id: "pdKnobR" })}
       <g data-part="pd" class="hit" data-tip="PD 刻度（6）">
-        <rect x="296" y="136" width="96" height="36" rx="5" fill="#bdb8ae" stroke="#9c978d"/>
-        <rect x="300" y="140" width="88" height="28" rx="3" fill="#f6f6f2"/>
-        <svg x="300" y="140" width="88" height="28" viewBox="0 0 88 28" overflow="hidden"><g id="pdScale"></g></svg>
-        <path d="M344 168l-4 -6h8z" fill="#d4450c"/>
-        <rect x="300" y="140" width="88" height="28" rx="3" fill="url(#gGlass)" opacity=".35"/>
+        <rect x="362" y="332" width="66" height="38" rx="3" fill="#c9c8c1" stroke="#9c9a93"/>
+        <rect x="366" y="336" width="58" height="30" rx="2" fill="#f5f5f1"/>
+        <svg x="366" y="336" width="58" height="30" viewBox="0 0 58 30" overflow="hidden"><g id="pdScale"></g></svg>
+        <path d="M395 366l-4 -6h8z" fill="#1d1d1d"/>
       </g>
       <g data-part="level" class="hit" data-tip="水準儀（5）：氣泡在橘點中央才是水平">
-        <rect x="604" y="136" width="96" height="36" rx="5" fill="#bdb8ae" stroke="#9c978d"/>
-        <rect x="610" y="145" width="84" height="18" rx="9" fill="url(#gVial)" stroke="#7f8f6a"/>
-        <circle cx="652" cy="154" r="3.2" fill="#ef7a1e"/>
-        <path d="M640 146v16M664 146v16" stroke="#56634a" stroke-width=".7"/>
-        <ellipse id="bubble" cx="652" cy="154" rx="9" ry="6" fill="#f8fff0" stroke="#9fb48a" stroke-width=".8" opacity=".85"/>
-        <rect x="610" y="145" width="84" height="7" rx="3.5" fill="#fff" opacity=".35"/>
+        <rect x="612" y="336" width="72" height="30" rx="3" fill="#c9c8c1" stroke="#9c9a93"/>
+        <rect x="616" y="342" width="64" height="18" rx="9" fill="url(#gVial)" stroke="#8f9d7d"/>
+        <circle cx="648" cy="351" r="3" fill="#ef7a1e"/>
+        <path d="M638 343v16M658 343v16" stroke="#56634a" stroke-width=".7"/>
+        <ellipse id="bubble" cx="648" cy="351" rx="8" ry="5.5" fill="#fbfff4" stroke="#9fb48a" stroke-width=".8" opacity=".85"/>
       </g>
-      <g data-part="rod" class="hit" data-tip="近用桿座（28）與固定螺絲（27）">
-        <rect x="474" y="114" width="52" height="84" rx="4" fill="#d8d5cd" stroke="#a29d93"/>
-        <rect x="490" y="118" width="20" height="76" rx="3" fill="#bcb8af"/>
-        ${metalKnob(500, 150, 9, { n: 22 })}
-        <circle cx="500" cy="178" r="6" fill="#1f2124"/>
+      <g data-part="rod" class="hit" data-tip="近用桿座（28）與固定螺絲（27）：點一下放下／收起近用桿">
+        <rect x="470" y="244" width="110" height="176" rx="6" fill="url(#gBody)" stroke="#a09f98"/>
+        <rect x="490" y="258" width="10" height="110" rx="3" fill="url(#gRodV)"/><rect x="540" y="258" width="10" height="110" rx="3" fill="url(#gRodV)"/>
+        <rect x="503" y="262" width="34" height="60" rx="3" fill="#cfcec7" stroke="#a09f98"/>
+        <path d="M508 300h24v24h-24z" fill="#b9b8b1" stroke="#8d8c86"/>
+        <circle cx="522" cy="373" r="12" fill="#1c1d1f"/><circle cx="519" cy="370" r="3.5" fill="#55585c"/>
+        ${metalKnob(522, 252, 8, { n: 18 })}
       </g>
       <g data-part="fore" class="hit" data-tip="額托鈕（22）：前後移動額托，調整角膜頂點距離">
-        <rect x="490" y="196" width="20" height="22" fill="url(#gRodV)"/>
-        <g id="foreKnob">${metalKnob(500, 232, 21, { n: 44 })}</g>
+        <rect x="497" y="410" width="48" height="122" rx="6" fill="url(#gBody)" stroke="#a09f98"/>
+        <g id="foreKnob">${metalKnob(520, 470, 29, { knurled: false })}</g>
       </g>`;
     const card = `<g id="nearCard" opacity="0">
-        <rect x="430" y="560" width="140" height="96" rx="6" fill="#f3f2ee" stroke="#b9b5ab"/>
-        <circle cx="500" cy="600" r="16" fill="#e7e5df" stroke="#c9c5bc"/>
-        <text x="500" y="604" class="cardTxt" id="cardNoTxt">1</text>
-        <text x="500" y="642" class="cardSub" id="cardDistTxt">40 cm</text>
+        <rect x="457" y="770" width="120" height="96" rx="6" fill="#f3f2ee" stroke="#b9b5ab"/>
+        <circle cx="517" cy="808" r="16" fill="#e7e5df" stroke="#c9c5bc"/>
+        <text x="517" y="813" class="cardTxt" id="cardNoTxt">1</text>
+        <text x="517" y="852" class="cardSub" id="cardDistTxt">40 cm</text>
       </g>`;
-    return `<svg id="phoroSvg" viewBox="0 0 1000 660" xmlns="${NS}" role="img" aria-label="綜合驗光儀機頭（檢查者側）">
+    return `<svg id="phoroSvg" viewBox="0 0 1074 903" xmlns="${NS}" role="img" aria-label="綜合驗光儀機頭（檢查者側）">
       ${DEFS}
       ${card}
       <g id="head">
-        ${bridge}
         ${lobe("R")}${lobe("L")}
+        ${bridge}
       </g>
     </svg>`;
   }
 
   /* ---------- 依狀態更新 ---------- */
   let refs = {};
-  function cache(root) {
-    refs = {};
-    root.querySelectorAll("[id]").forEach((el) => { refs[el.id] = el; });
-  }
+  function cache(root) { refs = {}; root.querySelectorAll("[id]").forEach((el) => { refs[el.id] = el; }); }
   const sphDisp = (v) => { const a = Math.round(Math.abs(v) * 100); return a === 0 ? "0" : String(a).padStart(3, "0"); };
-  function update(S, P, X, opts = {}) {
+  function update(S, P, X) {
     if (!refs.head) return;
     refs.head.setAttribute("transform", `rotate(${S.tilt} ${PIV[0]} ${PIV[1]})`);
-    // 水準氣泡往高的一邊跑
-    refs.bubble.setAttribute("cx", 652 + OPT.clamp(-S.tilt * 6, -32, 32));
-    // PD 刻度
+    refs.bubble.setAttribute("cx", 648 + OPT.clamp(-S.tilt * 5, -24, 24));
     let pdS = "";
     for (let v = 46; v <= 78; v++) {
-      const x = 44 + (v - S.pd) * 7;
-      pdS += `<path d="M${x} 0v${v % 5 === 0 ? 9 : 5}" stroke="#222" stroke-width=".8"/>`;
-      if (v % 2 === 0) pdS += `<text x="${x}" y="22" class="pdTxt">${v}</text>`;
+      const x = 29 + (v - S.pd) * 4.2;
+      pdS += `<path d="M${f(x)} 0v${v % 5 === 0 ? 8 : 4}" stroke="#222" stroke-width=".7"/>`;
+      if (v % 5 === 0) pdS += `<text x="${f(x)}" y="20" class="pdTxt">${v}</text>`;
     }
     refs.pdScale.innerHTML = pdS;
-    refs.pdKnobL.setAttribute("transform", ""); // 視覺不需轉
     const leverOK = S.pd >= 54;
     const nearConv = S.lever === "near" && leverOK ? OPT.convShift(S.pd / 2, 400) : 0;
     for (const k of ["R", "L"]) {
-      const { o } = LOBE[k], e = S.eye[k], sx = -o;
-      const shift = o * (S.pd - 64) / 2 * PXMM - o * nearConv * PXMM;
-      refs["lobe" + k].setAttribute("transform", `translate(${LOBE[k].X + shift} 400)`);
-      refs["lever" + k].setAttribute("transform", S.lever === "near" ? `rotate(${-sx * 28} ${POS.lever[0] * sx} ${POS.lever[1]})` : "");
-      // 輔助鏡盤
+      const e = S.eye[k], sx = k === "R" ? 1 : -1;
+      const M = (p) => mp(k, p);
+      const shift = -sx * (S.pd - 64) / 2 * PXMM + sx * nearConv * PXMM;
+      refs["lobe" + k].setAttribute("transform", `translate(${f(shift)} 0)`);
+      const [lx, ly] = M(POS.lever);
+      refs["lever" + k].setAttribute("transform", S.lever === "near" ? `rotate(${sx * 24} ${lx} ${ly + 22})` : "");
       const idx = OPT.AUX[k].indexOf(e.aux);
-      const [ax, ay] = [POS.aux[0] * sx, POS.aux[1]];
+      const [ax, ay] = M(POS.aux);
       refs["auxRing" + k].setAttribute("transform", `rotate(${-idx * 30} ${ax} ${ay})`);
       refs["strong" + k].setAttribute("transform", `rotate(${Math.round(e.s / 3) * 30} ${ax} ${ay})`);
-      // 球面滾花：每 0.25 轉 3°
-      refs["rimKnurl" + k].setAttribute("transform", `rotate(${(e.s / 0.25) * 3 * sx} ${-40 * sx} 10)`);
-      // 球面讀窗（滾筒）
-      const [wx, wy] = [POS.sphWin[0] * sx, POS.sphWin[1]];
+      const [dx, dy] = M(POS.disc);
+      refs["rimKnurl" + k].setAttribute("transform", `rotate(${(e.s / 0.25) * 1.6 * sx} ${dx} ${dy})`);
+      const [wx, wy] = M(POS.sphWin);
       let drum = "";
       for (const d of [-0.5, -0.25, 0, 0.25, 0.5]) {
-        const v = e.s + d; const y = wy + 6 - d * 4 * 15;
-        const neg = v < -0.001;
-        drum += `<text x="${wx}" y="${y}" class="drumTxt ${neg ? "neg" : "pos"}" ${d ? 'opacity=".55"' : ""}>${sphDisp(v)}</text>`;
+        const v = e.s + d; const y = wy + 4.5 - d * 4 * 15;
+        drum += `<text x="${wx}" y="${f(y)}" class="drumTxt ${v < -0.001 ? "neg" : "pos"}${sphDisp(v).length > 3 ? " sm" : ""}" ${d ? 'opacity=".5"' : ""}>${sphDisp(v)}</text>`;
       }
       refs["sphDrum" + k].innerHTML = drum;
-      // 柱鏡
       const c = Math.abs(e.c);
       refs["cylWin" + k].textContent = c < 0.001 ? ".00" : c < 1 ? "." + String(Math.round(c * 100)).padStart(2, "0") : c.toFixed(2);
-      const [ccx, ccy] = [POS.cyl[0] * sx, POS.cyl[1]];
-      refs["axRing" + k].setAttribute("transform", `rotate(${-e.a * 2} ${ccx} ${ccy})`);
+      const [ccx, ccy] = M(POS.cyl);
+      refs["axRing" + k].setAttribute("transform", `rotate(${-e.a} ${ccx} ${ccy})`);
       refs["cylKnob" + k].setAttribute("transform", `rotate(${c / 0.25 * 15} ${ccx} ${ccy})`);
-      // 檢查窗內的柱鏡軸標記
-      const [apx, apy] = [POS.apt[0] * sx, POS.apt[1]];
+      const [apx, apy] = M(POS.apt);
       refs["axisMark" + k].setAttribute("transform", `rotate(${-e.a} ${apx} ${apy})`);
       refs["axisMark" + k].style.opacity = c < 0.001 ? 0.25 : 1;
-      const t1 = tabo(apx, apy, 50, e.a), t2 = tabo(apx, apy, 50, e.a + 180);
-      const tri = (p, a) => { const q = tabo(p[0], p[1], 0, a); const l = tabo(apx, apy, 56, a), r1 = tabo(apx, apy, 51, a + 4), r2 = tabo(apx, apy, 51, a - 4); return `M${f(r1[0])} ${f(r1[1])}L${f(l[0])} ${f(l[1])}L${f(r2[0])} ${f(r2[1])}Z`; };
-      refs["axisTri" + k].setAttribute("d", c < 0.001 ? "" : tri(t1, e.a) + tri(t2, e.a + 180));
-      // 病人的眼睛（不跟著機頭傾斜）
-      const lobeX = LOBE[k].X + shift, lobeY = 400;
-      const eyeGlobalX = CX + (k === "R" ? -1 : 1) * (P.pd / 2 - (X && X.T.near ? OPT.convShift(P.pd / 2, X.T.dmm) : 0)) * PXMM;
-      const eyeGlobalY = 400;
-      const th = -S.tilt * Math.PI / 180; // 反轉回機頭座標
-      const gx = PIV[0] + (eyeGlobalX - PIV[0]) * Math.cos(th) - (eyeGlobalY - PIV[1]) * Math.sin(th);
-      const gy = PIV[1] + (eyeGlobalX - PIV[0]) * Math.sin(th) + (eyeGlobalY - PIV[1]) * Math.cos(th);
-      const ex = gx - lobeX, ey = gy - lobeY;
-      const look = X && X.T.near ? (k === "R" ? 2.2 : -2.2) : 0;
+      const tri = (a) => { const l = tabo(apx, apy, 44, a), r1 = tabo(apx, apy, 37, a + 5), r2 = tabo(apx, apy, 37, a - 5); return `M${f(r1[0])} ${f(r1[1])}L${f(l[0])} ${f(l[1])}L${f(r2[0])} ${f(r2[1])}Z`; };
+      refs["axisTri" + k].setAttribute("d", c < 0.001 ? "" : tri(e.a) + tri(e.a + 180));
+      const eyeGX = X0 - sx * (P.pd / 2 - (X && X.T.near ? OPT.convShift(P.pd / 2, X.T.dmm) : 0)) * PXMM;
+      const eyeGY = apy;
+      const th = -S.tilt * Math.PI / 180;
+      const gx = PIV[0] + (eyeGX - PIV[0]) * Math.cos(th) - (eyeGY - PIV[1]) * Math.sin(th);
+      const gy = PIV[1] + (eyeGX - PIV[0]) * Math.sin(th) + (eyeGY - PIV[1]) * Math.cos(th);
+      const ex = gx - shift, ey = gy;
+      const look = X && X.T.near ? sx * 2.4 : 0;
       refs["eye" + k].innerHTML = `
-        <ellipse cx="${f(ex)}" cy="${f(ey)}" rx="30" ry="15" fill="#f4f1ec"/>
-        <circle cx="${f(ex + look)}" cy="${f(ey)}" r="11.5" fill="url(#gIris)"/>
-        <circle cx="${f(ex + look)}" cy="${f(ey)}" r="4.6" fill="#050505"/>
-        <circle cx="${f(ex + look - 3.2)}" cy="${f(ey - 3.6)}" r="1.7" fill="#fff" opacity=".9"/>
-        <path d="M${f(ex - 32)} ${f(ey - 4)} Q${f(ex)} ${f(ey - 26)} ${f(ex + 32)} ${f(ey - 4)} L${f(ex + 32)} ${f(ey - 40)} L${f(ex - 32)} ${f(ey - 40)}Z" fill="url(#gSkin)"/>
-        <path d="M${f(ex - 30)} ${f(ey - 5)} Q${f(ex)} ${f(ey - 24)} ${f(ex + 30)} ${f(ey - 5)}" stroke="#3b2618" stroke-width="1.6" fill="none"/>
-        <path d="M${f(ex - 32)} ${f(ey + 6)} Q${f(ex)} ${f(ey + 22)} ${f(ex + 32)} ${f(ey + 6)} L${f(ex + 32)} ${f(ey + 40)} L${f(ex - 32)} ${f(ey + 40)}Z" fill="url(#gSkin)"/>`;
-      // 輔助鏡片疊在檢查窗
+        <ellipse cx="${f(ex)}" cy="${f(ey)}" rx="33" ry="16" fill="#f4f1ec"/>
+        <circle cx="${f(ex + look)}" cy="${f(ey)}" r="12.5" fill="url(#gIris)"/>
+        <circle cx="${f(ex + look)}" cy="${f(ey)}" r="5" fill="#050505"/>
+        <circle cx="${f(ex + look - 3.4)}" cy="${f(ey - 3.8)}" r="1.8" fill="#fff" opacity=".9"/>
+        <path d="M${f(ex - 35)} ${f(ey - 4)} Q${f(ex)} ${f(ey - 28)} ${f(ex + 35)} ${f(ey - 4)} L${f(ex + 35)} ${f(ey - 44)} L${f(ex - 35)} ${f(ey - 44)}Z" fill="url(#gSkin)"/>
+        <path d="M${f(ex - 33)} ${f(ey - 5)} Q${f(ex)} ${f(ey - 26)} ${f(ex + 33)} ${f(ey - 5)}" stroke="#3b2618" stroke-width="1.7" fill="none"/>
+        <path d="M${f(ex - 35)} ${f(ey + 6)} Q${f(ex)} ${f(ey + 24)} ${f(ex + 35)} ${f(ey + 6)} L${f(ex + 35)} ${f(ey + 44)} L${f(ex - 35)} ${f(ey + 44)}Z" fill="url(#gSkin)"/>`;
       const ov = {
-        OC: `<circle cx="${apx}" cy="${apy}" r="28" fill="#141517"/><circle cx="${apx}" cy="${apy}" r="20" fill="none" stroke="#2a2c30" stroke-width="2"/>`,
-        PH: `<circle cx="${apx}" cy="${apy}" r="28" fill="#141517"/><circle cx="${apx}" cy="${apy}" r="2.2" fill="#cfd6da"/>`,
-        RL: `<circle cx="${apx}" cy="${apy}" r="28" fill="#d0201b" opacity=".55"/>`,
-        GL: `<circle cx="${apx}" cy="${apy}" r="28" fill="#1aa04a" opacity=".55"/>`,
-        P: `<circle cx="${apx}" cy="${apy}" r="28" fill="#3f4a52" opacity=".45"/>`,
-        RMH: `<circle cx="${apx}" cy="${apy}" r="28" fill="url(#pMaddoxH)"/>`, RMV: `<circle cx="${apx}" cy="${apy}" r="28" fill="url(#pMaddoxV)"/>`,
-        WMH: `<circle cx="${apx}" cy="${apy}" r="28" fill="url(#pMaddoxHW)"/>`, WMV: `<circle cx="${apx}" cy="${apy}" r="28" fill="url(#pMaddoxVW)"/>`,
-        R: `<circle cx="${apx}" cy="${apy}" r="22" fill="none" stroke="#8fb7c9" stroke-width="1.2" opacity=".7"/>`,
-        "+.12": `<circle cx="${apx}" cy="${apy}" r="22" fill="none" stroke="#8fb7c9" stroke-width="1" opacity=".5"/>`,
-        "±.50": `<circle cx="${apx}" cy="${apy}" r="22" fill="none" stroke="#c9b28f" stroke-width="1.2" opacity=".7"/>`,
-        "6ΔU": `<path d="M${apx - 22} ${apy + 14}L${apx} ${apy - 20}L${apx + 22} ${apy + 14}" fill="#9fc3d3" opacity=".3"/>`,
-        "10ΔI": `<path d="M${apx - 22 * sx} ${apy - 20}L${apx + 20 * sx} ${apy}L${apx - 22 * sx} ${apy + 20}" fill="#9fc3d3" opacity=".3"/>`,
+        OC: `<circle cx="${apx}" cy="${apy}" r="30" fill="#141517"/><circle cx="${apx}" cy="${apy}" r="21" fill="none" stroke="#2a2c30" stroke-width="2"/>`,
+        PH: `<circle cx="${apx}" cy="${apy}" r="30" fill="#141517"/><circle cx="${apx}" cy="${apy}" r="2.3" fill="#cfd6da"/>`,
+        RL: `<circle cx="${apx}" cy="${apy}" r="30" fill="#d0201b" opacity=".55"/>`,
+        GL: `<circle cx="${apx}" cy="${apy}" r="30" fill="#1aa04a" opacity=".55"/>`,
+        P: `<circle cx="${apx}" cy="${apy}" r="30" fill="#3f4a52" opacity=".45"/>`,
+        RMH: `<circle cx="${apx}" cy="${apy}" r="30" fill="url(#pMaddoxH)"/>`, RMV: `<circle cx="${apx}" cy="${apy}" r="30" fill="url(#pMaddoxV)"/>`,
+        WMH: `<circle cx="${apx}" cy="${apy}" r="30" fill="url(#pMaddoxHW)"/>`, WMV: `<circle cx="${apx}" cy="${apy}" r="30" fill="url(#pMaddoxVW)"/>`,
+        R: `<circle cx="${apx}" cy="${apy}" r="23" fill="none" stroke="#8fb7c9" stroke-width="1.2" opacity=".7"/>`,
+        "+.12": `<circle cx="${apx}" cy="${apy}" r="23" fill="none" stroke="#8fb7c9" stroke-width="1" opacity=".5"/>`,
+        "±.50": `<circle cx="${apx}" cy="${apy}" r="23" fill="none" stroke="#c9b28f" stroke-width="1.2" opacity=".7"/>`,
+        "6ΔU": `<path d="M${apx - 23} ${apy + 15}L${apx} ${apy - 21}L${apx + 23} ${apy + 15}" fill="#9fc3d3" opacity=".3"/>`,
+        "10ΔI": `<path d="M${apx - 23 * sx} ${apy - 21}L${apx + 21 * sx} ${apy}L${apx - 23 * sx} ${apy + 21}" fill="#9fc3d3" opacity=".3"/>`,
       };
       refs["auxOver" + k].innerHTML = ov[e.aux] || "";
-      // 附件轉盤：轉到 JCC 或稜鏡；內容反向旋轉保持正向
       const tth = e.jcc.in ? sx * TUR.thJ : e.prism.in ? sx * TUR.thP : 0;
-      refs["turret" + k].style.transform = `rotate(${tth}deg)`;
-      refs["jccC" + k].style.transform = `rotate(${-tth}deg)`;
-      refs["prC" + k].style.transform = `rotate(${-tth}deg)`;
+      refs["turret" + k].style.transform = `rotate(${f(tth)}deg)`;
+      refs["jccC" + k].style.transform = `rotate(${f(-tth)}deg)`;
+      refs["prC" + k].style.transform = `rotate(${f(-tth)}deg)`;
       refs["prism" + k].classList.toggle("active", e.prism.in);
-      const orientRot = e.prism.orient === "H" ? 0 : -90 * sx * -1; // 垂直時把 0 轉到鼻側
-      refs["prScale" + k].setAttribute("transform", `rotate(${e.prism.orient === "H" ? 0 : (sx > 0 ? 90 : -90)})`);
-      // 指針：BI 往鼻側轉、BU 往上轉
-      const nasalCW = sx > 0; // OD 鼻側在畫面右側（順時針方向）
-      let ptr;
-      if (e.prism.orient === "H") ptr = (nasalCW ? 1 : -1) * e.prism.p * 7.5;
-      else ptr = (sx > 0 ? 90 : -90) + (nasalCW ? -1 : 1) * e.prism.p * 7.5;
-      refs["prPtr" + k].setAttribute("transform", `rotate(${ptr})`);
-      const b1 = refs["prB1" + k], b2 = refs["prB2" + k];
-      const putLab = (el, txt, ang) => { const p = pol(0, 0, 57, ang); el.textContent = txt; el.setAttribute("x", f(p[0])); el.setAttribute("y", f(p[1] + 3)); };
-      if (e.prism.orient === "H") { putLab(b1, "BI", nasalCW ? 62 : -62); putLab(b2, "BO", nasalCW ? -62 : 62); }
-      else { putLab(b1, "BU", nasalCW ? 28 : -28); putLab(b2, "BD", nasalCW ? 152 : -152); }
-      // JCC
       refs["jcc" + k].classList.toggle("active", e.jcc.in);
+      const nasalCW = sx > 0;
+      refs["prScale" + k].setAttribute("transform", `rotate(${e.prism.orient === "H" ? 0 : (nasalCW ? 90 : -90)})`);
+      let ptr;
+      if (e.prism.orient === "H") ptr = (nasalCW ? 1 : -1) * e.prism.p * 7.2;
+      else ptr = (nasalCW ? 90 : -90) + (nasalCW ? -1 : 1) * e.prism.p * 7.2;
+      refs["prPtr" + k].setAttribute("transform", `rotate(${ptr})`);
+      const putLab = (el, txt, ang) => { const p = pol(0, 0, 73, ang); el.textContent = txt; el.setAttribute("x", f(p[0])); el.setAttribute("y", f(p[1] + 3.5)); };
+      const b1 = refs["prB1" + k], b2 = refs["prB2" + k];
+      if (e.prism.orient === "H") { putLab(b1, "BI", nasalCW ? 60 : -60); putLab(b2, "BO", nasalCW ? -60 : 60); }
+      else { putLab(b1, "BU", nasalCW ? 30 : -30); putLab(b2, "BD", nasalCW ? 150 : -150); }
       const red = OPT.jccRedAxis(e), white = red + 90;
-      const dot = (a, col) => { const p1 = tabo(0, 0, 29.5, a), p2 = tabo(0, 0, 29.5, a + 180); return `<circle cx="${f(p1[0])}" cy="${f(p1[1])}" r="3" fill="${col}" stroke="#333" stroke-width=".5"/><circle cx="${f(p2[0])}" cy="${f(p2[1])}" r="3" fill="${col}" stroke="#333" stroke-width=".5"/>`; };
+      const dot = (a, col) => { const p1 = tabo(0, 0, 38, a), p2 = tabo(0, 0, 38, a + 180); return `<circle cx="${f(p1[0])}" cy="${f(p1[1])}" r="3.4" fill="${col}" stroke="#333" stroke-width=".6"/><circle cx="${f(p2[0])}" cy="${f(p2[1])}" r="3.4" fill="${col}" stroke="#333" stroke-width=".6"/>`; };
       refs["jccDots" + k].innerHTML = dot(red, "#ff7a1a") + dot(white, "#ffffff");
-      // 外框字母：A 對齊柱鏡軸（測軸），P 對齊（測度數）
       const L1 = e.jcc.mode === "A" ? "A" : "P", L2 = e.jcc.mode === "A" ? "P" : "A";
-      const a1 = e.a, a2 = e.a + 45;
-      const letter = (t, a, cls) => { const p = tabo(0, 0, 30.5, a); return `<text x="${f(p[0])}" y="${f(p[1] + 3)}" class="${cls}">${t}</text>`; };
-      refs["jccLetters" + k].innerHTML = letter(L1, a1, "jccTxt on") + letter(L1, a1 + 180, "jccTxt on") + letter(L2, a2, "jccTxt") + letter(L2, a2 + 180, "jccTxt") +
-        `<text x="0" y="-12" class="jccPow">±${S.jccPow.toFixed(2).replace(/^0/, "")}</text>`;
+      const letter = (t, a, cls) => { const p = tabo(0, 0, 52, a); return `<text x="${f(p[0])}" y="${f(p[1] + 4)}" class="${cls}">${t}</text>`; };
+      refs["jccLetters" + k].innerHTML = letter(L1, e.a, "jccTxt on") + letter(L1, e.a + 180, "jccTxt on") + letter(L2, e.a + 45, "jccTxt") + letter(L2, e.a + 225, "jccTxt") +
+        `<text x="0" y="-20" class="jccPow">±${S.jccPow.toFixed(2).replace(/^0/, "")}</text>`;
     }
-    // 近用桿與卡片
     refs.rodUp.style.opacity = S.rod ? 0 : 1;
     refs.nearCard.setAttribute("opacity", S.rod ? 1 : 0);
     refs.cardNoTxt.textContent = S.cardNo;
     refs.cardDistTxt.textContent = S.cardDist + " cm";
-    refs.foreKnob.setAttribute("transform", `rotate(${(S.vertex - 13.75) * 40} 500 232)`);
+    refs.foreKnob.setAttribute("transform", `rotate(${(S.vertex - 13.75) * 40} 520 470)`);
   }
 
-  const VIEWS = { all: "0 -36 1000 696", R: "70 170 470 470", L: "460 170 470 470" };
+  const VIEWS = { all: "0 0 1074 903", R: "30 370 500 530", L: "504 370 500 530" };
   return { build, cache, update, VIEWS, POS, LOBE, PXMM, TUR };
 })();
 
