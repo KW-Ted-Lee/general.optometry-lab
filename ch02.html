@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 2 章 屈光不正｜視光學臨床實驗台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-chapter="ch02">
+<header id="topbar"></header>
+<main class="wrap">
+  <div class="chapter-head">
+    <div class="eyebrow">Chapter 02</div>
+    <h1>屈光不正</h1>
+    <div class="en">Refractive Error</div>
+    <p class="lede">眼睛約有 +60 D 的屈光力，剛好配上約 22–24 mm 的眼軸，平行光就落在視網膜上。屈光力與眼軸只要不匹配，就是屈光不正。矯正的定義只有一句：<b>讓鏡片的焦點與眼睛的遠點重合。</b></p>
+  </div>
+
+  <section class="block">
+    <h2>教科書對照 <span class="tag">SYLLABUS MAP</span></h2>
+    <div id="secmap"></div>
+  </section>
+
+  <section class="block">
+    <h2>學習目標 <span class="tag">GOALS</span></h2>
+    <ul class="goals">
+      <li>以 D ＝ n / f 計算屈光力，說出人眼屈光力的組成（角膜約 +43 D、水晶體約 +19 D）。</li>
+      <li>說明正視化（emmetropization）：眼軸成長與屈光力下降如何互相配合。</li>
+      <li>區分軸性與屈光性屈光不正，計算近視的遠點，說出遠視五分類的關係。</li>
+      <li>畫出光學十字，完成正負散換算、等價球面、順逆斜散與五種散光分類。</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>核心觀念 <span class="tag">KEY IDEAS</span></h2>
+    <div class="concepts">
+      <div class="concept"><span class="newtag s1p">上學期＋補充</span><span class="en-term">Optical system of the eye</span><h3>眼睛的光學系統</h3><p>光依序通過淚膜、角膜、房水、水晶體、玻璃體。角膜前表面空氣與組織的折射率差最大，貢獻約 2/3 屈光力。簡化眼把整個眼睛看成一個 +60 D 的折射面，眼軸 22.22 mm。</p></div>
+      <div class="concept"><span class="newtag s1p">上學期＋補充</span><span class="en-term">Emmetropization</span><h3>正視眼與正視化</h3><p>新生兒多為輕度遠視、眼軸較短。成長過程中眼軸變長，角膜與水晶體屈光力同步下降，大約學齡前後接近正視。這個配合失敗（例如近距離用眼過多、戶外時間少），眼軸過長就成了近視。</p></div>
+      <div class="concept"><span class="en-term">Myopia</span><h3>近視</h3><p>焦點在視網膜前，遠點在眼前有限距離：遠點（m）＝ 1 ÷ |D|。眼軸每長 1 mm 約增加 −3.00 D。依度數分輕度（&lt; −3.00）、中度（−3.00～−6.00）、高度（&gt; −6.00）。</p></div>
+      <div class="concept"><span class="en-term">Hyperopia</span><h3>遠視</h3><p>焦點在視網膜後，遠點在眼後（虛遠點）。全遠視＝顯性＋隱性；顯性＝絕對＋相對。年輕人可用調節代償，所以常見主訴是近用後頭痛、閱讀不持久。</p></div>
+      <div class="concept"><span class="en-term">Astigmatism</span><h3>散光</h3><p>兩條主徑線屈光力不同，形成前後兩條焦線。間隙中央是最小模糊圈（COLC），等價球面 SE ＝ sph ＋ cyl ÷ 2 就是把 COLC 放到視網膜上的球面度數。</p></div>
+      <div class="concept"><span class="en-term">Power cross &amp; transposition</span><h3>光學十字與換算</h3><p>柱鏡的「軸」與發揮度數的方向差 90 度。正負散換算三步驟：球面加柱面、柱面變號、軸度加 90（超過 180 扣 180）。兩種寫法的 SE 必須相同。</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>互動實驗 <span class="tag">LAB</span></h2>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 2-1</span><h3>屈光不正模擬眼</h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-eye" aria-label="簡化眼屈光不正"></canvas></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label>原因</label>
+            <div class="seg" id="e-type"><button data-v="axial" aria-pressed="true">軸性（改眼軸）</button><button data-v="ref">屈光性（改屈光力）</button></div></div>
+          <div class="ctrl" id="e-axial-box"><label for="e-L">眼軸長 <output id="e-L-out"></output></label><input type="range" id="e-L" min="19.5" max="26" step="0.1" value="23.3"></div>
+          <div class="ctrl" id="e-ref-box" hidden><label for="e-F">眼屈光力 <output id="e-F-out"></output></label><input type="range" id="e-F" min="52" max="68" step="0.25" value="63"></div>
+          <div class="ctrl"><label>入射光</label>
+            <div class="seg" id="e-src"><button data-v="inf" aria-pressed="true">來自無限遠</button><button data-v="fp">來自遠點</button></div></div>
+          <div class="readout">
+            <div class="row"><span>屈光狀態（角膜面）</span><b id="e-K">—</b></div>
+            <div class="row"><span>遠點位置</span><b id="e-fp">—</b></div>
+            <div class="row"><span>度數分級</span><b id="e-grade">—</b></div>
+          </div>
+          <div class="verdict" id="e-verdict"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="1">
+          <p class="q">一位 −4.00 D 的近視者，不戴眼鏡能看清楚的最遠距離大約是？</p>
+          <div class="opts"><button>4 m</button><button>25 cm</button><button>40 cm</button><button>無限遠</button></div>
+          <p class="why">遠點距離 ＝ 1 ÷ 4 ＝ 0.25 m。所以高度近視者看近反而不需要眼鏡。把眼軸調到讀數約 −4.00 D，再切到「來自遠點」看看光線。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>近視：平行光聚焦在視網膜前，到視網膜時已散開成模糊圈。</li>
+          <li>切換「來自遠點」：不論近視或遠視，從遠點來的光都剛好聚焦在視網膜上。</li>
+          <li>眼軸只差 1 mm，大約就是 3 D 的屈光不正。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 2-2</span><h3>光學十字與正負散換算</h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-cross" aria-label="光學十字"></canvas></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label for="x-s">球面 sph <output id="x-s-out"></output></label><input type="range" id="x-s" min="-8" max="6" step="0.25" value="-2.5"></div>
+          <div class="ctrl"><label for="x-c">柱面 cyl <output id="x-c-out"></output></label><input type="range" id="x-c" min="-4" max="4" step="0.25" value="-1"></div>
+          <div class="ctrl"><label for="x-a">軸度 axis <output id="x-a-out"></output></label><input type="range" id="x-a" min="1" max="180" step="1" value="180"></div>
+          <div class="readout">
+            <div class="row"><span>原處方</span><b id="x-rx">—</b></div>
+            <div class="row"><span>換算後</span><b id="x-tr">—</b></div>
+            <div class="row"><span>等價球面 SE</span><b id="x-se">—</b></div>
+            <div class="row"><span>依軸度</span><b id="x-rule">—</b></div>
+            <div class="row"><span>依焦線位置</span><b id="x-type">—</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="2">
+          <p class="q">+2.00 +1.00 ×080 換成負散，會是？</p>
+          <div class="opts"><button>+2.00 −1.00 ×170</button><button>+1.00 −1.00 ×170</button><button>+3.00 −1.00 ×170</button><button>+3.00 −1.00 ×080</button></div>
+          <p class="why">球面加柱面：+2.00 ＋ (+1.00) ＝ +3.00；柱面變號：−1.00；軸度加 90：170。SE 都是 +2.50，驗算正確。用滑桿設定這個處方對照看看。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>十字上的數字是「該方向的總屈光力」；軸那條線只有球面度。</li>
+          <li>正散與負散兩種寫法畫出來是同一個十字。</li>
+          <li>判斷五種散光：負散寫法下，看 sph 與（sph ＋ cyl）兩個值的正負號。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 2-3</span><h3>正視化：眼睛怎麼長成正視 <span class="newtag">補充</span></h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-emm" aria-label="正視化曲線"></canvas><span class="hint">典型值示意</span></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label for="m-age">年齡 <output id="m-age-out"></output></label><input type="range" id="m-age" min="0" max="18" step="0.5" value="0"></div>
+          <div class="ctrl"><label>成長情境</label>
+            <div class="seg" id="m-sc"><button data-v="norm" aria-pressed="true">正視化成功</button><button data-v="myo">眼軸過度增長</button></div></div>
+          <div class="readout">
+            <div class="row"><span>眼軸長（示意）</span><b id="m-L">—</b></div>
+            <div class="row"><span>屈光狀態（示意）</span><b id="m-R">—</b></div>
+          </div>
+          <div class="verdict" id="m-v"></div>
+        </div>
+      </div>
+      <div class="observe"><h4>觀察重點</h4><ul>
+        <li>出生時眼軸約 17 mm、輕度遠視；最初兩三年眼軸增長最快。</li>
+        <li>眼軸變長本來會讓眼睛「變近視」，但角膜與水晶體屈光力同時下降，抵銷之後就接近正視。</li>
+        <li>學齡期眼軸持續過度增長，屈光力已無法再降，就形成軸性近視。這是近視控制關心的重點。</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>常見迷思 <span class="tag">MISCONCEPTIONS</span></h2>
+    <div class="myths">
+      <details class="myth"><summary>遠視就是「看得遠、看不近」，看遠一定清楚。</summary><div class="fix">遠視眼看遠也要調節才清楚。年輕人調節夠所以看遠清楚，但會累；度數高或年紀大時，遠近都可能模糊。</div></details>
+      <details class="myth"><summary>柱鏡的軸就是度數發揮的方向。</summary><div class="fix">軸是「不被柱鏡影響」的方向。−1.00 ×180 表示 180 方向不加度數，090 方向加 −1.00 D。把這兩者弄反，順散逆散就會判反。</div></details>
+      <details class="myth"><summary>軸度寫 5 就好，不用寫 005。</summary><div class="fix">軸度一律寫三位數。5 可能被配鏡端誤讀為 50 度。</div></details>
+      <details class="myth"><summary>度數越深越好，看得越清楚越好。</summary><div class="fix">近視以「能達最佳視力的最小負度數」為原則；過矯會誘發調節，造成疲勞與頭痛。</div></details>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>紀錄範例 <span class="tag">RECORD</span></h2>
+    <div class="rec"># 近視
+OD −2.50 DS            VAcc 1.0 @D
+OS −3.00 −0.75 × 175   VAcc 1.0 @D
+Dx: OU 軸性近視，OD 遠點 40 cm、OS 遠點 33 cm
+# 散光
+OD −2.00 −0.75 × 180 WTR  VAcc 1.0 @D  SE −2.375
+OD −3.50 −2.75 × 042 OBL  VAcc 0.6 @D（無法矯正至 0.8 以上）
+Note: 主徑線交角非 90 度，疑似不規則散光，建議角膜地形圖檢查</div>
+  </section>
+
+  <section class="block">
+    <h2>公式補充 <span class="tag">OPTIONAL</span></h2>
+    <details class="formula"><summary>展開看公式（選讀）</summary><div>
+      <p>屈光力：<span class="eq">D ＝ n / f</span>（f 以公尺計）</p>
+      <p>近視遠點：<span class="eq">遠點距離（m）＝ 1 ÷ |屈光度|</span></p>
+      <p>簡化眼：<span class="eq">F ＝ +60.00 D，n′ ＝ 1.333，眼軸 ＝ 1.333 / 60 ＝ 22.22 mm</span></p>
+      <p>等價球面：<span class="eq">SE ＝ sph ＋ cyl / 2</span></p>
+      <p>正負散換算：<span class="eq">sph′ ＝ sph ＋ cyl；cyl′ ＝ −cyl；axis′ ＝ axis ± 90</span></p>
+    </div></details>
+  </section>
+
+  <section class="block">
+    <h2>觀念檢核 <span class="tag">CHECK</span></h2>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="block">
+    <h2>練習題 <span class="tag">PRACTICE</span></h2>
+    <p class="sub">依講義回家練習的題型設計，數字每次隨機。軸度請填 1–180 的整數；負號可以打 - 或 −。</p>
+    <div id="practice"></div>
+  </section>
+
+  <section class="block">
+    <h2>專業英文 <span class="tag">TERMS</span></h2>
+    <div class="terms-wrap"><table class="terms">
+      <tr><th>English</th><th>中文</th><th>一句話說明</th></tr>
+      <tr><td>emmetropia / ametropia</td><td>正視／屈光不正</td><td>平行光是否聚焦在視網膜</td></tr>
+      <tr><td>emmetropization</td><td>正視化</td><td>成長中眼軸與屈光力互相配合</td></tr>
+      <tr><td>myopia / hyperopia</td><td>近視／遠視</td><td>焦點在視網膜前／後</td></tr>
+      <tr><td>axial / refractive</td><td>軸性／屈光性</td><td>屈光不正的成因</td></tr>
+      <tr><td>far point</td><td>遠點</td><td>不調節時能看清的點</td></tr>
+      <tr><td>latent / manifest hyperopia</td><td>隱性／顯性遠視</td><td>能否在一般驗光測得</td></tr>
+      <tr><td>principal meridian</td><td>主徑線</td><td>屈光力最大與最小的方向</td></tr>
+      <tr><td>with / against the rule</td><td>順散／逆散</td><td>垂直／水平屈光力較強</td></tr>
+      <tr><td>circle of least confusion</td><td>最小模糊圈</td><td>Sturm 間隙中央</td></tr>
+      <tr><td>spherical equivalent</td><td>等價球面</td><td>sph ＋ cyl ÷ 2</td></tr>
+      <tr><td>transposition</td><td>正負散換算</td><td>同一處方的兩種寫法</td></tr>
+    </table></div>
+  </section>
+
+  <nav id="pager"></nav>
+</main>
+<footer id="footer"></footer>
+<script src="assets/config.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/practice.js"></script>
+<script src="assets/problems/ch02.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { OBPractice.mount("practice", "ch02"); OL.sectionMap("secmap", "ch02"); });</script>
+<script src="assets/eye.js"></script>
+<script>
+(function () {
+  const { Stage, fmt, range, seg, trace, quiz } = OL;
+  const { EYE, drawEye } = OLEye;
+
+  /* ---------- LAB 2-1（沿用光學實驗台的模擬眼） ---------- */
+  const type = seg("e-type", (v) => { document.getElementById("e-axial-box").hidden = v !== "axial"; document.getElementById("e-ref-box").hidden = v === "axial"; st.render(); });
+  const src = seg("e-src", () => st.render());
+  const Lr = range("e-L", (v) => v.toFixed(1) + " mm", () => st.render());
+  const Fr = range("e-F", (v) => fmt.D(v), () => st.render());
+  const st = new Stage("cv-eye", { xmin: -32, xmax: 46, ymin: -16, ymax: 16, aspect: 0.55, minH: 280, maxH: 460, equal: true, draw: drawA });
+  function eyeState() {
+    const axial = type.value === "axial";
+    const L = axial ? Lr.value : EYE.L, F = axial ? EYE.F : Fr.value;
+    return { L, F, K: EYE.n / (L / 1000) - F, focus: EYE.n / F * 1000 };
+  }
+  function drawA(s, c) {
+    const { L, F, K, focus } = eyeState();
+    drawEye(s, c, 0, L, 12.5);
+    s.axis({ label: false });
+    s.line(EYE.L, -9, EYE.L, 9, { color: c.muted, dash: [2, 4], w: 1, alpha: 0.7 });
+    s.text("正視眼的視網膜", EYE.L, -9, { dy: 10, size: 10, color: c.muted });
+    const el = [{ x: 0, F: F / 1000, n2: EYE.n }];
+    const fromFP = src.value === "fp";
+    [-7, -3.5, 3.5, 7].forEach((y) => {
+      const sl = fromFP ? -(y / 1000) * K : 0;
+      const x0 = s.opt.xmin;
+      const tr = trace({ x: x0, y: y - sl * (0 - x0), s: sl, n: 1 }, el, L);
+      s.ray(tr.pts, { color: c.ray, w: 1.7 });
+      const fx = fromFP ? L : focus;
+      if (fx > L + 0.05) s.line(L, tr.y, fx, 0, { color: c.ray, dash: [3, 4], w: 1.1, alpha: 0.7 });
+      if (fromFP && Math.abs(K) > 0.05) {
+        const fp = 1000 / K;
+        if (K < 0) s.line(Math.max(fp, x0), y - sl * (0 - Math.max(fp, x0)), x0, y - sl * (0 - x0), { color: c.ray, dash: [3, 4], w: 1, alpha: 0.6 });
+        else s.line(0, y, Math.min(fp, s.opt.xmax), y + sl * Math.min(fp, s.opt.xmax), { color: c.ray, dash: [3, 4], w: 1, alpha: 0.45 });
+      }
+    });
+    if (!fromFP && Math.abs(focus - L) > 0.05 && focus < s.opt.xmax) s.point(focus, 0, "焦點", { color: c.ray, dy: focus < L ? 16 : -12, dx: focus < L ? -10 : 10 });
+    const fpmm = Math.abs(K) < 0.05 ? Infinity : 1000 / K;
+    if (isFinite(fpmm) && fpmm > s.opt.xmin && fpmm < s.opt.xmax) s.point(fpmm, 0, "遠點", { color: c.ray2, dy: 14 });
+    else if (isFinite(fpmm)) s.text(K < 0 ? "← 遠點在眼前 " + fmt.plain(-1 / K * 100, 1, "cm") : "遠點在眼後 " + fmt.plain(1 / K * 100, 1, "cm") + " →", K < 0 ? s.opt.xmin : s.opt.xmax, -14, { align: K < 0 ? "left" : "right", dx: K < 0 ? 4 : -4, size: 12, weight: 700, color: c.ray2 });
+    s.text(fromFP ? "光來自遠點" : "平行光（無限遠）", s.opt.xmin, 14, { align: "left", dx: 4, size: 12, color: c.muted });
+    document.getElementById("e-K").textContent = fmt.D(K);
+    document.getElementById("e-fp").textContent = Math.abs(K) < 0.125 ? "無限遠" : K < 0 ? "眼前 " + fmt.plain(-100 / K, 1, "cm") : "眼後 " + fmt.plain(100 / K, 1, "cm") + "（虛）";
+    document.getElementById("e-grade").textContent = K > -0.5 ? (K > 0.125 ? "遠視" : "—") : K > -3 ? "輕度近視" : K >= -6 ? "中度近視" : "高度近視";
+    const v = document.getElementById("e-verdict");
+    const cause = type.value === "axial" ? (L > EYE.L ? "眼軸太長" : "眼軸太短") : (F > EYE.F ? "屈光力太強" : "屈光力太弱");
+    if (Math.abs(K) < 0.125) v.innerHTML = '<span class="pill ok">正視</span> 平行光剛好聚焦在視網膜';
+    else v.innerHTML = `<span class="pill warn">${type.value === "axial" ? "軸性" : "屈光性"}${K < 0 ? "近視" : "遠視"}</span> ${cause}，平行光聚焦在視網膜${K < 0 ? "前" : "後"}`;
+  }
+
+  /* ---------- LAB 2-2 光學十字 ---------- */
+  const sR = range("x-s", (v) => fmt.D(v), () => cr.render());
+  const cR = range("x-c", (v) => fmt.D(v), () => cr.render());
+  const aR = range("x-a", (v) => String(v).padStart(3, "0"), () => cr.render());
+  const ax3 = (a) => String(((a - 1 + 180) % 180) + 1).padStart(3, "0");
+  const sg = (v) => Math.abs(v) < 0.001 ? "plano" : fmt.D(v).replace(" D", "");
+  const cr = new Stage("cv-cross", { xmin: -10, xmax: 10, ymin: -10, ymax: 10, aspect: 0.8, minH: 280, maxH: 420, equal: true, draw: (s, c) => {
+    const S = sR.value, C = cR.value, A = aR.value;
+    const pA = S, pB = S + C, A2 = ((A + 90 - 1) % 180) + 1;
+    // 角度刻度（TABO：0 在右、逆時針）
+    const ctx = s.ctx;
+    ctx.save(); ctx.strokeStyle = c.line; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(s.X(0), s.Y(0), s.sx * 8.4, Math.PI, 2 * Math.PI); ctx.stroke(); ctx.restore();
+    [0, 30, 60, 90, 120, 150, 180].forEach((d) => { const r = d * Math.PI / 180; s.text(String(d), 9.3 * Math.cos(r), 9.3 * Math.sin(r), { size: 10, color: c.muted, font: c.mono }); });
+    const drawM = (deg, p, col, lab) => {
+      const r = deg * Math.PI / 180, x = 7.6 * Math.cos(r), y = 7.6 * Math.sin(r);
+      s.line(-x, -y, x, y, { color: col, w: 3 });
+      const k = 0.62, nx = -Math.sin(r), ny = Math.cos(r);
+      s.text(lab, x * k + nx * 1.1, y * k + ny * 1.1, { color: col, weight: 700, size: 13, font: c.mono, bg: c.bg });
+    };
+    drawM(A, pA, c.accent, `${ax3(A)}：${sg(pA)}`);
+    drawM(A2, pB, c.ray, `${ax3(A2)}：${sg(pB)}`);
+    s.point(0, 0, null, { r: 3 });
+    s.text("光學十字（數字為該方向的總屈光力）", 0, -9.4, { size: 11, color: c.muted });
+    // 讀數
+    const tS = S + C, tC = -C, tA = A2;
+    document.getElementById("x-rx").textContent = `${sg(S)} ${Math.abs(C) < 0.001 ? "DS" : `${fmt.D(C).replace(" D", "")} ×${ax3(A)}`}`;
+    document.getElementById("x-tr").textContent = Math.abs(C) < 0.001 ? "（無柱面）" : `${sg(tS)} ${fmt.D(tC).replace(" D", "")} ×${ax3(tA)}`;
+    const se = S + C / 2;
+    document.getElementById("x-se").textContent = fmt.D(se, 3).replace(/0 D$/, " D");
+    // 負散寫法
+    const nS = C < 0 ? S : S + C, nC = -Math.abs(C), nA = C < 0 ? A : A2;
+    let rule = "—";
+    if (Math.abs(C) >= 0.125) { const a = nA % 180; rule = (a <= 30 || a >= 150) ? "順散 WTR（負柱軸近 180）" : (a >= 60 && a <= 120) ? "逆散 ATR（負柱軸近 090）" : "斜散 OBL"; }
+    document.getElementById("x-rule").textContent = rule;
+    const m1 = nS, m2 = nS + nC; // 兩主徑線的處方屈光力
+    let tp;
+    if (Math.abs(C) < 0.125) tp = Math.abs(S) < 0.125 ? "正視" : S < 0 ? "單純近視（無散光）" : "單純遠視（無散光）";
+    else if (Math.abs(m1) < 0.01) tp = "單純近視散光 SMA";
+    else if (Math.abs(m2) < 0.01) tp = "單純遠視散光 SHA";
+    else if (m1 < 0 && m2 < 0) tp = "複合近視散光 CMA";
+    else if (m1 > 0 && m2 > 0) tp = "複合遠視散光 CHA";
+    else tp = "混合散光 MA";
+    document.getElementById("x-type").textContent = tp;
+  } });
+
+  /* ---------- LAB 2-3 正視化（典型值示意） ---------- */
+  const ageR = range("m-age", (v) => v.toFixed(1) + " 歲", () => em.render());
+  const sc = seg("m-sc", () => em.render());
+  const lerpT = (pts, x) => { for (let i = 0; i < pts.length - 1; i++) { const [x1, y1] = pts[i], [x2, y2] = pts[i + 1]; if (x <= x2) return y1 + (y2 - y1) * (x - x1) / (x2 - x1); } return pts[pts.length - 1][1]; };
+  const AX_N = [[0, 17], [1, 20], [2, 21.2], [3, 21.7], [6, 22.6], [9, 23.0], [12, 23.3], [18, 23.6]];
+  const AX_M = [[0, 17], [1, 20], [2, 21.2], [3, 21.7], [6, 22.8], [9, 23.7], [12, 24.6], [18, 25.4]];
+  const RX_N = [[0, 2.0], [1, 1.4], [2, 1.1], [3, 1.0], [6, 0.75], [9, 0.5], [12, 0.4], [18, 0.25]];
+  // 眼軸額外增長造成的近視：約 −3 D／mm
+  const rxOf = (t, my) => my ? lerpT(RX_N, t) - 3 * (lerpT(AX_M, t) - lerpT(AX_N, t)) : lerpT(RX_N, t);
+  const em = new Stage("cv-emm", { xmin: -1.8, xmax: 19, ymin: -7, ymax: 3.5, aspect: 0.55, minH: 260, maxH: 400, draw: (s, c) => {
+    const my = sc.value === "myo", t = ageR.value;
+    for (let y = -6; y <= 3; y++) s.line(0, y, 18, y, { color: c.grid, w: 1 });
+    s.line(0, 0, 18, 0, { color: c.muted, w: 1.2 });
+    for (let a = 0; a <= 18; a += 3) s.text(a + "", a, -7, { dy: -9, size: 10, color: c.muted, font: c.mono });
+    for (let y = -6; y <= 3; y += 2) s.text((y > 0 ? "+" : y < 0 ? "−" : "") + Math.abs(y) + " D", 0, y, { dx: -6, align: "right", size: 10, color: c.muted, font: c.mono });
+    s.text("年齡（歲）", 18, -7, { dy: -22, align: "right", size: 10, color: c.muted });
+    const pts = []; for (let a = 0; a <= 18; a += 0.25) pts.push([a, rxOf(a, my)]);
+    s.poly(pts, { color: my ? c.bad : c.ok, w: 2.4 });
+    if (my) { const p2 = []; for (let a = 0; a <= 18; a += 0.25) p2.push([a, rxOf(a, false)]); s.poly(p2, { color: c.ok, w: 1.4, dash: [5, 4], alpha: 0.7 }); }
+    s.point(t, rxOf(t, my), fmt.D(rxOf(t, my)), { color: c.accent, dy: -14 });
+    s.text("屈光狀態（+ 遠視、− 近視）", 0.3, 3.2, { align: "left", size: 11, color: c.muted });
+    const L = lerpT(my ? AX_M : AX_N, t), R = rxOf(t, my);
+    document.getElementById("m-L").textContent = L.toFixed(1) + " mm";
+    document.getElementById("m-R").textContent = fmt.D(R);
+    document.getElementById("m-v").innerHTML = R > 0.75 ? '<span class="pill info">生理性遠視</span> 正視化進行中' : R > -0.5 ? '<span class="pill ok">接近正視</span>' : '<span class="pill bad">近視</span> 眼軸持續過度增長';
+  } });
+
+  quiz("quiz", "ch02", [
+    { q: "人眼總屈光力約 +60 D，其中角膜大約貢獻：", opts: ["+19 D", "+43 D", "+60 D", "+10 D"], a: 1, exp: "角膜約 +43 D、水晶體約 +19 D（Grosvenor）。角膜前表面空氣與組織的折射率差最大。" },
+    { q: "焦距 0.5 m 的鏡片在空氣中的屈光力是：", opts: ["0.5 D", "1.00 D", "2.00 D", "5.00 D"], a: 2, exp: "D ＝ n / f ＝ 1 / 0.5 ＝ 2.00 D。" },
+    { q: "−5.00 D 近視眼的遠點位於：", opts: ["眼前 5 m", "眼前 20 cm", "眼前 50 cm", "眼後 20 cm"], a: 1, exp: "1 ÷ 5 ＝ 0.2 m，在眼前 20 cm。" },
+    { q: "可以被調節克服、看遠仍清楚的遠視部分稱為：", opts: ["絕對遠視", "隱性遠視", "相對遠視", "全遠視"], a: 2, exp: "相對遠視（facultative）可被調節克服；絕對遠視無法克服；隱性遠視被張力性調節掩蓋，需睫狀肌麻痺才測得。" },
+    { q: "−1.50 −1.00 ×180 換成正散寫法是：", opts: ["−2.50 +1.00 ×090", "−0.50 +1.00 ×090", "−2.50 +1.00 ×180", "−1.50 +1.00 ×090"], a: 0, exp: "球面 −1.50 ＋ (−1.00) ＝ −2.50；柱面變號 +1.00；軸 180 ＋ 90 ＝ 270 − 180 ＝ 090。" },
+    { q: "+1.50 −3.00 ×045 的等價球面是：", opts: ["+1.50", "−1.50", "±0.00", "−3.00"], a: 2, exp: "SE ＝ +1.50 ＋ (−3.00 / 2) ＝ 0。" },
+    { q: "處方 −2.00 −1.00 ×180 屬於哪一種散光？", opts: ["單純近視散光", "複合近視散光", "混合散光", "複合遠視散光"], a: 1, exp: "兩條主徑線分別是 −2.00 與 −3.00，都是近視，所以是複合近視散光 CMA，而且負柱軸在 180 屬於順散。" },
+    { q: "正視化（emmetropization）的主要機制是：", opts: ["眼軸變短", "眼軸增長的同時，角膜與水晶體屈光力下降", "水晶體屈光力增加", "瞳孔變大"], a: 1, exp: "成長時眼軸變長，屈光力同步下降，兩者配合讓眼睛接近正視。" },
+  ]);
+})();
+</script>
+</body>
+</html>

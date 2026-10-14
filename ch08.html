@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 8 章 眼外肌與眼球運動｜視光學臨床實驗台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.gaze { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 260px; }
+.gaze button { font: inherit; font-size: 13px; padding: 8px 4px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.gaze button[aria-pressed="true"] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.bars { display: grid; gap: 6px; }
+.bars .bar { display: grid; grid-template-columns: 92px minmax(0, 1fr) 48px; gap: 8px; align-items: center; font-size: 13px; }
+.bars .bar i { display: block; height: 12px; border-radius: 6px; background: var(--accent); }
+.bars .bar span:last-child { font-family: var(--font-mono); text-align: right; }
+</style>
+</head>
+<body data-chapter="ch08">
+<header id="topbar"></header>
+<main class="wrap">
+  <div class="chapter-head">
+    <div class="eyebrow">Chapter 08</div>
+    <h1>眼外肌與眼球運動</h1>
+    <div class="en">Extraocular Muscles &amp; Eye Movements</div>
+    <p class="lede">每眼有六條眼外肌：四條直肌、兩條斜肌，由第 III、IV、VI 對腦神經支配。直肌與斜肌的拉力方向和視軸不一致，所以同一條肌肉在不同注視方向的作用不同。<b>臨床上就是利用「在哪個方向它的作用最單純」來檢查每一條肌肉。</b></p>
+  </div>
+
+  <section class="block">
+    <h2>教科書對照 <span class="tag">SYLLABUS MAP</span></h2>
+    <div id="secmap"></div>
+  </section>
+
+  <section class="block">
+    <h2>學習目標 <span class="tag">GOALS</span></h2>
+    <ul class="goals">
+      <li>說出六條眼外肌的起止、神經支配與主要、次要、第三作用。</li>
+      <li>解釋直肌（23°）與斜肌（51°）的肌肉平面，說明作用如何隨注視方向改變。</li>
+      <li>運用 Hering 與 Sherrington 定律，說出九個注視方位的配偶肌（yoke muscles）。</li>
+      <li>操作單眼運動、雙眼運動與 H 型注視檢查，認識掃視、追視、聚散等眼球運動系統。</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>核心觀念 <span class="tag">KEY IDEAS</span></h2>
+    <div class="concepts">
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Six muscles · LR6 SO4</span><h3>六條眼外肌與神經</h3><p>內直肌、外直肌、上直肌、下直肌、上斜肌、下斜肌。口訣 LR6 SO4 R3：外直肌由外旋神經（VI）、上斜肌由滑車神經（IV），其餘由動眼神經（III）支配。四條直肌與上斜肌起自總腱環，下斜肌起自眼眶前內側。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Primary, secondary, tertiary</span><h3>三種作用</h3><p>上直肌：上轉、內旋、內轉。下直肌：下轉、外旋、內轉。上斜肌：內旋、下轉、外轉。下斜肌：外旋、上轉、外轉。內外直肌只有水平作用。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Muscle plane</span><h3>23° 與 51°</h3><p>上下直肌的拉力方向與正前方視軸夾約 23°，所以眼睛外轉 23° 時它們變成純粹的上轉、下轉肌。斜肌的拉力方向約 51°，眼睛內轉 51° 時是純粹的上下作用。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Ductions · Versions · Vergences</span><h3>眼球運動的名稱</h3><p>單眼運動（duction）：內轉、外轉、上轉、下轉。雙眼同向運動（version）：如右看、左看。雙眼異向運動（vergence）：內聚、外散。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Hering · Sherrington</span><h3>兩個神經定律</h3><p>Hering 定律：雙眼同向運動時，配偶肌接受等量神經衝動。Sherrington 定律：主動肌收縮時，拮抗肌會同時放鬆。麻痺性斜視中，用麻痺眼注視時偏斜較大（次偏斜大於主偏斜），就是 Hering 定律的結果。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Eye-movement systems</span><h3>眼球運動系統</h3><p>掃視（saccade）：快速把目標移到中央凹，例如閱讀換字。追視（pursuit）：平順跟隨移動目標。聚散（vergence）：看遠看近。前庭眼反射與視動性眼振（OKN）讓頭動時影像穩定。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Clinical EOM testing</span><h3>臨床檢查</h3><p>以筆燈或小視標做 H 型或星形注視，觀察兩眼是否同步、有無落後或過動、病人是否在某方向複視或疼痛。需要時以遮蓋測試在各方向測量偏斜，判斷是否為非共同性；麻痺性斜視要轉介。</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>互動實驗 <span class="tag">LAB</span></h2>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 8-1</span><h3>九個注視方位與眼外肌 <span class="newtag">補充</span></h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-9" aria-label="九個注視方位"></canvas><span class="hint">檢查者面對病人：病人的右眼在畫面左邊</span></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label>請病人看向（以病人的方向）</label>
+            <div class="gaze" id="g-grid"></div></div>
+          <div class="ctrl"><label>模式</label>
+            <div class="seg" id="g-mode"><button data-v="free" aria-pressed="true">選麻痺肌肉</button><button data-v="quiz">猜猜看</button></div></div>
+          <div class="ctrl" id="g-free"><label for="g-palsy">麻痺</label>
+            <select id="g-palsy" class="select"><option value="">無（正常）</option><option value="R-LR">右外直肌（VI）</option><option value="R-SO">右上斜肌（IV）</option><option value="L-LR">左外直肌（VI）</option><option value="L-SO">左上斜肌（IV）</option><option value="R-SR">右上直肌</option><option value="L-IO">左下斜肌</option></select></div>
+          <div id="g-quiz" hidden>
+            <div class="ctrl"><label for="g-ans">哪一條肌肉麻痺？</label>
+              <select id="g-ans" class="select"><option value="">請選擇</option><option value="R-LR">右外直肌</option><option value="R-SO">右上斜肌</option><option value="L-LR">左外直肌</option><option value="L-SO">左上斜肌</option><option value="R-SR">右上直肌</option><option value="L-IO">左下斜肌</option></select></div>
+            <div class="row-btns"><button class="btn" id="g-chk" type="button">核對</button><button class="btn ghost" id="g-new" type="button">換一位</button></div>
+          </div>
+          <div class="readout">
+            <div class="row"><span>右眼主要作用肌</span><b id="g-mR">—</b></div>
+            <div class="row"><span>左眼主要作用肌</span><b id="g-mL">—</b></div>
+          </div>
+          <div class="verdict" id="g-v"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="0">
+          <p class="q">病人往右下看，右眼主要靠哪一條肌肉？</p>
+          <div class="opts"><button>右下直肌</button><button>右上斜肌</button><button>右外直肌</button><button>右下斜肌</button></div>
+          <p class="why">右眼往右下是外轉加下轉，外轉時下直肌是主要的下轉肌。左眼此時是內轉加下轉，靠左上斜肌。兩者是配偶肌。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>斜方向的四個位置用來分別檢查上下直肌與斜肌，正上、正下則是四條一起作用。</li>
+          <li>選一條麻痺的肌肉，看看在它的作用方向上那一眼如何落後，偏斜量在哪裡最大。</li>
+          <li>外直肌麻痺在正前方就有內斜，往患側看時更明顯；上斜肌麻痺時患眼偏高，往對側下方看最明顯。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 8-2</span><h3>直肌與斜肌的作用分解 <span class="newtag">補充</span></h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-dec" aria-label="肌肉平面與視軸"></canvas><span class="hint">右眼俯視圖</span></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label>肌肉</label>
+            <div class="seg" id="d-m"><button data-v="SR" aria-pressed="true">上直肌</button><button data-v="IR">下直肌</button><button data-v="SO">上斜肌</button><button data-v="IO">下斜肌</button></div></div>
+          <div class="ctrl"><label for="d-t">眼位 <output id="d-t-out"></output></label><input type="range" id="d-t" min="-55" max="45" step="1" value="0"></div>
+          <div class="bars" id="d-bars"></div>
+          <div class="verdict" id="d-v"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="1">
+          <p class="q">右眼往左看（內轉）約 50°，這時右上斜肌主要的作用是？</p>
+          <div class="opts"><button>內旋</button><button>下轉</button><button>外轉</button><button>上轉</button></div>
+          <p class="why">斜肌的肌肉平面約 51°，眼睛內轉到這個角度時，上斜肌的拉力幾乎與視軸平行，變成純粹的下轉肌。這也是檢查上斜肌要看「內轉下方」的原因。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>肌肉平面與視軸的夾角越小，上下作用越強；夾角越大，旋轉作用越強。</li>
+          <li>上直肌在外轉 23° 時是純上轉，往內轉時內旋的比例越來越大。</li>
+          <li>這就是九方位檢查中，「外上看上直肌、內上看下斜肌」的道理。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>常見迷思 <span class="tag">MISCONCEPTIONS</span></h2>
+    <div class="myths">
+      <details class="myth"><summary>上斜肌負責讓眼睛往上看。</summary><div class="fix">名稱是依附著點的位置，作用剛好相反：上斜肌主要是內旋與下轉，下斜肌是外旋與上轉。</div></details>
+      <details class="myth"><summary>往右上看時，兩眼都用上直肌。</summary><div class="fix">右眼外轉時用右上直肌，左眼內轉時用左下斜肌。兩者是配偶肌。</div></details>
+      <details class="myth"><summary>眼球運動只要看兩眼有沒有跟上就好。</summary><div class="fix">還要問病人有沒有複視、疼痛，並注意運動是否平順、有無眼振，以及頭位代償（如上斜肌麻痺常把頭歪向對側）。</div></details>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>紀錄範例 <span class="tag">RECORD</span></h2>
+    <div class="rec">EOM: FROM（full range of motion），no pain, no diplopia（SAFE）
+EOM: OD LR −2 underaction（往右看外轉不足），往右看複視加重
+→ 疑似右外旋神經麻痺，非共同性內斜，轉介神經眼科
+EOM: OS SO −1，頭歪向右肩；Bielschowsky 歪頭試驗左側陽性</div>
+  </section>
+
+  <section class="block">
+    <h2>公式補充 <span class="tag">OPTIONAL</span></h2>
+    <details class="formula"><summary>展開看分解（選讀）</summary><div>
+      <p>上／下直肌：<span class="eq">α ＝ 23° − 外轉角；上下作用 ∝ cos α，旋轉作用 ∝ sin α</span></p>
+      <p>上／下斜肌：<span class="eq">α ＝ 51° − 內轉角；上下作用 ∝ cos α，旋轉作用 ∝ sin α</span></p>
+      <p>這是簡化模型，實際肌肉還受到 pulley 等結構影響，但足以理解臨床的檢查位置。</p>
+    </div></details>
+  </section>
+
+  <section class="block">
+    <h2>觀念檢核 <span class="tag">CHECK</span></h2>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="block">
+    <h2>練習題 <span class="tag">PRACTICE</span></h2>
+    <p class="sub">每次隨機出題。</p>
+    <div id="practice"></div>
+  </section>
+
+  <section class="block">
+    <h2>專業英文 <span class="tag">TERMS</span></h2>
+    <div class="terms-wrap"><table class="terms">
+      <tr><th>English</th><th>中文</th><th>一句話說明</th></tr>
+      <tr><td>medial / lateral rectus</td><td>內／外直肌</td><td>內轉／外轉</td></tr>
+      <tr><td>superior / inferior rectus</td><td>上／下直肌</td><td>外轉時為純上／下轉</td></tr>
+      <tr><td>superior / inferior oblique</td><td>上／下斜肌</td><td>內轉時為純下／上轉</td></tr>
+      <tr><td>intorsion / extorsion</td><td>內旋／外旋</td><td>角膜 12 點往鼻側／顳側轉</td></tr>
+      <tr><td>duction / version / vergence</td><td>單眼／同向／異向運動</td><td>眼球運動的分類</td></tr>
+      <tr><td>yoke muscles</td><td>配偶肌</td><td>兩眼同向運動的一對肌肉</td></tr>
+      <tr><td>Hering's law</td><td>Hering 定律</td><td>配偶肌等量神經衝動</td></tr>
+      <tr><td>Sherrington's law</td><td>Sherrington 定律</td><td>拮抗肌交互抑制</td></tr>
+      <tr><td>saccade / pursuit</td><td>掃視／追視</td><td>快速跳動／平順跟隨</td></tr>
+      <tr><td>underaction / overaction</td><td>作用不足／過強</td><td>EOM 檢查的紀錄</td></tr>
+    </table></div>
+  </section>
+
+  <nav id="pager"></nav>
+</main>
+<footer id="footer"></footer>
+<script src="assets/config.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/practice.js"></script>
+<script src="assets/problems/ch08.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { OBPractice.mount("practice", "ch08"); OL.sectionMap("secmap", "ch08"); });</script>
+<script src="assets/binoc.js"></script>
+<script>
+(function () {
+  const { Stage, range, seg, quiz } = OL;
+  const { drawEyes } = OLBino;
+
+  /* ---------- LAB 8-1 九方位 ---------- */
+  // gaze：gx 正＝病人右側，gy 正＝上；按鈕排列以檢查者視角（病人的右邊在畫面左邊）
+  const POS = [[1, 1, "右上"], [0, 1, "正上"], [-1, 1, "左上"], [1, 0, "右"], [0, 0, "正前"], [-1, 0, "左"], [1, -1, "右下"], [0, -1, "正下"], [-1, -1, "左下"]];
+  const grid = document.getElementById("g-grid");
+  let gz = [0, 0], cur = { R: { h: 0, v: 0 }, L: { h: 0, v: 0 } }, GQ = null;
+  POS.forEach(([x, y, t]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.setAttribute("aria-pressed", x === 0 && y === 0 ? "true" : "false"); b.onclick = () => { grid.querySelectorAll("button").forEach((e) => e.setAttribute("aria-pressed", "false")); b.setAttribute("aria-pressed", "true"); gz = [x, y]; go(); }; grid.appendChild(b); });
+  const MUS = { LR: "外直肌", MR: "內直肌", SR: "上直肌", IR: "下直肌", SO: "上斜肌", IO: "下斜肌" };
+  const DIR = { LR: [-1, 0], MR: [1, 0], SR: [-1, 1], IR: [-1, -1], SO: [1, -1], IO: [1, 1] }; // （往鼻側 h, 往上 v）
+  const gmode = seg("g-mode", (v) => { document.getElementById("g-free").hidden = v !== "free"; document.getElementById("g-quiz").hidden = v === "free"; if (v === "quiz") newG(); go(); });
+  document.getElementById("g-palsy").onchange = () => go();
+  const palsy = () => (gmode.value === "free" ? document.getElementById("g-palsy").value : GQ);
+  function newG() { const k = ["R-LR", "R-SO", "L-LR", "L-SO", "R-SR", "L-IO"]; GQ = k[Math.floor(Math.random() * k.length)]; document.getElementById("g-ans").value = ""; document.getElementById("g-v").textContent = ""; }
+  function mainMuscle(h, v) {
+    if (v === 0) return h === 0 ? "—" : h > 0 ? "MR" : "LR";
+    if (h === 0) return v > 0 ? "SR＋IO" : "IR＋SO";
+    return v > 0 ? (h < 0 ? "SR" : "IO") : (h < 0 ? "IR" : "SO");
+  }
+  const nm = (k, side) => k === "—" ? "—（正前方）" : k.split("＋").map((x) => (side === "R" ? "右" : "左") + MUS[x] + " " + side + x).join("、");
+  function eyeGoal(side) {
+    const A = 28, h = (side === "R" ? -gz[0] : gz[0]) * A, v = gz[1] * A * 0.8;
+    let out = { h, v };
+    const p = palsy();
+    if (p && p[0] === side) {
+      const m = p.slice(2), d = DIR[m], n = Math.hypot(d[0], d[1]), u = [d[0] / n, d[1] / n];
+      const proj = Math.max(0, h * u[0] + v * u[1]);
+      out = { h: h - 0.75 * proj * u[0] - 6 * u[0], v: v - 0.75 * proj * u[1] - 6 * u[1] };
+    }
+    return out;
+  }
+  let anim;
+  function go() {
+    const from = JSON.parse(JSON.stringify(cur)), to = { R: eyeGoal("R"), L: eyeGoal("L") }, t0 = performance.now();
+    cancelAnimationFrame(anim);
+    const step = (t) => { const k = Math.min(1, (t - t0) / 350), e = 1 - Math.pow(1 - k, 3); ["R", "L"].forEach((s) => { cur[s] = { h: from[s].h + (to[s].h - from[s].h) * e, v: from[s].v + (to[s].v - from[s].v) * e }; }); g9.render(); if (k < 1) anim = requestAnimationFrame(step); };
+    anim = requestAnimationFrame(step);
+    const hR = -gz[0], hL = gz[0];
+    document.getElementById("g-mR").textContent = nm(mainMuscle(hR, gz[1]), "R");
+    document.getElementById("g-mL").textContent = nm(mainMuscle(hL, gz[1]), "L");
+    const p = palsy(), v = document.getElementById("g-v");
+    if (gmode.value === "free") v.innerHTML = p ? `<span class="pill warn">${p[0] === "R" ? "右" : "左"}${MUS[p.slice(2)]}麻痺</span> 把九個方向都看一遍，找出偏斜最大的位置` : "";
+  }
+  document.getElementById("g-chk").onclick = () => { const a = document.getElementById("g-ans").value, v = document.getElementById("g-v"); if (!a) { v.textContent = "請先選一個答案。"; return; } const n = `${GQ[0] === "R" ? "右" : "左"}${MUS[GQ.slice(2)]}`; v.innerHTML = a === GQ ? `<span class="pill ok">正確</span> ${n}麻痺` : `<span class="pill bad">再想想</span> 是${n}麻痺`; };
+  document.getElementById("g-new").onclick = () => { newG(); go(); };
+  const g9 = new Stage("cv-9", { xmin: -34, xmax: 34, ymin: -16, ymax: 16, aspect: 0.5, minH: 220, maxH: 360, equal: true, draw: (s, c) => {
+    drawEyes(s, c, { R: cur.R, L: cur.L });
+    const lab = POS.find(([x, y]) => x === gz[0] && y === gz[1])[2];
+    s.text(`病人看向：${lab}`, 0, 14.5, { size: 12, weight: 700, color: c.accent });
+  } });
+  go();
+
+  /* ---------- LAB 8-2 作用分解 ---------- */
+  const dm = seg("d-m", () => dec.render());
+  const tR = range("d-t", (v) => (v === 0 ? "正前方" : v > 0 ? `外轉 ${v}°` : `內轉 ${-v}°`), () => dec.render());
+  const dec = new Stage("cv-dec", { xmin: -22, xmax: 22, ymin: -20, ymax: 18, aspect: 0.75, minH: 280, maxH: 440, equal: true, draw: (s, c) => {
+    const m = dm.value, th = tR.value, isRect = m === "SR" || m === "IR";
+    const plane = isRect ? 23 : 51;
+    // 右眼俯視：前方朝上，顳側在右（+x），鼻側在左
+    const ctx = s.ctx, R = 8;
+    ctx.save(); ctx.beginPath(); ctx.arc(s.X(0), s.Y(0), s.sx * R, 0, Math.PI * 2); ctx.fillStyle = c.surface; ctx.fill(); ctx.strokeStyle = c.ink; ctx.lineWidth = 1.4; ctx.stroke(); ctx.restore();
+    s.text("鼻側", -19, 0, { size: 11, color: c.muted }); s.text("顳側", 19, 0, { size: 11, color: c.muted });
+    const ang = th * Math.PI / 180; // 外轉＝往顳側（+x）
+    s.line(0, 0, 16 * Math.sin(ang), 16 * Math.cos(ang), { color: c.ray, w: 2.4 });
+    s.text("視軸", 17 * Math.sin(ang), 17 * Math.cos(ang), { size: 11, weight: 700, color: c.ray, dy: -8 });
+    // 角膜
+    ctx.save(); ctx.beginPath(); ctx.arc(s.X(0), s.Y(0), s.sx * R, ang - Math.PI / 2 - 0.5, ang - Math.PI / 2 + 0.5); ctx.strokeStyle = c.accent; ctx.lineWidth = 4; ctx.stroke(); ctx.restore();
+    // 肌肉平面：直肌從眶尖（後內）往前外 23°；斜肌（功能上）從滑車往後外，作用方向與正前方夾 51°（朝鼻前方）
+    const pa = isRect ? plane * Math.PI / 180 : -plane * Math.PI / 180;
+    s.line(-16 * Math.sin(pa), -16 * Math.cos(pa), 16 * Math.sin(pa), 16 * Math.cos(pa), { color: c.ok, w: 2, dash: [6, 4] });
+    s.text(isRect ? "直肌平面（23°）" : "斜肌作用方向（51°）", 16 * Math.sin(pa), 16 * Math.cos(pa), { size: 11, color: c.ok, dy: -8, align: isRect ? "left" : "right" });
+    s.line(0, -18, 0, 17, { color: c.grid, w: 1, dash: [2, 4] });
+    // 分解
+    const alpha = isRect ? plane - th : plane + th; // 斜肌：內轉角 ＝ −th
+    const a = alpha * Math.PI / 180, vert = Math.cos(a), tor = Math.sin(a);
+    const VN = { SR: "上轉", IR: "下轉", SO: "下轉", IO: "上轉" }[m], TN = { SR: "內旋", IR: "外旋", SO: "內旋", IO: "外旋" }[m], TO = { SR: "外旋", IR: "內旋", SO: "外旋", IO: "內旋" }[m];
+    const bars = [[VN, Math.max(0, vert)], [tor >= 0 ? TN : TO, Math.abs(tor)]];
+    document.getElementById("d-bars").innerHTML = bars.map(([n, v]) => `<div class="bar"><span>${n}</span><i style="width:${(v * 100).toFixed(0)}%"></i><span>${(v * 100).toFixed(0)}%</span></div>`).join("") + `<div class="bar"><span>夾角 α</span><span></span><span>${Math.abs(alpha).toFixed(0)}°</span></div>`;
+    const v = document.getElementById("d-v");
+    v.innerHTML = Math.abs(alpha) <= 3 ? `<span class="pill ok">純${VN}</span> 視軸與${isRect ? "肌肉平面" : "作用方向"}重合，這個眼位最適合檢查這條肌肉` : Math.abs(alpha) >= 85 ? `<span class="pill info">幾乎只有旋轉</span> 上下作用接近零` : "";
+  } });
+
+  quiz("quiz", "ch08", [
+    { q: "由滑車神經（IV）支配的肌肉是：", opts: ["外直肌", "上斜肌", "下斜肌", "上直肌"], a: 1, exp: "LR6 SO4，其餘由動眼神經（III）支配。" },
+    { q: "上斜肌的主要作用是：", opts: ["上轉", "內旋", "外旋", "內轉"], a: 1, exp: "主要內旋、次要下轉、第三作用外轉。" },
+    { q: "眼睛外轉 23° 時，上直肌的作用是：", opts: ["純上轉", "純內旋", "純內轉", "上轉加外旋"], a: 0, exp: "此時視軸與直肌平面重合，上直肌只剩上轉作用。" },
+    { q: "往左上看時，右眼主要靠：", opts: ["右上直肌", "右下斜肌", "右內直肌", "右上斜肌"], a: 1, exp: "右眼往左是內轉，內轉時的上轉由下斜肌負責。配偶肌是左上直肌。" },
+    { q: "右外直肌的配偶肌是：", opts: ["右內直肌", "左外直肌", "左內直肌", "左上直肌"], a: 2, exp: "往右看時右眼外轉（RLR）、左眼內轉（LMR）。" },
+    { q: "「主動肌收縮時拮抗肌同時放鬆」是：", opts: ["Hering 定律", "Sherrington 定律", "Listing 定律", "Donders 定律"], a: 1, exp: "Sherrington 交互抑制定律。" },
+    { q: "閱讀時眼睛一跳一跳地換字，屬於：", opts: ["追視", "掃視", "聚散", "前庭眼反射"], a: 1, exp: "掃視（saccade）快速把新目標移到中央凹。" },
+    { q: "上斜肌麻痺的病人最常見的頭位代償是：", opts: ["頭歪向患側", "頭歪向對側", "下巴上抬", "頭轉向患側"], a: 1, exp: "頭歪向對側以減少需要內旋的需求，避免複視。" },
+  ]);
+})();
+</script>
+</body>
+</html>

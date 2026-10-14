@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>序章 課程導論與問診｜視光學臨床實驗台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-chapter="ch00">
+<header id="topbar"></header>
+<main class="wrap">
+  <div class="chapter-head">
+    <div class="eyebrow">Prologue</div>
+    <h1>課程導論與問診</h1>
+    <div class="en">Introduction &amp; Case History</div>
+    <p class="lede">驗光不是從視力表開始，而是從第一句話開始。問診是所有技術裡<b>最容易、也最困難</b>的一項：問對了，後面每一步都有方向；問漏了，度數再準也可能沒有解決病人的問題。</p>
+  </div>
+
+  <section class="block">
+    <h2>教材對照 <span class="tag">SYLLABUS MAP</span></h2>
+    <p class="sub">本章不在課本目錄中，整理自上學期第 1 週講義，作為全課程的起點。</p>
+    <div id="secmap"></div>
+  </section>
+
+  <section class="block">
+    <h2>學習目標 <span class="tag">GOALS</span></h2>
+    <ul class="goals">
+      <li>說得出視光學（Optometry）的字源與專業定位，以及臨床技術的四項基本要求。</li>
+      <li>以開放式提問完成一次結構完整的問診，問出主訴七要素與視覺需求。</li>
+      <li>辨認需要立即轉介的警訊，知道哪些情況超出驗光人員的業務範圍。</li>
+      <li>說出一次完整驗光的三個階段：起始點的設置、流程的修正、處方的決定。</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>核心觀念 <span class="tag">KEY IDEAS</span></h2>
+    <div class="concepts">
+      <div class="concept"><span class="en-term">Optos + Metron</span><h3>視光學的定位</h3><p>希臘語「眼睛」加「測量」。20 世紀中期是測量與矯正的技術，20 世紀末在北美成為獨立的醫療保健學科。今天的驗光師同時是測量者、判讀者與衛教者。</p></div>
+      <div class="concept"><span class="en-term">Chief complaint, CC</span><h3>主訴七要素</h3><p>頻率、起始時間、患部、持續時間、伴隨症狀、舒緩的條件、程度。七項逐一確認，缺一不可；它決定這次檢查的重點。</p></div>
+      <div class="concept"><span class="en-term">Five stages of history</span><h3>病史五階段</h3><p>準備（第一眼的觀察）→ 開放式提問 → 問卷（眼睛病史、治療史）→ 結論（「還有什麼要跟我說的？」）→ 當場紀錄。</p></div>
+      <div class="concept"><span class="en-term">Three phases of refraction</span><h3>驗光三階段</h3><p>起始點的設置（初步資料）、流程的修正（綜合驗光儀，常規自覺式驗光）、處方的決定（雙眼平衡、試戴；問題是否真的解決）。</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>互動實驗 <span class="tag">LAB</span></h2>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 0-1</span><h3>主訴七要素問診模擬</h3></div>
+      <div class="sim">
+        <div class="ctrl"><label>選擇病人</label><div class="seg" id="h-case"></div></div>
+        <div class="readout" id="h-who"></div>
+        <div class="ctrl"><label>你要問什麼？（點選問題，病人會回答）</label><div class="chips" id="h-qs"></div></div>
+        <div class="dialog" id="h-dialog"></div>
+        <div class="slots" id="h-slots"></div>
+        <div class="ctrl"><label>問完了，你的判斷是？</label><div class="chips" id="h-dec"><button class="chip" data-v="ref" type="button">立即轉介眼科</button><button class="chip" data-v="rx" type="button">進行一般驗光</button></div></div>
+        <div class="verdict" id="h-verdict"></div>
+        <div class="rec" id="h-rec" hidden></div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="2">
+          <p class="q">病人一坐下就說「我看不清楚」。下一句最好問什麼？</p>
+          <div class="opts"><button>「是近視加深了吧？」</button><button>「看遠還是看近不清楚？」</button><button>「可以多說一點是什麼情況嗎？」</button></div>
+          <p class="why">先用開放式提問讓病人自己描述，才不會把主訴壓縮成「是／否」。「看遠還是看近」雖然有用，但它是封閉式選項，適合在病人說完之後再補問；「近視加深了吧」則是邊問邊下結論。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>封閉式或誘導式問題只會得到「嗯，對」，七要素欄位不會增加。</li>
+          <li>每位病人最後都試試「還有什麼要跟我說的嗎？」，有些關鍵資訊只在這句之後出現。</li>
+          <li>突發的飛蚊閃光、視物變形屬於轉介警訊，不是換一副眼鏡能解決的。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 0-2</span><h3>驗光流程排序</h3></div>
+      <div class="sim">
+        <p>以下是一次完整驗光的步驟，順序被打亂了。用 ↑ ↓ 調整順序，再按「檢查順序」。</p>
+        <ol class="order-list" id="o-list"></ol>
+        <div class="prob-actions"><button class="btn" id="o-check" type="button">檢查順序</button><button class="btn ghost" id="o-shuffle" type="button">重新打亂</button><span id="o-res"></span></div>
+      </div>
+      <div class="observe"><h4>觀察重點</h4><ul>
+        <li>起始點（檢影、自動驗光、舊處方、鐘面圖）只是「開始的地方」，不是答案。</li>
+        <li>單眼四步驟（MPMVA → 紅綠 → JCC → 第二次 MPMVA）右眼做完換左眼，兩眼都完成才進雙眼。</li>
+        <li>最後的處方要通過正確性、舒適性、功能性三道檢核。</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>常見迷思 <span class="tag">MISCONCEPTIONS</span></h2>
+    <div class="myths">
+      <details class="myth"><summary>問診只是寒暄，越快進入檢查越專業。</summary><div class="fix">問診的目的是建立醫病關係並蒐集所有可能的需求。沒問職業與用眼距離，度數再準，生活場景也可能不合用。</div></details>
+      <details class="myth"><summary>病人說「看不清楚」就直接測視力。</summary><div class="fix">先問頻率與起始時間才能判斷急性或慢性。急性視力下降合併紅、腫、熱、痛是轉介警訊。</div></details>
+      <details class="myth"><summary>紀錄可以檢查完再一起補。</summary><div class="fix">事後補寫會讓細節失真，也不符合病歷即時性。問診要當場寫下。</div></details>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>紀錄範例 <span class="tag">RECORD</span></h2>
+    <div class="rec"># 異常範例（有主訴）
+CC: 近 3 個月看遠模糊，下午加劇，休息可緩解，OU 皆有。
+VN: 文書工作，每日近距離用眼約 8 小時。
+POH: 6 年前配鏡，未再更換。無眼疾史。PMH: 否認 DM/HTN。
+※ 必填：主訴（含七要素）、視覺需求、眼睛病史、治療史、日期與檢查者簽名</div>
+  </section>
+
+  <section class="block">
+    <h2>觀念檢核 <span class="tag">CHECK</span></h2>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="block">
+    <h2>練習題 <span class="tag">PRACTICE</span></h2>
+    <p class="sub">情境題每次隨機抽出，可以一直換題練習。</p>
+    <div id="practice"></div>
+  </section>
+
+  <section class="block">
+    <h2>專業英文 <span class="tag">TERMS</span></h2>
+    <div class="terms-wrap"><table class="terms">
+      <tr><th>English</th><th>中文</th><th>一句話說明</th></tr>
+      <tr><td>case history</td><td>問診、病史</td><td>建立醫病關係並蒐集需求</td></tr>
+      <tr><td>chief complaint (CC)</td><td>主訴</td><td>這次來訪最主要的不適</td></tr>
+      <tr><td>visual needs (VN)</td><td>視覺需求</td><td>職業、嗜好與用眼距離</td></tr>
+      <tr><td>POH / PMH</td><td>眼睛病史／全身病史</td><td>past ocular / medical history</td></tr>
+      <tr><td>open-ended question</td><td>開放式提問</td><td>讓病人自己描述</td></tr>
+      <tr><td>referral</td><td>轉介</td><td>超出業務範圍時交給眼科</td></tr>
+      <tr><td>subjective refraction</td><td>自覺式驗光</td><td>依病人回答修正度數</td></tr>
+    </table></div>
+  </section>
+
+  <nav id="pager"></nav>
+</main>
+<footer id="footer"></footer>
+<script src="assets/config.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/practice.js"></script>
+<script src="assets/problems/ch00.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { OBPractice.mount("practice", "ch00"); OL.sectionMap("secmap", "ch00"); });</script>
+<script>
+(function () {
+  const { seg, quiz } = OL;
+  const EL = ["頻率", "起始時間", "患部", "持續時間", "伴隨症狀", "舒緩的條件", "程度"];
+  /* 問題：k 為對應的七要素索引；vn 為視覺需求；open 為開場；end 為結論；bad 為封閉／誘導式 */
+  const QS = [
+    { id: "open", t: "今天來是想處理什麼問題呢？" },
+    { id: 0, t: "這種情況多久發生一次？" },
+    { id: 1, t: "大概從什麼時候開始的？" },
+    { id: 2, t: "是哪一隻眼睛，還是兩眼都有？" },
+    { id: 3, t: "每次發生會持續多久？" },
+    { id: 4, t: "除此之外，還有其他不舒服嗎？" },
+    { id: 5, t: "什麼情況下會比較舒服或緩解？" },
+    { id: 6, t: "如果 0 到 10 分，大概有多困擾？" },
+    { id: "vn", t: "平常工作或休閒需要看多遠的東西？" },
+    { id: "bad1", t: "你是不是看不清楚？", bad: "封閉式問題：病人只能回答是或否，主訴被壓縮。" },
+    { id: "bad2", t: "應該是度數加深了吧？", bad: "邊問邊下結論：病人感覺被打斷，後面的資訊就不說了。" },
+    { id: "end", t: "還有什麼想跟我說的嗎？" },
+  ];
+  const CASES = [
+    { name: "陳小姐", who: "32 歲，行政人員，第一次來店", ref: false, dx: "可能為屈光不正（近視或散光加深），安排完整驗光。",
+      open: "最近看電腦旁邊的白板和開車看路牌都有點糊。",
+      a: ["幾乎每天都會，尤其是傍晚。", "大概三個月前開始。", "兩眼都有。", "看一陣子就一直糊，閉眼休息一下會好一點。", "下午偶爾會有點頭痛、眼睛痠。", "休息、閉眼一下會比較好。", "大概 5 分，不至於影響工作。"],
+      vn: "每天電腦 8 小時左右，下班要開車。", end: "喔對，我現在的眼鏡是六年前配的。" },
+    { name: "林先生", who: "58 歲，退休教師，自覺「眼前很多蚊子」", ref: true, dx: "突發大量飛蚊、閃光合併視野黑影：疑似視網膜裂孔或剝離，立即轉介眼科。",
+      open: "右眼前面突然很多小黑點在飄，還會一閃一閃。",
+      a: ["一直都在，沒有停過。", "前天晚上突然開始的。", "只有右眼。", "從前天到現在都沒消失。", "右眼下方好像有一片黑影擋著。", "沒有什麼情況會變好。", "很困擾，大概 8 分。"],
+      vn: "平常看書、種花。", end: "我有高度近視，大概一千度。" },
+    { name: "黃先生", who: "45 歲，會計師", ref: false, dx: "近距離模糊、拿遠較清楚，符合老花初期；安排驗光並評估加入度。",
+      open: "看帳本、手機的小字越來越吃力。",
+      a: ["每天看近的時候都會。", "大概半年前開始注意到。", "兩眼都一樣。", "看久了一直都模糊，要拿遠一點。", "看完會覺得眼睛痠、有點想睡。", "把東西拿遠一點、燈開亮一點會好一點。", "大概 6 分，工作上很不方便。"],
+      vn: "每天看報表與電腦，距離大約 40 到 60 公分。", end: "最近報稅季，每天加班到很晚。" },
+    { name: "王小姐", who: "26 歲，設計師", ref: true, dx: "單眼直線變彎合併中心暗點：疑似黃斑部病變，立即轉介眼科。",
+      open: "左眼看東西怪怪的，門框看起來是彎的。",
+      a: ["一直都是這樣。", "大概一週前。", "只有左眼，遮住左眼就正常。", "一直存在，沒有消失過。", "左眼正中間好像有一小塊灰灰的。", "沒有，怎麼做都一樣。", "大概 7 分，畫圖很困擾。"],
+      vn: "每天電腦繪圖 10 小時以上。", end: "我是高度近視，前陣子工作壓力很大。" },
+  ];
+
+  let cur = 0, asked = new Set(), badN = 0, filled = [], decided = null;
+  const caseBox = document.getElementById("h-case");
+  caseBox.innerHTML = CASES.map((c, i) => `<button data-v="${i}" ${i === 0 ? 'aria-pressed="true"' : ""}>${c.name}</button>`).join("");
+  seg("h-case", (v) => { cur = +v; reset(); });
+  const qBox = document.getElementById("h-qs"), dlg = document.getElementById("h-dialog"), slots = document.getElementById("h-slots");
+  qBox.innerHTML = QS.map((q, i) => `<button class="chip" type="button" data-i="${i}">${q.t}</button>`).join("");
+  qBox.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => ask(+b.dataset.i, b)));
+  document.querySelectorAll("#h-dec .chip").forEach((b) => b.addEventListener("click", () => decide(b.dataset.v, b)));
+
+  function reset() {
+    asked = new Set(); badN = 0; filled = EL.map(() => null); decided = null;
+    dlg.innerHTML = ""; document.getElementById("h-verdict").innerHTML = ""; document.getElementById("h-rec").hidden = true;
+    qBox.querySelectorAll(".chip").forEach((b) => { b.disabled = false; b.classList.remove("ok", "bad"); });
+    document.querySelectorAll("#h-dec .chip").forEach((b) => b.classList.remove("ok", "bad"));
+    document.getElementById("h-who").innerHTML = `<div class="row"><span>病人</span><b>${CASES[cur].name}</b></div><div class="row"><span>背景</span><b>${CASES[cur].who}</b></div>`;
+    drawSlots();
+  }
+  function drawSlots() {
+    slots.innerHTML = EL.map((e, i) => `<div class="slot${filled[i] ? " filled" : ""}"><b>${i + 1}. ${e}</b>${filled[i] || "—"}</div>`).join("") +
+      `<div class="slot${filled.vn ? " filled" : ""}"><b>視覺需求 VN</b>${filled.vn || "—"}</div>`;
+  }
+  function bubble(t, me, note) { const d = document.createElement("div"); d.className = "bubble" + (me ? " me" : ""); d.innerHTML = (note ? `<small>${note}</small>` : "") + t; dlg.appendChild(d); }
+  function ask(i, btn) {
+    const q = QS[i], c = CASES[cur];
+    if (asked.has(i)) return; asked.add(i); btn.disabled = true;
+    bubble(q.t, true, "你");
+    let ans;
+    if (q.bad) { badN++; btn.classList.add("bad"); ans = "嗯……對吧。"; bubble(ans, false, c.name); bubble(q.bad, false, "提醒"); return; }
+    if (q.id === "open") ans = c.open;
+    else if (q.id === "vn") { ans = c.vn; filled.vn = c.vn; }
+    else if (q.id === "end") ans = c.end;
+    else { ans = c.a[q.id]; filled[q.id] = c.a[q.id]; }
+    btn.classList.add("ok");
+    bubble(ans, false, c.name);
+    drawSlots();
+  }
+  function decide(v, btn) {
+    const c = CASES[cur], right = (v === "ref") === c.ref;
+    document.querySelectorAll("#h-dec .chip").forEach((b) => b.classList.remove("ok", "bad"));
+    btn.classList.add(right ? "ok" : "bad");
+    const n = filled.filter(Boolean).length;
+    const v2 = document.getElementById("h-verdict");
+    v2.innerHTML = `${right ? '<span class="pill ok">判斷正確</span>' : '<span class="pill bad">再想想</span>'} ${c.dx}<br><span style="font-weight:400">七要素問到 ${n} / 7 項${filled.vn ? "，有問視覺需求" : "，還沒問視覺需求"}${asked.has(QS.findIndex((q) => q.id === "end")) ? "" : "，還沒問「還有什麼想跟我說的嗎？」"}${badN ? `；用了 ${badN} 個封閉或誘導式問題` : ""}。</span>`;
+    const rec = document.getElementById("h-rec");
+    rec.hidden = false;
+    rec.textContent = `CC: ${c.open}\n    頻率：${filled[0] || "未問"}／起始：${filled[1] || "未問"}／患部：${filled[2] || "未問"}\n    持續：${filled[3] || "未問"}／伴隨：${filled[4] || "未問"}\n    舒緩：${filled[5] || "未問"}／程度：${filled[6] || "未問"}\nVN: ${filled.vn || "未問"}\nPlan: ${c.ref ? "立即轉介眼科" : "完整驗光"}`;
+  }
+  reset();
+
+  /* ---------- LAB 0-2 排序 ---------- */
+  const STEPS = [
+    ["問診與病史紀錄", "起始點的設置"], ["遠用與近用視力（sc／cc）", "起始點的設置"], ["初步檢查：遮蓋測試、NPC、瞳孔、眼外肌等", "起始點的設置"],
+    ["起點度數：檢影鏡或自動驗光", "起始點的設置"], ["初始 MPMVA（霧視後逐步收回）", "流程的修正"], ["初始紅綠測試", "流程的修正"],
+    ["JCC 修正散光軸度與度數", "流程的修正"], ["第二次 MPMVA", "流程的修正"], ["雙眼平衡", "處方的決定"],
+    ["雙眼 MPMVA", "處方的決定"], ["主利眼確認與試鏡架試戴", "處方的決定"],
+  ];
+  const ol = document.getElementById("o-list");
+  let order = [];
+  function shuffle() { order = STEPS.map((_, i) => i); for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; } draw(); document.getElementById("o-res").innerHTML = ""; }
+  function draw(mark) {
+    ol.innerHTML = order.map((k, i) => `<li class="${mark ? (k === i ? "ok" : "bad") : ""}"><span>${STEPS[k][0]}${mark ? `<small style="display:block;color:var(--muted);font-size:12px">${STEPS[k][1]}</small>` : ""}</span><span class="mv"><button type="button" data-i="${i}" data-d="-1" aria-label="上移">↑</button><button type="button" data-i="${i}" data-d="1" aria-label="下移">↓</button></span></li>`).join("");
+    ol.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
+      const i = +b.dataset.i, j = i + +b.dataset.d; if (j < 0 || j >= order.length) return;
+      [order[i], order[j]] = [order[j], order[i]]; draw();
+    }));
+  }
+  document.getElementById("o-shuffle").onclick = shuffle;
+  document.getElementById("o-check").onclick = () => {
+    const ok = order.filter((k, i) => k === i).length;
+    draw(true);
+    document.getElementById("o-res").innerHTML = ok === STEPS.length ? '<span class="pill ok">完全正確</span> 灰字是每一步所屬的驗光階段。' : `<span class="pill warn">${ok} / ${STEPS.length} 個位置正確</span> 紅框的步驟位置不對。`;
+  };
+  shuffle();
+
+  quiz("quiz", "ch00", [
+    { q: "Optometry 的字源是：", opts: ["Optos（眼睛）＋ Metron（測量）", "Optikos（光）＋ Logos（學問）", "Ophthalmos（眼）＋ Logos（學問）", "Opsis（視覺）＋ Graphein（記錄）"], a: 0, exp: "希臘語 Optos 是眼睛，Metron 是測量。" },
+    { q: "下列何者「不是」主訴七要素之一？", opts: ["頻率", "舒緩的條件", "職業", "伴隨症狀"], a: 2, exp: "職業屬於視覺需求（VN），不是主訴七要素。七要素是頻率、起始時間、患部、持續時間、伴隨症狀、舒緩的條件、程度。" },
+    { q: "病史五階段中，「還有什麼要跟我說的？」屬於：", opts: ["準備階段", "開放式提問", "結論", "紀錄"], a: 2, exp: "結論階段替沒問到的事留一個出口，關鍵主訴常在這句之後出現。" },
+    { q: "病人單眼突發飛蚊、閃光劇增，最適當的處理是：", opts: ["先驗光再看看", "換一副度數較深的眼鏡", "立即轉介眼科", "建議熱敷休息"], a: 2, exp: "疑似視網膜裂孔或剝離，超出驗光人員業務範圍，應立即轉介。" },
+    { q: "「常規自覺式驗光」指的是驗光三階段中的哪一個？", opts: ["起始點的設置", "流程的修正", "處方的決定", "問診"], a: 1, exp: "流程的修正透過綜合驗光儀或鏡片組進行，極度仰賴受測者反應，所以稱為常規自覺式驗光。" },
+    { q: "早上一起床就頭痛、與用眼無關的時段一致，最可能是：", opts: ["眼鏡度數不合", "和眼睛較無關，需考慮其他原因", "老花眼", "隱形眼鏡過度配戴"], a: 1, exp: "講義提到一早起床的頭痛通常和眼睛無關；下午才加劇的頭痛才要考慮眼鏡不合。" },
+  ]);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 1 章 視力表示與視力表原理｜視光學臨床實驗台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-chapter="ch01">
+<header id="topbar"></header>
+<main class="wrap">
+  <div class="chapter-head">
+    <div class="eyebrow">Chapter 01</div>
+    <h1>視力表示與視力表原理</h1>
+    <div class="en">Visual Acuity &amp; Chart Design</div>
+    <p class="lede">視力是「最小可辨認能力」，它的單位其實是<b>角度</b>。只要記住 1.0 的視標整體占 5 分視角、筆劃占 1 分視角，小數、Snellen、MAR、LogMAR、M-unit 都只是同一個角度的不同寫法。</p>
+  </div>
+
+  <section class="block">
+    <h2>教科書對照 <span class="tag">SYLLABUS MAP</span></h2>
+    <div id="secmap"></div>
+  </section>
+
+  <section class="block">
+    <h2>學習目標 <span class="tag">GOALS</span></h2>
+    <ul class="goals">
+      <li>說明視力的定義，以及為什麼它以視角（弧分）為單位。</li>
+      <li>完成遠用、近用、針孔視力的施測，並知道視力極低時的四階段替代測法。</li>
+      <li>完成小數視力、Snellen 分數、MAR、LogMAR 與 M-unit 的互換。</li>
+      <li>寫出完整的視力紀錄：sc/cc、OD/OS/OU、@D 或 @N、針孔結果。</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>核心觀念 <span class="tag">KEY IDEAS</span></h2>
+    <div class="concepts">
+      <div class="concept"><span class="en-term">Visual acuity, minimum legible</span><h3>視力的定義</h3><p>視覺系統察覺與分析細節的能力。視力表只測到「解析能力」這一項，所以視力 1.0 不等於視覺功能正常。</p></div>
+      <div class="concept"><span class="en-term">5 arcmin / 1 arcmin</span><h3>視標設計</h3><p>1.0 的視標總高 5 分視角，每一筆劃與間隙 1 分視角。視標需滿足可辨認性、大小與距離的關係、對比度（臨床 90% 以上）與形狀一致性。</p></div>
+      <div class="concept"><span class="en-term">MAR &amp; LogMAR</span><h3>最小分辨角</h3><p>MAR ＝ 1 ÷ 小數視力（弧分）；LogMAR ＝ log(MAR)。1.0 → MAR 1 → LogMAR 0；負值代表比 1.0 更好。ETDRS 每行 0.1，每個字母 0.02。</p></div>
+      <div class="concept"><span class="en-term">M-unit, N-scale</span><h3>近用視標</h3><p>1 M 是在 1 公尺處占 5 分視角的字，高約 1.45 mm。VA ＝ m ÷ M（小 m 除大 M）。N-scale 以印刷點數表示，數字越小字越小。</p></div>
+      <div class="concept"><span class="en-term">Pinhole &amp; low vision</span><h3>針孔與低視力</h3><p>視力低於 0.8 時加針孔：視力提升代表屈光性，不提升要懷疑病理性。看不到最大視標時依序 CF → HM → L Proj.（9 個位置）→ LP。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Standard testing conditions</span><h3>視力檢測標準</h3><p>標準視力表亮度約 80–320 cd/m²（ISO 8596），黑白對比 90% 以上，遠用 6 m（或鏡面反射 3 m）、近用 40 cm。WHO 以較好眼的視力分級：低於 6/12 輕度、低於 6/18 中度、低於 6/60 重度、低於 3/60 為盲。</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>互動實驗 <span class="tag">LAB</span></h2>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 1-1</span><h3>視標大小與視角</h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-ang" aria-label="視標高度與視角"></canvas><span class="hint">角度已放大示意</span></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label for="a-va">視標行（小數視力） <output id="a-va-out"></output></label><input type="range" id="a-va" min="0" max="11" step="1" value="7"></div>
+          <div class="ctrl"><label for="a-d">測試距離 <output id="a-d-out"></output></label><input type="range" id="a-d" min="0.4" max="6" step="0.1" value="6"></div>
+          <div class="ctrl"><label class="check"><input type="checkbox" id="a-fix"> 固定視標高度（把同一張表拿近）</label></div>
+          <div class="readout">
+            <div class="row"><span>視標高度</span><b id="a-h">—</b></div>
+            <div class="row"><span>所占視角</span><b id="a-ang">—</b></div>
+            <div class="row"><span>筆劃寬度</span><b id="a-str">—</b></div>
+            <div class="row"><span>此時的視力值</span><b id="a-v">—</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="0">
+          <p class="q">6 公尺視力表 1.0 的視標高 8.73 mm。若改在 2 公尺測試，1.0 的視標應該做成多高？</p>
+          <div class="opts"><button>2.91 mm</button><button>4.36 mm</button><button>8.73 mm</button><button>17.46 mm</button></div>
+          <p class="why">視標高度與距離成正比，距離變成 1/3，高度也變成 1/3：8.73 ÷ 3 ＝ 2.91 mm（106 專技高考）。把距離拉到 2.0 m 驗證看看。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>勾選「固定視標高度」再把距離拉近：同一個字所占的視角變大，視力值跟著改變。</li>
+          <li>1.0 的字在 6 m 是 8.73 mm；在 1 m 是 1.45 mm（就是 1 M 的定義）。</li>
+          <li>筆劃永遠是整個視標的 1/5。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 1-2</span><h3>視力表示法換算器</h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-chart" aria-label="LogMAR 視力表"></canvas><span class="hint">點視力表上的一行也可以</span></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label>輸入方式</label>
+            <div class="seg" id="c-mode"><button data-v="lm" aria-pressed="true">LogMAR</button><button data-v="m">M-unit 近用</button></div></div>
+          <div class="ctrl" id="c-lm-box"><label for="c-lm">LogMAR <output id="c-lm-out"></output></label><input type="range" id="c-lm" min="-0.3" max="1" step="0.1" value="0.3"></div>
+          <div id="c-m-box" hidden>
+            <div class="ctrl"><label for="c-md">測試距離 m <output id="c-md-out"></output></label><input type="range" id="c-md" min="0.2" max="1" step="0.05" value="0.4"></div>
+            <div class="ctrl"><label for="c-mM">讀到的視標 M <output id="c-mM-out"></output></label><input type="range" id="c-mM" min="0" max="11" step="1" value="5"></div>
+          </div>
+          <div class="readout">
+            <div class="row"><span>小數視力</span><b id="c-dec">—</b></div>
+            <div class="row"><span>Snellen（英尺）</span><b id="c-ft">—</b></div>
+            <div class="row"><span>公尺制</span><b id="c-me">—</b></div>
+            <div class="row"><span>MAR</span><b id="c-mar">—</b></div>
+            <div class="row"><span>LogMAR</span><b id="c-log">—</b></div>
+          </div>
+          <div class="verdict" id="c-who"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="3">
+          <p class="q">病人在 40 cm 處讀到 2.0 M 的字，相當於 Snellen 的哪一行？</p>
+          <div class="opts"><button>20/20</button><button>20/40</button><button>20/50</button><button>20/100</button></div>
+          <p class="why">VA ＝ m ÷ M ＝ 0.4 ÷ 2.0 ＝ 0.2，也就是 20/100、MAR 5、LogMAR 0.7。切到「M-unit 近用」驗證看看。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>LogMAR 每往上一行 +0.1，視標大約放大 1.26 倍；三行剛好放大一倍（LogMAR 差 0.3）。</li>
+          <li>小數視力相差一倍，LogMAR 就差 0.301（log 2）。</li>
+          <li>20/40 與 6/12 是同一個值；不要寫成 6/40。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>常見迷思 <span class="tag">MISCONCEPTIONS</span></h2>
+    <div class="myths">
+      <details class="myth"><summary>MAR 就是小數視力。</summary><div class="fix">MAR 是小數視力的倒數。0.5 的 MAR 是 2 弧分，不是 0.5。</div></details>
+      <details class="myth"><summary>換距離測視力時，要把視標換成另一個高度。</summary><div class="fix">視標是固定的，改變的是它所占的視角。所以在非標準距離測得的值要換算：VA ＝ 實際距離 ÷ 設計距離。</div></details>
+      <details class="myth"><summary>LogMAR 出現負值代表算錯了。</summary><div class="fix">負值代表視力優於 1.0，例如 1.25 → −0.1、2.0 → −0.3，是正常的。</div></details>
+      <details class="myth"><summary>視力 1.0 就代表眼睛沒問題。</summary><div class="fix">視力表只測解析能力，辨識、認知、定位、移動能力都沒測到；視野缺損、色覺異常的人也可能有 1.0。</div></details>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>紀錄範例 <span class="tag">RECORD</span></h2>
+    <div class="rec"># 正常範例
+VAsc: OD 0.6 OS 0.8 OU 0.8 @D ／ OD 0.8 OS 0.9 @N
+VAcc: OD 1.0 OS 1.0 OU 1.0 @D ／ OD 1.0 OS 1.0 @N
+# 異常範例（含針孔與低視力）
+VAsc: OD 0.3 (PH 0.8) OS CF@50cm @D
+VAcc: OD 0.9 OS HM@30cm @D   L Proj. OS: 全象限正確
+※ 必填：sc/cc、OD/OS/OU、@D 或 @N、針孔結果（PH）、低視力的檢測距離</div>
+  </section>
+
+  <section class="block">
+    <h2>公式補充 <span class="tag">OPTIONAL</span></h2>
+    <details class="formula"><summary>展開看公式（選讀）</summary><div>
+      <p>視標高度：<span class="eq">h ＝ 2d · tan(θ/2) ≈ d · tan θ</span>（θ 為整個視標所占視角，1.0 時 θ ＝ 5′）</p>
+      <p>視力值：<span class="eq">VA ＝ 測試距離 ÷ 該視標為 5′ 時的設計距離</span></p>
+      <p>MAR 與 LogMAR：<span class="eq">MAR ＝ 1 / VA</span>　<span class="eq">LogMAR ＝ log₁₀(MAR)</span></p>
+      <p>近用：<span class="eq">VA ＝ m / M</span>（m 為測試距離公尺，M 為視標 M 值）</p>
+      <p class="note">講義第 3 週例題寫成「h ＝ 2 × 6 × tan(0.0833°)」，0.0833° 是整個 5′；若用 2d 的寫法，角度要用一半（2.5′ ＝ 0.0417°）才會得到 8.73 mm。兩種寫法結果相同，請擇一使用。</p>
+    </div></details>
+  </section>
+
+  <section class="block">
+    <h2>觀念檢核 <span class="tag">CHECK</span></h2>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="block">
+    <h2>練習題 <span class="tag">PRACTICE</span></h2>
+    <p class="sub">依講義與國考題型設計的原創練習，數字每次隨機產生。答案容許約 1.5% 的進位誤差。</p>
+    <div id="practice"></div>
+  </section>
+
+  <section class="block">
+    <h2>專業英文 <span class="tag">TERMS</span></h2>
+    <div class="terms-wrap"><table class="terms">
+      <tr><th>English</th><th>中文</th><th>一句話說明</th></tr>
+      <tr><td>visual acuity (VA)</td><td>視力</td><td>最小可辨認能力</td></tr>
+      <tr><td>optotype</td><td>視標</td><td>視力表上的字母或符號</td></tr>
+      <tr><td>minimum angle of resolution</td><td>最小分辨角</td><td>MAR，以弧分表示</td></tr>
+      <tr><td>arcminute (′)</td><td>弧分</td><td>1/60 度</td></tr>
+      <tr><td>pinhole (PH)</td><td>針孔</td><td>增加焦深，區分屈光性或病理性</td></tr>
+      <tr><td>counting fingers (CF)</td><td>指數</td><td>低視力第一階段</td></tr>
+      <tr><td>hand motion (HM)</td><td>手動</td><td>低視力第二階段</td></tr>
+      <tr><td>light projection / perception</td><td>光線定位／光感</td><td>低視力第三、四階段</td></tr>
+      <tr><td>grating acuity (cpd)</td><td>條紋視力</td><td>嬰兒、視障者使用</td></tr>
+    </table></div>
+  </section>
+
+  <nav id="pager"></nav>
+</main>
+<footer id="footer"></footer>
+<script src="assets/config.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/practice.js"></script>
+<script src="assets/problems/ch01.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { OBPractice.mount("practice", "ch01"); OL.sectionMap("secmap", "ch01"); });</script>
+<script>
+(function () {
+  const { Stage, range, seg, quiz, check } = OL;
+  const ROWS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5];
+  const ARC = Math.PI / 180 / 60;
+  const f2 = (v) => v.toFixed(2);
+
+  /* ---------- LAB 1-1 ---------- */
+  const vaR = range("a-va", (i) => ROWS[i].toFixed(1), () => st.render());
+  const dR = range("a-d", (v) => v.toFixed(1) + " m", () => st.render());
+  const fix = check("a-fix", () => st.render());
+  const hNow = () => 2 * dR.value * Math.tan((5 / ROWS[vaR.value]) * ARC / 2) * 1000; // mm（依 6 m 設計）
+  function hDesign() { return 2 * 6 * Math.tan((5 / ROWS[vaR.value]) * ARC / 2) * 1000; }
+  const st = new Stage("cv-ang", { xmin: -0.6, xmax: 6.6, ymin: -1.2, ymax: 1.2, aspect: 0.48, minH: 240, maxH: 380, draw: (s, c) => {
+    const d = dR.value;
+    // 固定高度模式：視標用 6 m 表的高度；否則依距離縮放到該行在此距離的正確大小
+    const h = fix.value ? hDesign() : hNow();
+    const ang = 2 * Math.atan((h / 1000) / 2 / d) / ARC; // 弧分
+    const va = 5 / ang;
+    // 示意：角度放大，半高（世界單位）
+    const half = Math.min(1.05, ang * 0.0033 * d);
+    // 眼睛
+    const cx = s.X(0), cy = s.Y(0), r = 18;
+    s.ctx.save(); s.ctx.beginPath(); s.ctx.arc(cx, cy, r, 0, Math.PI * 2); s.ctx.fillStyle = c.glass; s.ctx.fill(); s.ctx.strokeStyle = c.glassEdge; s.ctx.lineWidth = 1.4; s.ctx.stroke();
+    s.ctx.beginPath(); s.ctx.arc(cx + r * 0.62, cy, 5, 0, Math.PI * 2); s.ctx.fillStyle = c.ink; s.ctx.fill(); s.ctx.restore();
+    s.line(0, 0, d, half, { color: c.ray, w: 1.4 }); s.line(0, 0, d, -half, { color: c.ray, w: 1.4 });
+    s.line(0, 0, 6.4, 0, { color: c.muted, w: 1, dash: [8, 4, 2, 4], alpha: 0.7 });
+    // 視標 E（5 筆劃）
+    const X = s.X(d), top = s.Y(half), bot = s.Y(-half), H = bot - top, W = H, u = H / 5;
+    const ctx = s.ctx; ctx.save(); ctx.fillStyle = c.ink;
+    ctx.fillRect(X, top, u, H);
+    for (const k of [0, 2, 4]) ctx.fillRect(X, top + k * u, W, u);
+    ctx.restore();
+    // 角度弧
+    ctx.save(); ctx.strokeStyle = c.accent; ctx.lineWidth = 1.4; ctx.beginPath();
+    const ra = 46, a = Math.atan2(cy - top, X - cx); ctx.arc(cx, cy, ra, -a, a); ctx.stroke(); ctx.restore();
+    s.text(ang < 100 ? ang.toFixed(ang < 10 ? 2 : 1) + "′" : (ang / 60).toFixed(2) + "°", 0, 0, { dx: 70, dy: -14, color: c.accent, weight: 700, font: c.mono, size: 12 });
+    s.text(`${d.toFixed(1)} m`, d / 2, -1.05, { color: c.muted, size: 11, font: c.mono });
+    s.line(0, -0.9, d, -0.9, { color: c.muted, w: 1 });
+    s.text("眼", 0, -0.55, { color: c.muted, size: 12 });
+    document.getElementById("a-h").textContent = f2(h) + " mm";
+    document.getElementById("a-ang").textContent = ang.toFixed(2) + " 弧分";
+    document.getElementById("a-str").textContent = f2(h / 5) + " mm（" + (ang / 5).toFixed(2) + "′）";
+    document.getElementById("a-v").textContent = va.toFixed(2) + (fix.value ? "（同一個字拿近）" : "");
+  } });
+
+  /* ---------- LAB 1-2 ---------- */
+  const MS = [0.25, 0.32, 0.4, 0.5, 0.63, 0.8, 1.0, 1.25, 1.6, 2.0, 2.5, 4.0];
+  const mode = seg("c-mode", (v) => { document.getElementById("c-lm-box").hidden = v !== "lm"; document.getElementById("c-m-box").hidden = v === "lm"; ch.render(); });
+  const lmR = range("c-lm", (v) => (v < 0 ? "−" : "") + Math.abs(v).toFixed(1), () => ch.render());
+  const mdR = range("c-md", (v) => v.toFixed(2) + " m", () => ch.render());
+  const mMR = range("c-mM", (i) => MS[i].toFixed(2) + " M", () => ch.render());
+  const LINES = [], YS = []; for (let k = 10; k >= -3; k--) LINES.push(k / 10);
+  const LET = "ZHNDVCKROS";
+  const ch = new Stage("cv-chart", { xmin: 0, xmax: 10, ymin: 0, ymax: 10, aspect: 0.9, minH: 300, maxH: 520, draw: (s, c) => {
+    const lm = currentLM();
+    const ctx = s.ctx, W = s.w, Hh = s.h;
+    let y = 10;
+    const base = Hh / 80; // LogMAR 0 的字高（px）
+    LINES.forEach((L, i) => {
+      const hpx = base * Math.pow(10, L);
+      const gap = Math.max(hpx * 0.55, 6);
+      y += hpx / 2;
+      const sel = Math.abs(L - lm) < 0.051;
+      if (sel) { ctx.save(); ctx.fillStyle = c.accent; ctx.globalAlpha = 0.14; ctx.fillRect(0, y - hpx / 2 - gap * 0.35, W, hpx + gap * 0.7); ctx.restore(); }
+      ctx.save(); ctx.fillStyle = sel ? c.accent : c.ink; ctx.textBaseline = "middle"; ctx.textAlign = "center";
+      ctx.font = `700 ${Math.max(3, hpx * 1.35)}px ${c.mono}`;
+      const sp = hpx * 1.6, n = Math.max(1, Math.min(5, Math.floor((W - 90) / sp)));
+      for (let j = 0; j < n; j++) ctx.fillText(LET[(i * 3 + j * 7) % LET.length], W * 0.45 + (j - 2) * sp, y);
+      ctx.font = `500 11px ${c.mono}`; ctx.textAlign = "left"; ctx.fillStyle = c.muted;
+      ctx.fillText((L < 0 ? "−" : " ") + Math.abs(L).toFixed(1), 8, y);
+      ctx.textAlign = "right"; ctx.fillText((1 / Math.pow(10, L)).toFixed(L > 0.95 ? 2 : 1), W - 8, y);
+      ctx.restore();
+      YS[i] = y;
+      y += hpx / 2 + gap;
+    });
+    s.text("LogMAR", 8, 6, { px: true, align: "left", size: 10, color: c.muted });
+    s.text("小數", W - 8, 6, { px: true, align: "right", size: 10, color: c.muted });
+    out(lm);
+  } });
+  ch.cv.addEventListener("click", (e) => {
+    const r = ch.cv.getBoundingClientRect(), py = e.clientY - r.top;
+    let best = 0, bd = 1e9; LINES.forEach((L, i) => { const d = Math.abs(YS[i] - py); if (d < bd) { bd = d; best = L; } });
+    mode.set("lm"); lmR.value = best; ch.render();
+  });
+  function currentLM() {
+    if (mode.value === "lm") return Math.round(lmR.value * 10) / 10;
+    const va = mdR.value / MS[mMR.value];
+    return Math.log10(1 / va);
+  }
+  function out(lm) {
+    const mar = Math.pow(10, lm), dec = 1 / mar;
+    document.getElementById("c-dec").textContent = dec.toFixed(dec < 0.1 ? 3 : 2);
+    document.getElementById("c-ft").textContent = "20/" + Math.round(20 * mar);
+    document.getElementById("c-me").textContent = "6/" + (6 * mar).toFixed(6 * mar < 10 ? 1 : 0);
+    document.getElementById("c-mar").textContent = mar.toFixed(2) + " 弧分";
+    document.getElementById("c-log").textContent = (lm < -0.004 ? "−" : "") + Math.abs(lm).toFixed(2);
+    const who = document.getElementById("c-who");
+    if (dec >= 0.5) who.innerHTML = '<span class="pill ok">WHO 分級</span> 未達視力損傷';
+    else if (dec >= 6 / 18) who.innerHTML = '<span class="pill warn">WHO 分級</span> 輕度視力損傷（低於 6/12）';
+    else if (dec >= 0.1) who.innerHTML = '<span class="pill warn">WHO 分級</span> 中度視力損傷（低於 6/18）';
+    else if (dec >= 0.05) who.innerHTML = '<span class="pill bad">WHO 分級</span> 重度視力損傷（低於 6/60）';
+    else who.innerHTML = '<span class="pill bad">WHO 分級</span> 盲（低於 3/60）';
+    who.innerHTML += '<br><span style="font-weight:400;font-size:13px;color:var(--muted)">（WHO 以較好眼的日常視力分級，這裡僅示意）</span>';
+  }
+
+  quiz("quiz", "ch01", [
+    { q: "遠距離（6 m）視力表上 1.0 的整個視標，所占的視角是：", opts: ["1 分", "5 分", "10 分", "20 分"], a: 1, exp: "整個視標 5 分視角，每一筆劃 1 分視角。" },
+    { q: "20/200 的最小分辨角（MAR）是：", opts: ["1 分", "10 分", "20 分", "200 分"], a: 1, exp: "MAR ＝ 200 ÷ 20 ＝ 10 弧分，也就是小數 0.1 的倒數。" },
+    { q: "1 M 視標的高度約為：", opts: ["0.0145 cm", "0.072 cm", "0.145 cm", "1.45 cm"], a: 2, exp: "1 公尺處 5 分視角 ≈ 1.45 mm ＝ 0.145 cm（106 專技高考）。" },
+    { q: "病人在 1 公尺處才辨識出 6/20（公尺制）的視標，視力值為：", opts: ["0.05", "0.1", "0.3", "0.5"], a: 0, exp: "VA ＝ 1 ÷ 20 ＝ 0.05。" },
+    { q: "針孔視力適用的時機是：", opts: ["視力 1.0 以上", "視力低於 0.8，想區分屈光性或病理性", "低視力病人看不到任何視標", "只用於近用視力"], a: 1, exp: "針孔增加焦深、縮小模糊圈；視力提升代表屈光性，不提升要懷疑病理性。" },
+    { q: "無法數指時，下一個替代測法是：", opts: ["光感 LP", "手動 HM", "光線定位 L Proj.", "針孔"], a: 1, exp: "順序為 CF → HM → L Proj. → LP。" },
+    { q: "0.2 視標與 0.5 視標的 LogMAR 差距最接近：", opts: ["0.2", "0.3", "0.4", "0.5"], a: 2, exp: "log 5 − log 2 ＝ 0.699 − 0.301 ＝ 0.398 ≈ 0.4（109 專技高考）。" },
+    { q: "測量視力時，檢查者應該注意：", opts: ["視力表的亮度變化", "受檢者而非視力表", "自己的報讀速度", "旁邊的病人"], a: 1, exp: "看著受檢者才能發現瞇眼、偏頭、偷看，避免結果虛高。" },
+  ]);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 9 章 雙眼視覺｜視光學臨床實驗台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-chapter="ch09">
+<header id="topbar"></header>
+<main class="wrap">
+  <div class="chapter-head">
+    <div class="eyebrow">Chapter 09</div>
+    <h1>雙眼視覺</h1>
+    <div class="en">Binocular Vision</div>
+    <p class="lede">看近時調節與聚散一起工作，兩者的連動強度就是 AC/A。把遠、近兩個距離的眼位與融像儲存力畫在同一張圖上，就能判斷病人的雙眼視問題屬於哪一型，需不需要稜鏡、加入度或視覺訓練。這一章把前面第 4、6、8 章的檢查結果整合起來。</p>
+  </div>
+
+  <section class="block">
+    <h2>教科書對照 <span class="tag">SYLLABUS MAP</span></h2>
+    <div id="secmap"></div>
+  </section>
+
+  <section class="block">
+    <h2>學習目標 <span class="tag">GOALS</span></h2>
+    <ul class="goals">
+      <li>用計算法與梯度法求 AC/A，說出正常值與兩種方法的差異。</li>
+      <li>畫出圖像分析的需求線、眼位線與清晰單一雙眼視區（ZCSBV）。</li>
+      <li>以 Sheard 與 Percival 準則判斷是否需要稜鏡，並計算稜鏡量。</li>
+      <li>依 Duane–White 分類判斷內聚不足、內聚過度、外散過度、外散不足與基本型，說出處置方向。</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>核心觀念 <span class="tag">KEY IDEAS</span></h2>
+    <div class="concepts">
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">AC/A ratio</span><h3>AC/A 比值</h3><p>每 1 D 調節帶動多少稜鏡度的內聚。計算法：AC/A ＝ PD（cm）＋（近眼位 − 遠眼位）÷ 近距離的屈光度（內斜為正、外斜為負）。梯度法：在近距離加 ±1.00 D 鏡片，看眼位改變多少。常模約 4 ± 2 Δ/D。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Morgan's norms</span><h3>常用常模（Morgan）</h3><p>遠眼位 1 exo ± 2；近眼位 3 exo ± 3。遠 BI 破裂／恢復 7/4、BO 9/19/10；近 BI 13/21/13、BO 17/21/11。NRA +2.00、PRA −2.37。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Graphical analysis</span><h3>圖像分析</h3><p>橫軸是內聚（Δ），縱軸是調節刺激（D）。需求線從原點往右上，斜率由 PD 決定；眼位線的斜率由 AC/A 決定。BI 與 BO 的模糊點圍出清晰單一雙眼視區，需求點越靠近邊緣，越容易出現症狀。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Sheard's criterion</span><h3>Sheard 準則</h3><p>補償性的融像儲存力要至少是眼位的兩倍：外斜看 BO（PFV），內斜看 BI（NFV）。不足時，稜鏡 ＝ ⅔ × 眼位 − ⅓ × 儲存力。最適合外斜位。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Percival's criterion</span><h3>Percival 準則</h3><p>需求點要落在 BI 與 BO 範圍的中間三分之一。稜鏡 ＝ ⅓ × 較大側 − ⅔ × 較小側，基底朝較大側。多用於內斜位，與眼位本身無關。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Duane–White classification</span><h3>雙眼視異常分類</h3><p>外斜：近比遠大是內聚不足（CI，低 AC/A）；遠比近大是外散過度（DE，高 AC/A）；遠近相同是基本外斜。內斜：近比遠大是內聚過度（CE，高 AC/A）；遠比近大是外散不足（DI，低 AC/A）；遠近相同是基本內斜。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Management</span><h3>處置原則</h3><p>順序通常是：完整屈光矯正 → 加入度（高 AC/A 的內斜、內聚過度最有效）→ 稜鏡（依 Sheard／Percival）→ 視覺訓練（內聚不足的首選）→ 必要時轉介手術。處置後要追蹤症狀與檢查數值。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Non-strabismic BV disorders</span><h3>症狀與病史</h3><p>近距離工作後頭痛、眼酸、字會跑、複視、閱讀注意力不集中，都可能來自雙眼視或調節問題。CISS 問卷可以量化內聚不足的症狀。</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>互動實驗 <span class="tag">LAB</span></h2>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 9-1</span><h3>AC/A 比值 <span class="newtag">補充</span></h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-aca" aria-label="AC/A 計算"></canvas></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label for="k-pd">PD <output id="k-pd-out"></output></label><input type="range" id="k-pd" min="54" max="72" step="1" value="62"></div>
+          <div class="ctrl"><label for="k-d">遠眼位（6 m） <output id="k-d-out"></output></label><input type="range" id="k-d" min="-15" max="12" step="1" value="-1"></div>
+          <div class="ctrl"><label for="k-n">近眼位（40 cm） <output id="k-n-out"></output></label><input type="range" id="k-n" min="-20" max="15" step="1" value="-3"></div>
+          <div class="ctrl"><label for="k-g">近距離加 −1.00 後的眼位（梯度法） <output id="k-g-out"></output></label><input type="range" id="k-g" min="-20" max="20" step="1" value="1"></div>
+          <div class="readout">
+            <div class="row"><span>計算法 AC/A</span><b id="k-calc">—</b></div>
+            <div class="row"><span>梯度法 AC/A</span><b id="k-grad">—</b></div>
+          </div>
+          <div class="verdict" id="k-v"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="2">
+          <p class="q">PD 60 mm，遠眼位正位、近眼位 10Δ 外斜，計算法 AC/A 是？</p>
+          <div class="opts"><button>10</button><button>6</button><button>2</button><button>4</button></div>
+          <p class="why">6 ＋（−10 − 0）÷ 2.5 ＝ 6 − 4 ＝ 2 Δ/D，屬於低 AC/A，這是內聚不足的典型組合。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>近眼位比遠眼位更偏外（外斜變大），AC/A 就會比 PD 小。</li>
+          <li>計算法包含了近感性內聚，通常比梯度法高。</li>
+          <li>梯度法：加負鏡片誘發調節，眼位往內（內斜方向）移動越多，AC/A 越高。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 9-2</span><h3>圖像分析與 Sheard 準則 <span class="newtag">補充</span></h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-ga" aria-label="圖像分析"></canvas></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label for="ga-case">範例病人</label>
+            <select id="ga-case" class="select">
+              <option value="norm">正常</option><option value="ci">內聚不足（CI）</option><option value="de">外散過度（DE）</option><option value="bx">基本外斜</option>
+              <option value="ce">內聚過度（CE）</option><option value="di">外散不足（DI）</option><option value="be">基本內斜</option>
+            </select></div>
+          <div class="ctrl"><label for="ga-n">近眼位 <output id="ga-n-out"></output></label><input type="range" id="ga-n" min="-20" max="15" step="1" value="-3"></div>
+          <div class="ctrl"><label for="ga-bo">近 BO 模糊點 <output id="ga-bo-out"></output></label><input type="range" id="ga-bo" min="2" max="30" step="1" value="17"></div>
+          <div class="ctrl"><label for="ga-bi">近 BI 模糊點 <output id="ga-bi-out"></output></label><input type="range" id="ga-bi" min="2" max="25" step="1" value="13"></div>
+          <div class="readout">
+            <div class="row"><span>遠眼位 ／ 近眼位</span><b id="ga-ph">—</b></div>
+            <div class="row"><span>AC/A（計算法）</span><b id="ga-aca">—</b></div>
+            <div class="row"><span>分類</span><b id="ga-dx">—</b></div>
+            <div class="row"><span>Sheard（近）</span><b id="ga-sh">—</b></div>
+            <div class="row"><span>Percival（近）</span><b id="ga-pc">—</b></div>
+          </div>
+          <div class="verdict" id="ga-v"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="1">
+          <p class="q">近距離 8Δ 外斜位，BO 模糊點 10Δ，依 Sheard 準則需要多少稜鏡？</p>
+          <div class="opts"><button>不需要</button><button>2Δ BI</button><button>2Δ BO</button><button>8Δ BI</button></div>
+          <p class="why">⅔ × 8 − ⅓ × 10 ＝ 5.33 − 3.33 ＝ 2Δ。外斜位用 BI。也可以用視覺訓練把 BO 提升到 16Δ 以上。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>藍色區域是清晰單一雙眼視區，黑線是需求線，橘線是眼位線。</li>
+          <li>切換範例病人，看眼位線的斜率（AC/A）和位置怎麼改變。</li>
+          <li>把近距離 BO 模糊點往上拉，看看多少時 Sheard 準則才會通過，這就是視覺訓練的目標。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>常見迷思 <span class="tag">MISCONCEPTIONS</span></h2>
+    <div class="myths">
+      <details class="myth"><summary>有外斜位就一定要配稜鏡。</summary><div class="fix">大多數人都有少量外斜位。只有在症狀存在且融像儲存力不足（不符合 Sheard）時才考慮處置，而且內聚不足以視覺訓練為首選。</div></details>
+      <details class="myth"><summary>計算法和梯度法的 AC/A 應該一樣。</summary><div class="fix">計算法包含近感性內聚，通常比較高；兩者都要知道是用哪一種方法測的。</div></details>
+      <details class="myth"><summary>內聚過度用 BO 稜鏡就好。</summary><div class="fix">內聚過度通常 AC/A 高，近用加入度可以有效減少內聚需求，常是首選。</div></details>
+      <details class="myth"><summary>Sheard 和 Percival 選一個就好，結果都一樣。</summary><div class="fix">Sheard 依據眼位與相對側儲存力，適合外斜；Percival 只看兩側儲存力是否平衡，常用於內斜。兩者結論可能不同。</div></details>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>紀錄範例 <span class="tag">RECORD</span></h2>
+    <div class="rec">PD 62  Phoria (von Graefe): D 1 exo  N 12 exo
+N gradient (−1.00): 9 exo → AC/A 3 Δ/D（梯度法）；計算法 6.2 − 4.4 = 1.8 Δ/D
+NPC 12 / 16 cm   N BO x/8/4  N BI 15/22/14
+Sheard N: 8 &lt; 2×12 不符合 → 需 ⅔×12 − ⅓×8 = 5.3Δ BI
+Dx: 內聚不足（CI）
+Plan: 視覺訓練 12 週（BO 聚散、推近訓練），暫時給 2Δ BI OU 近用；6 週後追蹤</div>
+  </section>
+
+  <section class="block">
+    <h2>公式補充 <span class="tag">OPTIONAL</span></h2>
+    <details class="formula"><summary>展開看公式（選讀）</summary><div>
+      <p>計算法：<span class="eq">AC/A ＝ PD（cm）＋（H<sub>n</sub> − H<sub>d</sub>）÷ D<sub>n</sub>（內斜＋、外斜−）</span></p>
+      <p>梯度法：<span class="eq">AC/A ＝（加鏡片後眼位 − 原眼位）÷ 鏡片度數變化</span></p>
+      <p>Sheard：<span class="eq">P ＝ ⅔ × 眼位 − ⅓ × 補償側儲存力（P ≤ 0 不需要）</span></p>
+      <p>Percival：<span class="eq">P ＝ ⅓ × G − ⅔ × L（G 較大側、L 較小側）</span></p>
+    </div></details>
+  </section>
+
+  <section class="block">
+    <h2>觀念檢核 <span class="tag">CHECK</span></h2>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="block">
+    <h2>練習題 <span class="tag">PRACTICE</span></h2>
+    <p class="sub">數字每次隨機。眼位：內斜為正、外斜為負。</p>
+    <div id="practice"></div>
+  </section>
+
+  <section class="block">
+    <h2>專業英文 <span class="tag">TERMS</span></h2>
+    <div class="terms-wrap"><table class="terms">
+      <tr><th>English</th><th>中文</th><th>一句話說明</th></tr>
+      <tr><td>AC/A ratio</td><td>調節性內聚與調節比</td><td>每 1 D 調節帶動的內聚</td></tr>
+      <tr><td>calculated / gradient</td><td>計算法／梯度法</td><td>兩種 AC/A 測法</td></tr>
+      <tr><td>demand line</td><td>需求線</td><td>不同距離所需的內聚與調節</td></tr>
+      <tr><td>phoria line</td><td>眼位線</td><td>斜率由 AC/A 決定</td></tr>
+      <tr><td>ZCSBV</td><td>清晰單一雙眼視區</td><td>BI 與 BO 模糊點之間</td></tr>
+      <tr><td>Sheard's / Percival's criterion</td><td>Sheard／Percival 準則</td><td>判斷是否需要稜鏡</td></tr>
+      <tr><td>convergence insufficiency</td><td>內聚不足</td><td>近距離外斜大、低 AC/A</td></tr>
+      <tr><td>convergence excess</td><td>內聚過度</td><td>近距離內斜大、高 AC/A</td></tr>
+      <tr><td>divergence excess / insufficiency</td><td>外散過度／外散不足</td><td>遠距離偏斜較大</td></tr>
+      <tr><td>vision therapy</td><td>視覺訓練</td><td>提升聚散與調節功能</td></tr>
+    </table></div>
+  </section>
+
+  <nav id="pager"></nav>
+</main>
+<footer id="footer"></footer>
+<script src="assets/config.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/practice.js"></script>
+<script src="assets/problems/ch09.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { OBPractice.mount("practice", "ch09"); OL.sectionMap("secmap", "ch09"); });</script>
+<script>
+(function () {
+  const { Stage, range, quiz } = OL;
+  const ph = (v) => (v === 0 ? "正位" : v > 0 ? `${v}Δ 內斜` : `${-v}Δ 外斜`);
+  const r1 = (v) => (Math.round(v * 10) / 10).toFixed(1);
+
+  /* ---------- LAB 9-1 AC/A ---------- */
+  const pd = range("k-pd", (v) => v + " mm", () => a1.render());
+  const hd = range("k-d", ph, () => a1.render()), hn = range("k-n", ph, () => a1.render()), hg = range("k-g", ph, () => a1.render());
+  const a1 = new Stage("cv-aca", { xmin: -22, xmax: 22, ymin: -3, ymax: 13, aspect: 0.5, minH: 240, maxH: 360, draw: (s, c) => {
+    const calc = pd.value / 10 + (hn.value - hd.value) / 2.5, grad = (hg.value - hn.value) / 1;
+    document.getElementById("k-calc").textContent = r1(calc) + " Δ/D";
+    document.getElementById("k-grad").textContent = r1(grad) + " Δ/D";
+    const lvl = (x) => (x < 2 ? "偏低" : x > 6 ? "偏高" : "正常範圍");
+    document.getElementById("k-v").innerHTML = `計算法${lvl(calc)}、梯度法${lvl(grad)}<small style="display:block;color:var(--muted)">常模 4 ± 2 Δ/D；計算法含近感性內聚，通常較高</small>`;
+    // 三條眼位刻度線
+    const rows = [[10, "遠 6 m", hd.value, c.accent], [5.5, "近 40 cm", hn.value, c.ray], [1, "近＋(−1.00)", hg.value, c.ray2]];
+    rows.forEach(([y, t, v, col]) => {
+      s.line(-20, y, 20, y, { color: c.line, w: 1 });
+      for (let x = -20; x <= 20; x += 5) { s.line(x, y - 0.35, x, y + 0.35, { color: c.muted, w: 1 }); s.text(String(x === 0 ? 0 : Math.abs(x)), x, y - 1.2, { size: 10, color: c.muted, font: c.mono }); }
+      s.text(t, -21.5, y + 1.3, { size: 11, align: "left", color: c.muted });
+      s.point(Math.max(-20, Math.min(20, v)), y, ph(v), { color: col, dy: -14, r: 5 });
+    });
+    s.text("← 外斜 exo", -20, 12.6, { size: 11, align: "left", color: c.muted }); s.text("內斜 eso →", 20, 12.6, { size: 11, align: "right", color: c.muted });
+    s.line(0, 0, 0, 11.4, { color: c.grid, w: 1, dash: [3, 3] });
+  } });
+
+  /* ---------- LAB 9-2 圖像分析 ---------- */
+  // 每個範例：遠（眼位、BI 模糊/破裂、BO 模糊），近（眼位、BI 模糊、BO 模糊）
+  const CASES = {
+    norm: { d: [-1, 7, 9], n: [-3, 13, 17] }, ci: { d: [-1, 7, 9], n: [-10, 16, 8] }, de: { d: [-12, 9, 6], n: [-3, 13, 14] },
+    bx: { d: [-8, 9, 7], n: [-8, 15, 9] }, ce: { d: [0, 6, 12], n: [8, 6, 20] }, di: { d: [8, 3, 14], n: [0, 11, 18] }, be: { d: [6, 4, 14], n: [6, 7, 18] },
+  };
+  const PDg = 60;
+  let C = CASES.norm;
+  const gn = range("ga-n", ph, () => ga.render()), gbo = range("ga-bo", (v) => v + "Δ", () => ga.render()), gbi = range("ga-bi", (v) => v + "Δ", () => ga.render());
+  const setR = (id, v) => { const el = document.getElementById(id); el.value = v; el.dispatchEvent(new Event("input")); };
+  document.getElementById("ga-case").onchange = (e) => { C = CASES[e.target.value]; setR("ga-n", C.n[0]); setR("ga-bi", C.n[1]); setR("ga-bo", C.n[2]); ga.render(); };
+  function classify(D, N, aca) {
+    const diff = N - D;
+    if (Math.abs(D) <= 2 && N <= 0 && N >= -6) return "雙眼視正常範圍";
+    if (D <= 0 && N <= 0) { if (diff <= -4) return "內聚不足（CI）"; if (diff >= 4) return "外散過度（DE）"; return "基本外斜"; }
+    if (D >= 0 && N >= 0) { if (diff >= 4) return "內聚過度（CE）"; if (diff <= -4) return "外散不足（DI）"; return "基本內斜"; }
+    return aca > 6 ? "高 AC/A（遠外近內）" : "混合型，請再確認";
+  }
+  const ga = new Stage("cv-ga", { xmin: -37, xmax: 47, ymin: -0.9, ymax: 3.6, aspect: 0.66, minH: 300, maxH: 480, draw: (s, c) => {
+    const D = C.d[0], N = gn.value, dBI = C.d[1], dBO = C.d[2], nBI = gbi.value, nBO = gbo.value;
+    const dem = (y) => (PDg / 10) * y; // 需求線
+    const ctx = s.ctx;
+    // 格線
+    for (let x = -30; x <= 45; x += 5) { s.line(x, 0, x, 3.2, { color: c.grid, w: 1 }); if (x % 10 === 0) s.text(String(x), x, 0, { dy: 12, size: 10, color: c.muted, font: c.mono }); }
+    [0, 1, 2, 2.5, 3].forEach((y) => s.text(y.toFixed(y % 1 ? 1 : 0) + " D", -30, y, { dx: -4, align: "right", size: 10, color: c.muted, font: c.mono }));
+    s.line(-30, 0, 45, 0, { color: c.muted, w: 1 }); s.line(0, 0, 0, 3.2, { color: c.muted, w: 1 });
+    s.text("← BI　　內聚（Δ）　　BO →", 8, -0.75, { size: 11, color: c.muted });
+    s.text("調節刺激", -29, 3.45, { size: 10, color: c.muted, align: "left" });
+    // ZCSBV：遠 y=0、近 y=2.5 的 BI 與 BO 模糊點
+    const pts = [[dem(0) - dBI, 0], [dem(0) + dBO, 0], [dem(2.5) + nBO, 2.5], [dem(2.5) - nBI, 2.5]];
+    ctx.save(); ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(s.X(x), s.Y(y)) : ctx.moveTo(s.X(x), s.Y(y)))); ctx.closePath(); ctx.globalAlpha = 0.18; ctx.fillStyle = c.accent; ctx.fill(); ctx.globalAlpha = 0.8; ctx.strokeStyle = c.accent; ctx.lineWidth = 1.4; ctx.stroke(); ctx.restore();
+    s.text("ZCSBV", (pts[0][0] + pts[2][0]) / 2 + 4, 1.4, { size: 11, color: c.accent, weight: 700 });
+    // 需求線與眼位線
+    s.line(dem(0), 0, dem(3.2), 3.2, { color: c.ink, w: 2 }); s.text("需求線", dem(3.2), 3.2, { size: 11, align: "left", dx: 4 });
+    const pD = dem(0) + D, pN = dem(2.5) + N, slope = (pN - pD) / 2.5;
+    s.line(pD - slope * 0.3, -0.3, pD + slope * 3.2, 3.2, { color: c.ray, w: 2 }); s.text("眼位線", pD + slope * 3.2, 3.2, { size: 11, color: c.ray, align: "right", dx: -4 });
+    s.point(pD, 0, null, { color: c.ray, r: 4.5 }); s.point(pN, 2.5, null, { color: c.ray, r: 4.5 });
+    s.point(dem(2.5), 2.5, "近需求", { color: c.ink, dy: -14 });
+    s.text("40 cm", 45, 2.5, { size: 10, color: c.muted, align: "right" }); s.text("6 m", 45, 0, { size: 10, color: c.muted, align: "right", dy: -8 });
+    // 計算
+    const aca = PDg / 10 + (N - D) / 2.5;
+    document.getElementById("ga-ph").textContent = `${ph(D)} ／ ${ph(N)}`;
+    document.getElementById("ga-aca").textContent = r1(aca) + " Δ/D";
+    document.getElementById("ga-dx").textContent = classify(D, N, aca);
+    let sh;
+    if (N === 0) sh = "正位，不需要";
+    else { const res = N < 0 ? nBO : nBI, p = (2 / 3) * Math.abs(N) - res / 3; sh = p <= 0 ? `符合（${res} ≥ 2×${Math.abs(N)}）` : `不符合，需 ${r1(p)}Δ ${N < 0 ? "BI" : "BO"}`; }
+    document.getElementById("ga-sh").textContent = sh;
+    const G = Math.max(nBI, nBO), L = Math.min(nBI, nBO), pp = G / 3 - (2 * L) / 3;
+    document.getElementById("ga-pc").textContent = pp <= 0 ? "符合（在中間三分之一）" : `不符合，需 ${r1(pp)}Δ ${nBO > nBI ? "BO" : "BI"}`;
+    const ok = sh.startsWith("符合") || sh.startsWith("正位");
+    document.getElementById("ga-v").innerHTML = ok ? '<span class="pill ok">近距離 Sheard 通過</span>' : '<span class="pill warn">近距離 Sheard 不通過</span> 可考慮稜鏡或以視覺訓練提升儲存力';
+  } });
+
+  quiz("quiz", "ch09", [
+    { q: "AC/A 的意義是：", opts: ["每 1 Δ 內聚帶動多少調節", "每 1 D 調節帶動多少稜鏡度的內聚", "調節幅度與年齡的比", "遠近眼位差"], a: 1, exp: "Accommodative convergence / accommodation，單位 Δ/D。" },
+    { q: "PD 64 mm，遠 2 exo、近 2 eso，計算法 AC/A：", opts: ["4.8", "6.4", "8.0", "1.6"], a: 2, exp: "6.4 ＋（2 − (−2)）÷ 2.5 ＝ 6.4 ＋ 1.6 ＝ 8.0 Δ/D。" },
+    { q: "近距離 4 exo，加 −1.00 後變成 1 eso，梯度法 AC/A：", opts: ["3", "5", "4", "1"], a: 1, exp: "（+1 − (−4)）÷ 1 ＝ 5 Δ/D。" },
+    { q: "Sheard 準則要求補償性儲存力至少是眼位的：", opts: ["一倍", "兩倍", "三倍", "一半"], a: 1, exp: "儲存力 ≥ 2 × 眼位；外斜看 BO，內斜看 BI。" },
+    { q: "近 6 eso，BI 模糊點 4Δ，依 Sheard 需要：", opts: ["不需要", "2.7Δ BO", "2.7Δ BI", "6Δ BO"], a: 1, exp: "⅔ × 6 − ⅓ × 4 ＝ 4 − 1.33 ≈ 2.7Δ，內斜用 BO。" },
+    { q: "近距離外斜明顯大於遠距離、低 AC/A，屬於：", opts: ["外散過度", "內聚不足", "內聚過度", "基本外斜"], a: 1, exp: "Duane–White：CI 是近距離外斜大、AC/A 低。" },
+    { q: "內聚過度（高 AC/A）最常優先考慮的處置是：", opts: ["BI 稜鏡", "近用加入度", "BO 稜鏡", "手術"], a: 1, exp: "加正鏡片減少調節，就同時減少大量調節性內聚。" },
+    { q: "Percival 準則是看：", opts: ["眼位與相對側儲存力", "需求點是否在 BI 與 BO 範圍的中間三分之一", "NPC 距離", "AC/A 是否正常"], a: 1, exp: "稜鏡 ＝ ⅓G − ⅔L，基底朝較大側。" },
+  ]);
+})();
+</script>
+</body>
+</html>

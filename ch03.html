@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 3 章 屈光檢查｜視光學臨床實驗台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-chapter="ch03">
+<header id="topbar"></header>
+<main class="wrap">
+  <div class="chapter-head">
+    <div class="eyebrow">Chapter 03</div>
+    <h1>屈光檢查</h1>
+    <div class="en">Refraction</div>
+    <p class="lede">驗光分兩段：先用檢影鏡、電腦驗光這類<b>他覺式</b>方法取得客觀起點，再由病人回答的<b>自覺式</b>流程精修：霧視、MPMVA、紅綠、鐘面圖、JCC、第二次 MPMVA、雙眼平衡，最後才決定處方。</p>
+  </div>
+
+  <section class="block">
+    <h2>教科書對照 <span class="tag">SYLLABUS MAP</span></h2>
+    <div id="secmap"></div>
+  </section>
+
+  <section class="block">
+    <h2>學習目標 <span class="tag">GOALS</span></h2>
+    <ul class="goals">
+      <li>判讀檢影反光的順動、逆動與中和，用工作距離鏡算出淨度數，並寫出兩條主徑線的處方。</li>
+      <li>完整操作霧視到 MPMVA 終點，說明為什麼要找「最大正」，並正確使用紅綠測試（紅清加負、綠清加正）。</li>
+      <li>用三十法則從鐘面圖求負柱軸，再以 JCC 追紅點修軸、紅白點修度數，並做等價球面補償。</li>
+      <li>說出雙眼平衡的目的與稜鏡分離法步驟，以及開立最終處方的原則。</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>核心觀念 <span class="tag">KEY IDEAS</span></h2>
+    <div class="concepts">
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Static retinoscopy</span><h3>靜態檢影</h3><p>病人看遠方視標放鬆調節，檢查者在工作距離（常用 67 cm 或 50 cm）掃動光帶。反光與光帶<b>同方向</b>是順動，要加正；<b>反方向</b>是逆動，要加負；整個瞳孔一起亮起或暗下是中和。</p></div>
+      <div class="concept"><span class="newtag">補充</span><span class="en-term">Working-distance lens</span><h3>工作距離與淨度數</h3><p>中和時病人的遠點落在檢查者的窺孔上，而不是無限遠。所以總度數（gross）要扣掉 1 ÷ 工作距離：67 cm 扣 +1.50、50 cm 扣 +2.00，得到淨度數（net）。</p></div>
+      <div class="concept"><span class="en-term">Fogging &amp; MPMVA</span><h3>霧視與 MPMVA</h3><p>先加 +1.00 讓焦點落在網膜前（霧視後約 20/40～20/60），調節會放鬆。之後每次收回 −0.25，直到視力不再進步。MPMVA 找的是「不影響清晰度的最正度數」，多給的負度數只會讓病人用調節去抵銷。</p></div>
+      <div class="concept"><span class="en-term">Duochrome</span><h3>紅綠測試</h3><p>眼睛對綠光的屈光力比紅光強約 0.50 D。欠矯（仍近視）時紅光較接近網膜，所以紅色清楚，要加負；過矯則綠色清楚，要加正。口訣 RAM-GAP。判斷的是清晰度，色覺異常者也能做。</p></div>
+      <div class="concept"><span class="en-term">Clock dial · Rule of 30</span><h3>鐘面圖</h3><p>霧視讓兩條焦線都在網膜前，最靠近網膜的焦線最清楚。<b>負柱軸＝最清晰線較小的鐘點數 × 30</b>。在該軸加負柱鏡直到各線一樣清楚，每加 −0.50 柱鏡補 +0.25 球面。</p></div>
+      <div class="concept"><span class="en-term">Jackson cross cylinder</span><h3>JCC</h3><p>等量正負柱鏡互相垂直，等價球面為零。測軸：手柄對齊柱鏡軸，翻轉後<b>追紅點</b>。測度數：紅點或白點對齊柱鏡軸，紅點較清楚加 −0.25、白點較清楚減 −0.25。前提是 COLC 已經在網膜上。</p></div>
+      <div class="concept"><span class="en-term">Binocular balance</span><h3>雙眼平衡</h3><p>兩眼各自完成 MPMVA 後，雙眼霧視 +0.75，用旋轉稜鏡（右眼 3Δ BU、左眼 3Δ BD）上下分離，在較清楚的那眼加 +0.25 直到一樣模糊；做不到時讓主利眼稍清楚。之後再做雙眼 MPMVA。</p></div>
+      <div class="concept"><span class="newtag s1p">上學期＋補充</span><span class="en-term">Final prescription</span><h3>最終處方</h3><p>驗光結果不等於處方。要考慮舊處方、年齡、職業與主訴，散光大幅改變或第一次配戴時可以分次給；試戴並走動確認舒適，才算真正解決問題。</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>互動實驗 <span class="tag">LAB</span></h2>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 3-1</span><h3>檢影鏡反光模擬 <span class="newtag">補充</span></h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-ret" aria-label="檢影鏡瞳孔反光"></canvas><span class="hint" id="r-hint">光帶自動掃動中</span></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label>工作距離</label>
+            <div class="seg" id="r-wd"><button data-v="0.5">50 cm</button><button data-v="0.667" aria-pressed="true">67 cm</button><button data-v="1">1 m</button></div></div>
+          <div class="ctrl"><label>掃動方向</label>
+            <div class="seg" id="r-mer"><button data-v="180" aria-pressed="true">左右掃（測 180）</button><button data-v="90">上下掃（測 090）</button></div></div>
+          <div class="ctrl"><label for="r-L">鏡片 <output id="r-L-out"></output></label><input type="range" id="r-L" min="-8" max="8" step="0.25" value="0"></div>
+          <div class="row-btns"><button class="btn" id="r-rec" type="button">記錄這條徑線的中和度數</button><button class="btn ghost" id="r-new" type="button">換一位病人</button></div>
+          <div class="readout">
+            <div class="row"><span>180 總度數</span><b id="r-g180">—</b></div>
+            <div class="row"><span>090 總度數</span><b id="r-g90">—</b></div>
+            <div class="row"><span>淨度數處方</span><b id="r-net">—</b></div>
+          </div>
+          <label class="check"><input type="checkbox" id="r-tip"> 顯示反光判讀提示</label>
+          <div class="verdict" id="r-v"></div>
+          <button class="btn ghost" id="r-ans" type="button">顯示病人實際度數</button>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="0">
+          <p class="q">工作距離 67 cm，一位正視眼的病人，不放任何鏡片時你會看到？</p>
+          <div class="opts"><button>順動，要加正到 +1.50 才中和</button><button>逆動，要加負</button><button>直接中和</button><button>看不到反光</button></div>
+          <p class="why">正視眼的遠點在無限遠，比檢查者遠，所以是順動。加 +1.50 把遠點拉到 67 cm 的窺孔上才中和，淨度數 ＝ +1.50 − 1.50 ＝ 0。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>離中和越遠：反光越暗、越窄、移動越慢。接近中和：又亮又寬又快。</li>
+          <li>散光眼兩條徑線要分別中和，各記一個總度數，再一起扣工作距離。</li>
+          <li>換工作距離試試：同一位病人，總度數會變，淨度數不變。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 3-2</span><h3>MPMVA 與紅綠測試</h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-mp" aria-label="病人看到的視標"></canvas><span class="hint">病人眼中的視標</span></div>
+        <div class="lab-panel">
+          <div class="readout">
+            <div class="row"><span>病人</span><b id="m-pt">—</b></div>
+            <div class="row"><span>起點（檢影）</span><b id="m-start">—</b></div>
+            <div class="row"><span>綜合驗光儀球面</span><b id="m-L">—</b></div>
+            <div class="row"><span>目前視力</span><b id="m-va">—</b></div>
+          </div>
+          <div class="ctrl"><label>視標</label>
+            <div class="seg" id="m-tg"><button data-v="va" aria-pressed="true">視力表</button><button data-v="dc">紅綠視標</button></div></div>
+          <div class="row-btns">
+            <button class="btn ghost" type="button" data-d="1">+1.00 霧視</button>
+            <button class="btn ghost" type="button" data-d="0.25">+0.25</button>
+            <button class="btn ghost" type="button" data-d="-0.25">−0.25</button>
+          </div>
+          <div class="row-btns"><button class="btn" id="m-ask" type="button">詢問病人</button><button class="btn" id="m-done" type="button">我決定終點</button><button class="btn ghost" id="m-new" type="button">換一位病人</button></div>
+          <div class="dialog" id="m-dlg"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="1">
+          <p class="q">一位 20 歲病人，度數已給到比真正需要多 −0.50 D。他通常會怎麼說？</p>
+          <div class="opts"><button>變得很模糊</button><button>一樣清楚，但字變小、變黑</button><button>紅色比較清楚</button><button>看到兩行字</button></div>
+          <p class="why">年輕人會用調節抵銷多給的負度數，視力不會下降，只覺得字縮小、變黑。這就是「變小變黑終點」，也是 MPMVA 要找最大正的原因。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>先霧視，再一格一格收回，每一步都問「有比較清楚嗎」。視力不再進步就停。</li>
+          <li>紅綠：紅清加負、綠清加正；兩邊一樣清楚或剛轉為紅色時就是終點。</li>
+          <li>年輕病人與老花病人對過矯的反應不同，換幾位病人比較看看。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head"><span class="lab-no">LAB 3-3</span><h3>鐘面圖與 JCC 模擬病人</h3></div>
+      <div class="lab-body">
+        <div class="lab-stage"><canvas id="cv-jcc" aria-label="鐘面圖與 JCC"></canvas><span class="hint" id="j-hint">病人眼中的鐘面圖（已霧視）</span></div>
+        <div class="lab-panel">
+          <div class="ctrl"><label>步驟</label>
+            <div class="seg" id="j-mode"><button data-v="clock" aria-pressed="true">① 鐘面圖</button><button data-v="axis">② JCC 測軸</button><button data-v="power">③ JCC 測度數</button></div></div>
+          <div class="ctrl"><label for="j-a">柱鏡軸 <output id="j-a-out"></output></label><input type="range" id="j-a" min="1" max="180" step="1" value="180"></div>
+          <div class="row-btns">
+            <button class="btn ghost" type="button" data-c="-0.25">柱鏡 −0.25</button>
+            <button class="btn ghost" type="button" data-c="0.25">柱鏡 +0.25（減少）</button>
+          </div>
+          <div class="readout">
+            <div class="row"><span>柱鏡</span><b id="j-cyl">—</b></div>
+            <div class="row"><span>應補球面</span><b id="j-sph">—</b></div>
+          </div>
+          <div class="row-btns"><button class="btn" id="j-ask" type="button">詢問病人</button><button class="btn" id="j-done" type="button">我決定終點</button><button class="btn ghost" id="j-new" type="button">換一位病人</button></div>
+          <div class="dialog" id="j-dlg"></div>
+        </div>
+      </div>
+      <div class="observe">
+        <div class="predict" data-answer="2">
+          <p class="q">霧視後病人說 2–8 點鐘那條線最黑，負柱軸應放在？</p>
+          <div class="opts"><button>030</button><button>120</button><button>060</button><button>150</button></div>
+          <p class="why">三十法則：取較小的鐘點數 2，2 × 30 ＝ 060，屬於斜散。</p>
+        </div>
+        <h4>觀察重點</h4><ul>
+          <li>鐘面圖只能抓到大約的軸（每格 30 度），JCC 才把軸修到幾度以內。</li>
+          <li>測軸時兩面的紅點分別在柱鏡軸的兩側 45 度，病人選的那一面紅點在哪邊，柱鏡軸就往哪邊轉。</li>
+          <li>度數越小的散光，軸偏一點影響越小；度數大時軸偏 5 度就很明顯。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>常見迷思 <span class="tag">MISCONCEPTIONS</span></h2>
+    <div class="myths">
+      <details class="myth"><summary>MPMVA 就是給到病人覺得最清楚為止。</summary><div class="fix">年輕人過矯也會覺得清楚，甚至更黑更銳利。終點是「最正、但視力不下降」，不是「最清楚」。</div></details>
+      <details class="myth"><summary>紅色清楚代表過矯。</summary><div class="fix">剛好相反。紅清代表還有近視沒矯正完，要加負；綠清才是過矯，要加正。</div></details>
+      <details class="myth"><summary>檢影中和的度數就是處方。</summary><div class="fix">中和讀到的是總度數，要扣掉工作距離鏡（67 cm 扣 +1.50）才是淨度數。</div></details>
+      <details class="myth"><summary>JCC 隨時都可以做。</summary><div class="fix">一定要先完成 MPMVA，讓最小模糊圈落在網膜上，翻轉兩面的比較才成立。JCC 做完還要再做一次 MPMVA。</div></details>
+      <details class="myth"><summary>加散光度數時球面不用動。</summary><div class="fix">每增加 −0.50 柱鏡要補 +0.25 球面，等價球面才不變，病人才不會覺得整體變模糊。</div></details>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>紀錄範例 <span class="tag">RECORD</span></h2>
+    <div class="rec">Ret (67 cm): OD 180 +0.50 / 090 −0.50 → net OD −1.00 −1.00 ×180
+1st MPMVA: OD −1.25 DS  VA 0.8  紅綠 balanced
+Clock Dial OD: 6–12 線最清晰 → axis 180，fog +1.00
+JCC axis: 180 → 175 → 178（兩面等清晰）
+JCC power: −0.75 → −1.00（兩面等模糊）sph 補 +0.25
+2nd MPMVA: OD −1.25 −1.00 ×178  VA 1.0
+BAL: 稜鏡分離法，OU 等清晰；主利眼 OD
+Final Rx: OD −1.25 −1.00 ×178  OS −1.50 −0.50 ×005  VA OU 1.2</div>
+  </section>
+
+  <section class="block">
+    <h2>公式補充 <span class="tag">OPTIONAL</span></h2>
+    <details class="formula"><summary>展開看公式（選讀）</summary><div>
+      <p>工作距離鏡：<span class="eq">WD lens ＝ 1 / 工作距離（m）</span></p>
+      <p>淨度數：<span class="eq">net ＝ gross − 1 / WD</span></p>
+      <p>由兩條主徑線寫處方（負散）：<span class="eq">sph ＝ 較正的那條；cyl ＝ 較負 − 較正；axis ＝ 較正那條的方向</span></p>
+      <p>三十法則：<span class="eq">負柱軸 ＝ 最清晰線較小鐘點 × 30</span></p>
+      <p>球面補償：<span class="eq">Δsph ＝ −Δcyl / 2（每 −0.50 cyl 補 +0.25 sph）</span></p>
+    </div></details>
+  </section>
+
+  <section class="block">
+    <h2>觀念檢核 <span class="tag">CHECK</span></h2>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="block">
+    <h2>練習題 <span class="tag">PRACTICE</span></h2>
+    <p class="sub">數字每次隨機。度數請填到 0.25 D；軸度填 1–180 的整數。</p>
+    <div id="practice"></div>
+  </section>
+
+  <section class="block">
+    <h2>專業英文 <span class="tag">TERMS</span></h2>
+    <div class="terms-wrap"><table class="terms">
+      <tr><th>English</th><th>中文</th><th>一句話說明</th></tr>
+      <tr><td>objective / subjective refraction</td><td>他覺式／自覺式驗光</td><td>是否需要病人回答</td></tr>
+      <tr><td>retinoscopy</td><td>檢影</td><td>觀察瞳孔反光判斷屈光</td></tr>
+      <tr><td>with / against motion</td><td>順動／逆動</td><td>反光與光帶同向／反向</td></tr>
+      <tr><td>neutrality</td><td>中和</td><td>遠點落在窺孔上</td></tr>
+      <tr><td>working distance lens</td><td>工作距離鏡</td><td>1 ÷ 工作距離</td></tr>
+      <tr><td>fogging</td><td>霧視</td><td>加正放鬆調節</td></tr>
+      <tr><td>MPMVA</td><td>最大正度數最佳視力</td><td>maximum plus to maximum visual acuity</td></tr>
+      <tr><td>duochrome / bichrome</td><td>紅綠測試</td><td>利用色像差判斷球面</td></tr>
+      <tr><td>clock dial / fan chart</td><td>鐘面圖／扇形圖</td><td>找散光軸</td></tr>
+      <tr><td>Jackson cross cylinder</td><td>傑克森交叉圓柱鏡</td><td>精修散光軸與度數</td></tr>
+      <tr><td>binocular balance</td><td>雙眼平衡</td><td>讓兩眼調節狀態一致</td></tr>
+      <tr><td>ocular dominance</td><td>主利眼</td><td>平衡不了時讓它稍清楚</td></tr>
+    </table></div>
+  </section>
+
+  <nav id="pager"></nav>
+</main>
+<footer id="footer"></footer>
+<script src="assets/config.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/practice.js"></script>
+<script src="assets/problems/ch03.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { OBPractice.mount("practice", "ch03"); OL.sectionMap("secmap", "ch03"); });</script>
+<script>
+(function () {
+  const { Stage, fmt, range, seg, check, quiz, blurText } = OL;
+  const q4 = (v) => Math.round(v * 4) / 4;
+  const rnd = (a, b, s) => a + s * Math.floor(Math.random() * (Math.round((b - a) / s) + 1));
+  const sD = (v) => Math.abs(v) < 0.001 ? "plano" : fmt.D(v).replace(" D", "");
+  const ax3 = (a) => String(((Math.round(a) - 1 + 180) % 180 + 180) % 180 + 1).padStart(3, "0");
+  const say = (box, who, text, me) => { const b = document.createElement("div"); b.className = "bubble" + (me ? " me" : ""); b.innerHTML = `<small>${who}</small>${text}`; box.appendChild(b); while (box.children.length > 6) box.removeChild(box.firstChild); };
+  const visible = (el) => { let v = false; new IntersectionObserver((es) => { v = es[0].isIntersecting; }).observe(el); return () => v; };
+
+  /* ---------- LAB 3-1 檢影 ---------- */
+  let RP;
+  const newRP = () => { const s = rnd(-5, 3, 0.25), c = Math.random() < 0.3 ? 0 : -rnd(0.5, 2.5, 0.25), a = Math.random() < 0.6 ? 180 : 90; RP = { s, c, a }; };
+  newRP();
+  const merPow = (m) => (m === RP.a ? RP.s : RP.s + RP.c); // 該徑線的屈光不正
+  const wd = seg("r-wd", () => upd()), mer = seg("r-mer", () => upd());
+  const Lr = range("r-L", (v) => fmt.D(v), () => upd());
+  const tip = check("r-tip", () => upd());
+  const rec = { 180: null, 90: null };
+  const rv = document.getElementById("r-v");
+  function state() { const W = +wd.value, K = merPow(+mer.value), r = K - Lr.value + 1 / W; return { W, K, r }; }
+  function upd() {
+    const { r } = state();
+    if (tip.value) {
+      const a = Math.abs(r);
+      rv.innerHTML = a < 0.125 ? '<span class="pill ok">中和</span> 整個瞳孔一起亮、一起暗' : r > 0 ? `<span class="pill info">順動</span> ${a > 2 ? "暗、窄、慢" : a > 0.75 ? "中等" : "亮、寬、快"}：加正` : `<span class="pill warn">逆動</span> ${a > 2 ? "暗、窄、慢" : a > 0.75 ? "中等" : "亮、寬、快"}：加負`;
+    } else rv.textContent = "";
+    showRec();
+  }
+  function showRec() {
+    const W = +wd.value;
+    document.getElementById("r-g180").textContent = rec[180] == null ? "—" : sD(rec[180]);
+    document.getElementById("r-g90").textContent = rec[90] == null ? "—" : sD(rec[90]);
+    let t = "兩條徑線都記錄後計算";
+    if (rec[180] != null && rec[90] != null) {
+      const n180 = rec[180] - 1 / W, n90 = rec[90] - 1 / W;
+      const hi = Math.max(n180, n90), lo = Math.min(n180, n90), axis = n180 >= n90 ? 180 : 90;
+      t = Math.abs(hi - lo) < 0.01 ? `${sD(q4(hi))} DS` : `${sD(q4(hi))} ${sD(q4(lo - hi))} ×${ax3(axis)}`;
+    }
+    document.getElementById("r-net").textContent = t;
+  }
+  document.getElementById("r-rec").onclick = () => { rec[mer.value] = Lr.value; showRec(); };
+  document.getElementById("r-new").onclick = () => { newRP(); rec[180] = rec[90] = null; document.getElementById("r-L").value = 0; document.getElementById("r-L").dispatchEvent(new Event("input")); document.getElementById("r-ans").textContent = "顯示病人實際度數"; upd(); };
+  document.getElementById("r-ans").onclick = (e) => { e.target.textContent = `病人：${RP.c ? `${sD(RP.s)} ${sD(RP.c)} ×${ax3(RP.a)}` : sD(RP.s) + " DS"}`; };
+  const ret = new Stage("cv-ret", { xmin: -10, xmax: 10, ymin: -6.5, ymax: 6.5, aspect: 0.62, minH: 260, maxH: 420, equal: true, draw: (s, c) => {
+    const t = performance.now() / 1000, { r } = state(), horiz = mer.value === "180";
+    const ctx = s.ctx, cx = s.X(0), cy = s.Y(0), R = s.sx * 3.2;
+    const sweep = Math.sin(t * 2.2) * 9; // 外部光帶位置（世界座標）
+    // 臉部與光帶
+    ctx.save(); ctx.fillStyle = c.surface2; ctx.fillRect(0, 0, s.w, s.h);
+    const bw = s.sx * 1.6;
+    ctx.globalAlpha = 0.35; ctx.fillStyle = "#f5d08a";
+    if (horiz) ctx.fillRect(s.X(sweep) - bw / 2, 0, bw, s.h); else ctx.fillRect(0, s.Y(sweep * 0.6) - bw / 2, s.w, bw);
+    ctx.globalAlpha = 1;
+    // 虹膜
+    ctx.beginPath(); ctx.arc(cx, cy, R * 1.75, 0, Math.PI * 2); ctx.fillStyle = "#6b4f36"; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = "#1c0d0a"; ctx.fill(); ctx.clip();
+    // 瞳孔反光
+    const a = Math.abs(r), neutral = a < 0.125;
+    const bright = neutral ? 1 : Math.max(0.18, Math.min(0.95, 0.9 / (a + 0.4)));
+    const onPupil = Math.max(0, 1 - Math.abs(sweep) / 5.5);
+    if (neutral) {
+      ctx.globalAlpha = 0.25 + 0.75 * onPupil; ctx.fillStyle = "#e0503a"; ctx.fillRect(cx - R, cy - R, 2 * R, 2 * R);
+    } else {
+      const speed = Math.min(3, 0.8 / a + 0.25), dir = r > 0 ? 1 : -1;
+      const pos = Math.max(-2.2, Math.min(2.2, dir * speed * sweep / 9 * 2.2)) * s.sx * 1.6; // 瞳孔內移動
+      const w = Math.min(2 * R, s.sx * (0.5 + 1.2 / (a + 0.3)));
+      ctx.globalAlpha = bright; ctx.fillStyle = "#e0503a";
+      if (horiz) ctx.fillRect(cx + pos - w / 2, cy - R, w, 2 * R); else ctx.fillRect(cx - R, cy - pos - w / 2, 2 * R, w);
+    }
+    ctx.restore();
+    ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.strokeStyle = "#000"; ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore();
+    s.text(horiz ? "直立光帶左右掃 → 觀察 180 徑線" : "水平光帶上下掃 → 觀察 090 徑線", 0, -6, { dy: -4, size: 12, color: c.muted, bg: c.bg });
+    s.text("鏡片 " + fmt.D(Lr.value) + "｜工作距離鏡 " + fmt.D(1 / +wd.value), 0, 6, { dy: 6, size: 12, color: c.ink, font: c.mono, bg: c.bg });
+  } });
+  const retVis = visible(document.getElementById("cv-ret"));
+  (function loop() { if (retVis()) ret.render(); requestAnimationFrame(loop); })();
+  upd();
+
+  /* ---------- LAB 3-2 MPMVA ---------- */
+  let MP, mpL;
+  const mpDlg = document.getElementById("m-dlg");
+  const tg = seg("m-tg", () => mp.render());
+  function newMP() {
+    const age = [12, 20, 28, 36, 48, 60][Math.floor(Math.random() * 6)];
+    const amp = Math.max(0.5, 15 - 0.25 * age);
+    const K = rnd(-6, 2, 0.25);
+    const start = q4(K + (Math.random() < 0.5 ? -1 : 1) * rnd(0, 0.75, 0.25));
+    MP = { age, amp: Math.min(amp, 12), K, start, best: Math.random() < 0.7 ? 1.2 : 1.0 };
+    mpL = start; mpDlg.innerHTML = "";
+    say(mpDlg, "說明", `起點已放入檢影度數 ${sD(start)}。先霧視，再一格一格收回。`);
+    mpUpd();
+  }
+  // 殘餘：E > 0 表示過矯（多給負），E < 0 表示欠矯
+  function effBlur(L) {
+    const E = MP.K - L; // 病人需要 K，給了 L；E < 0 → 仍近視
+    const m = -E;
+    if (m >= 0) return { blur: m, acc: 0, mini: false };
+    const need = -m; // 遠視性殘餘，要用調節補
+    if (need <= MP.amp * 0.7) return { blur: 0, acc: need, mini: need >= 0.25 };
+    return { blur: need - MP.amp * 0.7, acc: MP.amp * 0.7, mini: true };
+  }
+  const vaOf = (b) => MP.best / (1 + 1.6 * Math.pow(b, 1.15));
+  const ROWS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0, 1.2];
+  const snapVA = (v) => { let r = ROWS[0]; for (const x of ROWS) if (x <= v + 1e-6) r = x; return v < 0.1 ? "< 0.1" : r.toFixed(1); };
+  function mpUpd() {
+    document.getElementById("m-pt").textContent = `${MP.age} 歲`;
+    document.getElementById("m-start").textContent = sD(MP.start);
+    document.getElementById("m-L").textContent = sD(mpL);
+    document.getElementById("m-va").textContent = snapVA(vaOf(effBlur(mpL).blur));
+    mp.render();
+  }
+  document.querySelector("#m-ask").onclick = () => {
+    const e = effBlur(mpL);
+    if (tg.value === "dc") {
+      const m = -(MP.K - mpL); // 不調節時的近視量
+      const rr = Math.abs(m - 0.25), gg = Math.abs(m + 0.25);
+      say(mpDlg, "你", "紅色和綠色，哪一邊的字比較清楚？", true);
+      say(mpDlg, "病人", Math.abs(rr - gg) < 0.01 ? "兩邊差不多一樣清楚。" : rr < gg ? "紅色那邊比較清楚。" : "綠色那邊比較清楚。");
+      return;
+    }
+    say(mpDlg, "你", "現在這樣有比較清楚嗎？能讀到哪一行？", true);
+    const va = snapVA(vaOf(e.blur));
+    say(mpDlg, "病人", e.mini ? `可以讀到 ${va}，${e.acc >= 0.5 ? "字好像變小、變黑了，眼睛有點用力。" : "字好像變小、變黑一點。"}` : e.blur > 0.9 ? `很模糊，大概只讀到 ${va}。` : `可以讀到 ${va}。`);
+  };
+  document.querySelectorAll("[data-d]").forEach((b) => b.onclick = () => { mpL = q4(mpL + +b.dataset.d); say(mpDlg, "你", `球面調到 ${sD(mpL)}`, true); mpUpd(); });
+  document.getElementById("m-done").onclick = () => {
+    const d = mpL - MP.K;
+    say(mpDlg, "結果", Math.abs(d) < 0.01 ? `<span class="pill ok">正確</span> 病人實際需要 ${sD(MP.K)}，你找到了最大正度數的最佳視力。` : d < 0 ? `<span class="pill bad">過矯 ${fmt.D(d).replace(" D", "")}</span> 實際需要 ${sD(MP.K)}。${MP.age < 40 ? "年輕人會用調節抵銷，視力沒掉，所以要靠「變小變黑」和紅綠判斷。" : ""}` : `<span class="pill warn">欠矯 ${fmt.D(d).replace(" D", "")}</span> 實際需要 ${sD(MP.K)}，再收回一點負度數視力還會進步。`);
+  };
+  document.getElementById("m-new").onclick = newMP;
+  const mp = new Stage("cv-mp", { xmin: 0, xmax: 10, ymin: 0, ymax: 7, aspect: 0.62, minH: 260, maxH: 420, draw: (s, c) => {
+    if (!MP) return;
+    const ctx = s.ctx, e = effBlur(mpL);
+    const ink = c.ink;
+    if (tg.value === "dc") {
+      const m = -(MP.K - mpL);
+      const half = s.w / 2;
+      ctx.fillStyle = "#b3261e"; ctx.fillRect(0, 0, half, s.h); ctx.fillStyle = "#1e7a3c"; ctx.fillRect(half, 0, half, s.h);
+      const fs = Math.min(s.h * 0.16, s.w * 0.07);
+      [["E F P", 0.32], ["D Z L", 0.62]].forEach(([t, y], i) => {
+        blurText(ctx, t, half / 2, s.h * y, `700 ${fs * (1 - i * 0.25)}px ${c.mono}`, "#111", Math.abs(m - 0.25) * 22, Math.abs(m - 0.25) * 22);
+        blurText(ctx, t, half * 1.5, s.h * y, `700 ${fs * (1 - i * 0.25)}px ${c.mono}`, "#111", Math.abs(m + 0.25) * 22, Math.abs(m + 0.25) * 22);
+      });
+      return;
+    }
+    ctx.fillStyle = "#fbfbf7"; ctx.fillRect(0, 0, s.w, s.h);
+    const L = [["E", 0.2], ["F P", 0.3], ["T O Z", 0.4], ["L P E D", 0.5], ["P E C F D", 0.6], ["E D F C Z P", 0.8], ["F E L O P Z D", 1.0], ["D E F P O T E C", 1.2]];
+    const base = s.h / 6.9, scale = e.mini ? 0.93 : 1;
+    let y = s.h * 0.08;
+    L.forEach(([t, v]) => {
+      const fs = Math.max(5, base * 0.2 / v * scale * 1.2);
+      y += fs * 0.65 + 6;
+      const b = e.blur * 26;
+      blurText(ctx, t, s.w / 2, y, `${e.mini ? 800 : 600} ${fs}px ${c.mono}`, "#141414", b, b);
+      ctx.fillStyle = "#777"; ctx.font = `11px ${c.mono}`; ctx.textAlign = "left"; ctx.fillText(v.toFixed(1), 8, y);
+      y += fs * 0.65;
+    });
+  } });
+  newMP();
+
+  /* ---------- LAB 3-3 鐘面圖與 JCC ---------- */
+  let JP, jC = 0;
+  const jDlg = document.getElementById("j-dlg");
+  const mode = seg("j-mode", (v) => { document.getElementById("j-hint").textContent = v === "clock" ? "病人眼中的鐘面圖（已霧視）" : v === "axis" ? "JCC 手柄對齊柱鏡軸：兩面的紅點位置" : "JCC 紅點／白點對齊柱鏡軸"; jc.render(); });
+  const aR = range("j-a", (v) => ax3(v), () => { jc.render(); jUpd(); });
+  const vec = (C, a) => { const r = a * Math.PI / 90; return [-C / 2 * Math.cos(r), -C / 2 * Math.sin(r)]; }; // 負柱鏡 → (J0, J45)，取正值慣例
+  const resid = (extraC, extraA) => {
+    const p = vec(JP.c, JP.a), t = vec(jC, aR.value), x = extraC ? vec(extraC, extraA) : [0, 0];
+    const j0 = p[0] - t[0] - x[0], j45 = p[1] - t[1] - x[1];
+    const mag = Math.hypot(j0, j45);
+    return { C: -2 * mag, a: ((Math.atan2(j45, j0) * 90 / Math.PI) + 180) % 180, mag };
+  };
+  function newJP() { JP = { c: -rnd(0.75, 2.5, 0.25), a: rnd(5, 180, 5) }; jC = 0; const el = document.getElementById("j-a"); el.value = 180; el.dispatchEvent(new Event("input")); jDlg.innerHTML = ""; say(jDlg, "說明", "MPMVA 已完成並加 +1.00 霧視。先用鐘面圖找軸、加柱鏡，再解除霧視用 JCC 精修。"); jUpd(); }
+  function jUpd() {
+    document.getElementById("j-cyl").textContent = Math.abs(jC) < 0.001 ? "（未加柱鏡）" : `${sD(jC)} ×${ax3(aR.value)}`;
+    document.getElementById("j-sph").textContent = Math.abs(jC) < 0.001 ? "—" : `${fmt.D(-jC / 2, 3).replace(/0 D$/, " D")}（相對起始球面）`;
+    jc.render();
+  }
+  document.querySelectorAll("[data-c]").forEach((b) => b.onclick = () => { jC = Math.min(0, q4(jC + +b.dataset.c)); say(jDlg, "你", `柱鏡改為 ${Math.abs(jC) < 0.001 ? "0" : sD(jC)}`, true); jUpd(); });
+  const HOURS = [1, 2, 3, 4, 5, 6]; // 1–7 … 6–12
+  const lineBlur = (h) => { // h 點鐘那條線，病人看到的方向 φ；換成檢查者 TABO 方向 ψ
+    const phi = (90 - h * 30 + 360) % 180, psi = (180 - phi) % 180;
+    const rs = resid(); return 0.45 + rs.mag * 2 * Math.pow(Math.cos((psi - rs.a) * Math.PI / 180), 2);
+  };
+  document.getElementById("j-ask").onclick = () => {
+    const rs = resid();
+    if (mode.value === "clock") {
+      say(jDlg, "你", "哪一條線最黑、最清楚？還是都一樣？", true);
+      if (rs.mag * 2 < 0.2) { say(jDlg, "病人", "看起來都差不多一樣。"); return; }
+      const best = HOURS.reduce((a, h) => lineBlur(h) < lineBlur(a) ? h : a, 1);
+      say(jDlg, "病人", `${best}–${best + 6} 點鐘那條最黑。`);
+      return;
+    }
+    const A = aR.value;
+    if (Math.abs(jC) < 0.001) { say(jDlg, "說明", "要先在柱鏡軸上放入柱鏡，JCC 才有東西可以修。"); return; }
+    let f1, f2, t1, t2;
+    if (mode.value === "axis") { f1 = resid(-0.5, A + 45); f2 = resid(-0.5, A - 45); t1 = `第一面（紅點在 ${ax3(A + 45)}）`; t2 = `第二面（紅點在 ${ax3(A - 45)}）`; }
+    else { f1 = resid(-0.5, A); f2 = resid(-0.5, A + 90); t1 = "第一面（紅點對齊柱鏡軸）"; t2 = "第二面（白點對齊柱鏡軸）"; }
+    say(jDlg, "你", "一號、二號，哪一面比較清楚？", true);
+    say(jDlg, "病人", Math.abs(f1.mag - f2.mag) < 0.02 ? "兩面差不多。" : f1.mag < f2.mag ? `一號比較清楚。<small>${t1}</small>` : `二號比較清楚。<small>${t2}</small>`);
+  };
+  document.getElementById("j-done").onclick = () => {
+    const rs = resid(), dc = jC - JP.c, da = Math.min(Math.abs(aR.value - JP.a), 180 - Math.abs(aR.value - JP.a));
+    const ans = `病人實際散光 ${sD(JP.c)} ×${ax3(JP.a)}`;
+    say(jDlg, "結果", rs.mag * 2 <= 0.2 && Math.abs(dc) < 0.13 ? `<span class="pill ok">完成</span> ${ans}，殘餘散光 ${(rs.mag * 2).toFixed(2)} D。` : `<span class="pill warn">還沒到終點</span> ${ans}；你的柱鏡 ${Math.abs(jC) < 0.001 ? "0" : sD(jC)} ×${ax3(aR.value)}，軸差 ${da} 度，殘餘散光約 ${(rs.mag * 2).toFixed(2)} D。`);
+  };
+  document.getElementById("j-new").onclick = newJP;
+  const jc = new Stage("cv-jcc", { xmin: -10, xmax: 10, ymin: -7, ymax: 7, aspect: 0.66, minH: 280, maxH: 440, equal: true, draw: (s, c) => {
+    if (!JP) return;
+    const ctx = s.ctx;
+    if (mode.value === "clock") {
+      ctx.fillStyle = "#fbfbf7"; ctx.fillRect(0, 0, s.w, s.h);
+      const R = 5.6;
+      HOURS.forEach((h) => {
+        const ang = (90 - h * 30) * Math.PI / 180, b = lineBlur(h);
+        const x = R * Math.cos(ang), y = R * Math.sin(ang);
+        ctx.save(); ctx.filter = `blur(${Math.max(0, (b - 0.45) * 5).toFixed(2)}px)`;
+        ctx.strokeStyle = "#141414"; ctx.globalAlpha = Math.max(0.22, 1 - (b - 0.45) * 0.45); ctx.lineWidth = 2.5 + (b - 0.45) * 2.2;
+        ctx.beginPath(); ctx.moveTo(s.X(-x), s.Y(-y)); ctx.lineTo(s.X(x), s.Y(y)); ctx.stroke(); ctx.restore();
+      });
+      ctx.save(); ctx.fillStyle = "#fbfbf7"; ctx.beginPath(); ctx.arc(s.X(0), s.Y(0), s.sx * 0.8, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+      for (let h = 1; h <= 12; h++) { const ang = (90 - h * 30) * Math.PI / 180; s.text(String(h), 6.5 * Math.cos(ang), 6.5 * Math.sin(ang), { size: 14, weight: 700, color: "#141414", font: c.mono }); }
+      return;
+    }
+    // JCC 示意（檢查者視角，TABO）
+    const A = aR.value, faces = mode.value === "axis" ? [A + 45, A - 45] : [A, A + 90];
+    [-5, 5].forEach((cx, i) => {
+      const red = faces[i] * Math.PI / 180, wht = red + Math.PI / 2, rr = 3.2;
+      ctx.save(); ctx.strokeStyle = c.line; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(s.X(cx), s.Y(0.4), s.sx * 3.6, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+      const ta = A * Math.PI / 180;
+      s.line(cx - 4 * Math.cos(ta), 0.4 - 4 * Math.sin(ta), cx + 4 * Math.cos(ta), 0.4 + 4 * Math.sin(ta), { color: c.accent, w: 2.5, dash: [6, 4] });
+      // 手柄
+      const ha = mode.value === "axis" ? ta : ta + Math.PI / 4;
+      s.line(cx + 3.6 * Math.cos(ha), 0.4 + 3.6 * Math.sin(ha), cx + 5.2 * Math.cos(ha), 0.4 + 5.2 * Math.sin(ha), { color: c.muted, w: 5 });
+      [[red, c.bad], [red + Math.PI, c.bad], [wht, c.surface], [wht + Math.PI, c.surface]].forEach(([g, col]) => {
+        ctx.save(); ctx.beginPath(); ctx.arc(s.X(cx + rr * Math.cos(g)), s.Y(0.4 + rr * Math.sin(g)), 6, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill(); ctx.strokeStyle = c.ink; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
+      });
+      s.text(i === 0 ? "一號面" : "二號面", cx, -4.6, { size: 13, weight: 700 });
+      s.text(`紅點 ${ax3(faces[i])}`, cx, -5.7, { size: 11, color: c.bad, font: c.mono });
+    });
+    s.text("虛線：目前柱鏡軸 " + ax3(A) + "（檢查者視角）", 0, 6.4, { size: 11, color: c.muted });
+  } });
+  newJP();
+
+  quiz("quiz", "ch03", [
+    { q: "工作距離 50 cm，檢影中和讀到 +1.00 D，淨度數是：", opts: ["+1.00 D", "−1.00 D", "+3.00 D", "−0.50 D"], a: 1, exp: "net ＝ gross − 1/WD ＝ +1.00 − 2.00 ＝ −1.00 D。" },
+    { q: "檢影看到逆動，代表：", opts: ["要加正鏡片", "要加負鏡片", "已經中和", "病人在調節"], a: 1, exp: "逆動表示遠點在檢查者與病人之間，近視量大於工作距離鏡，要加負。" },
+    { q: "MPMVA 霧視之後，視力通常應落在：", opts: ["1.0 以上", "20/40～20/60", "20/200 以下", "看不到任何視標"], a: 1, exp: "講義建議霧視 +1.00，視力約 20/40～20/60；太清楚表示霧視不足，太模糊則收回太慢。" },
+    { q: "紅綠測試時病人說綠色比較清楚，下一步是：", opts: ["加 −0.25", "加 +0.25", "結束測試", "換散光測試"], a: 1, exp: "綠清代表過矯，加正（GAP：green add plus）。" },
+    { q: "霧視後病人在鐘面圖上指出 3–9 點鐘的線最黑，負柱軸在：", opts: ["030", "090", "180", "120"], a: 1, exp: "3 × 30 ＝ 090，屬於逆散。" },
+    { q: "JCC 測度數時，紅點對齊柱鏡軸那一面較清楚，應：", opts: ["柱鏡加 −0.25", "柱鏡減 −0.25", "軸轉向紅點", "球面加 −0.25"], a: 0, exp: "紅點（負柱軸）對齊時較清楚，表示還需要更多負柱鏡。" },
+    { q: "柱鏡從 −0.50 調到 −1.50，球面應該：", opts: ["加 −0.50", "加 +0.50", "加 +1.00", "不用動"], a: 1, exp: "柱鏡多了 −1.00，補 +0.50 球面，等價球面不變。" },
+    { q: "雙眼平衡用稜鏡分離法時，兩眼無法調到一樣模糊，應該：", opts: ["讓非主利眼較清楚", "讓主利眼稍微清楚", "放棄雙眼平衡", "兩眼都加 −0.50"], a: 1, exp: "無法平衡時，讓主利眼稍清楚，再進行雙眼 MPMVA。" },
+  ]);
+})();
+</script>
+</body>
+</html>
