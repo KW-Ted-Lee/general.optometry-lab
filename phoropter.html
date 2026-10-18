@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="assets/analytics.js"></script>
 <title>綜合驗光儀模擬｜視光學臨床實驗台</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
@@ -2156,7 +2157,7 @@ const VIEW = (() => {
   $("#gNext").onclick = () => {
     const r = STEPS[app.step].check(); if (r.ok) app.done.add(app.step);
     if (app.step < STEPS.length - 1) { app.step++; renderGuide(); }
-    else $("#rx").scrollIntoView({ behavior: "smooth", block: "start" });
+    else { $("#rx").scrollIntoView({ behavior: "smooth", block: "start" }); if (window.labTrack) labTrack("sim_guide_complete", { simulator: "phoropter", level: app.level, steps_done: app.done.size, steps_total: STEPS.length }); }
   };
   $("#gCheck").onclick = () => {
     const r = STEPS[app.step].check();
@@ -2251,6 +2252,7 @@ const VIEW = (() => {
     pts += Math.min(20, ap);
     const score = Math.round(pts / max * 100);
     app.submitted = true;
+    if (window.labTrack) labTrack("sim_submit", { simulator: "phoropter", mode: app.mode, level: app.level, start: app.src, score: score });
     const hd = `<div class="card"><div class="card-body">
       <div style="display:flex;gap:14px;align-items:baseline;flex-wrap:wrap"><span class="score-big">${score} 分</span><span style="color:var(--muted)">度數 ${pts - Math.min(20, ap)}／${max - 20}　流程 ${Math.min(20, ap)}／20</span></div>
       <div class="rx-wrap"><table class="terms" style="margin-top:6px"><tr><th>項目</th><th>你的結果</th><th>病人實際</th><th>判定</th></tr>
@@ -2300,7 +2302,7 @@ const VIEW = (() => {
   $("#partsList").insertAdjacentHTML("afterend", '<p class="sub" style="margin-top:10px">旋轉稜鏡（8）與 JCC（18）裝在同一片豌豆形附件轉盤上，繞中間的小圓鈕轉動，同一時間只能把其中一個轉到檢查窗前。</p>');
 
   /* ---------- 上方設定列 ---------- */
-  seg("#modeSeg", (v) => { app.mode = v; $("#guide").style.display = v === "guide" ? "" : "none"; $("#reveal").style.display = v === "exam" && !app.submitted ? "none" : ""; refresh(); });
+  seg("#modeSeg", (v) => { if (window.labTrack) labTrack("sim_mode", { simulator: "phoropter", mode: v }); app.mode = v; $("#guide").style.display = v === "guide" ? "" : "none"; $("#reveal").style.display = v === "exam" && !app.submitted ? "none" : ""; refresh(); });
   seg("#lvSeg", (v) => { app.level = +v; newPatient(); });
   seg("#srcSeg", (v) => { app.src = v; newPatient(); });
   seg("#jccPowSeg", (v) => act("jccPow", null, v));
