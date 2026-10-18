@@ -1757,6 +1757,7 @@ const VIEW = (() => {
     app.S = OPT.newInstrument(app.P);
     app.vstate = { broken: false, blur: false }; app.prevS = null; app.jccSeen = { R: [], L: [] };
     app.events = []; app.step = 0; app.done = new Set(); app.submitted = false; app.revealed = false;
+    app.stats = { t0: Date.now(), actions: 0, counts: {} };   // 瀏覽統計用：操作次數與時間
     dlg.innerHTML = ""; $("#result").innerHTML = "";
     const P = app.P;
     const srcName = { ret: "檢影淨度數", old: "舊眼鏡度數", zero: "無（從零開始）" }[P.startSrc];
@@ -1773,6 +1774,7 @@ const VIEW = (() => {
   /* ---------- 動作 ---------- */
   const LENS_ACTS = new Set(["sph", "sphOU", "strong", "cyl", "axis", "aux", "jccIn", "jccMode", "jccFlip", "prismIn", "prismOrient", "prism", "pd", "tilt", "vertex", "lever"]);
   function act(name, k, d, ev) {
+    if (app.stats) { app.stats.actions++; app.stats.counts[name] = (app.stats.counts[name] || 0) + 1; }
     const S = app.S; const before = clone(S);
     const e = k ? S.eye[k] : null;
     let label = "";
@@ -2156,6 +2158,7 @@ const VIEW = (() => {
   $("#gPrev").onclick = () => { app.step = Math.max(0, app.step - 1); renderGuide(); };
   $("#gNext").onclick = () => {
     const r = STEPS[app.step].check(); if (r.ok) app.done.add(app.step);
+    if (window.labTrack) { const st = STEPS[app.step]; labTrack("sim_step", { simulator: "phoropter", step: app.step + 1, step_name: st.phase + "｜" + st.title, ok: !!r.ok, level: app.level, start: app.src }); }
     if (app.step < STEPS.length - 1) { app.step++; renderGuide(); }
     else { $("#rx").scrollIntoView({ behavior: "smooth", block: "start" }); if (window.labTrack) labTrack("sim_guide_complete", { simulator: "phoropter", level: app.level, steps_done: app.done.size, steps_total: STEPS.length }); }
   };
@@ -2252,7 +2255,16 @@ const VIEW = (() => {
     pts += Math.min(20, ap);
     const score = Math.round(pts / max * 100);
     app.submitted = true;
-    if (window.labTrack) labTrack("sim_submit", { simulator: "phoropter", mode: app.mode, level: app.level, start: app.src, score: score });
+    if (window.labTrack) {
+      const C = (app.stats && app.stats.counts) || {};
+      labTrack("sim_submit", {
+        simulator: "phoropter", mode: app.mode, level: app.level, start: app.src, score: score,
+        duration_sec: app.stats ? Math.round((Date.now() - app.stats.t0) / 1000) : 0,
+        actions: app.stats ? app.stats.actions : 0, asks: ev.length, jcc_flips: C.jccFlip || 0,
+        setup_ok: !!setupOK, fogged: !!fogged, mono_ok: monoBad === 0, jcc_used: !!jccUsed,
+        binocular_balance: !!bal, near_test: nearAsks.length > 0,
+      });
+    }
     const hd = `<div class="card"><div class="card-body">
       <div style="display:flex;gap:14px;align-items:baseline;flex-wrap:wrap"><span class="score-big">${score} 分</span><span style="color:var(--muted)">度數 ${pts - Math.min(20, ap)}／${max - 20}　流程 ${Math.min(20, ap)}／20</span></div>
       <div class="rx-wrap"><table class="terms" style="margin-top:6px"><tr><th>項目</th><th>你的結果</th><th>病人實際</th><th>判定</th></tr>
